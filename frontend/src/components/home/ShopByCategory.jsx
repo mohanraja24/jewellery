@@ -9,14 +9,14 @@ export const ShopByCategory = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <span className="text-xs uppercase font-bold tracking-[0.2em] text-gold-dark block mb-2">
+          <span className="text-xs uppercase font-extrabold tracking-[0.2em] text-gold-dark block mb-2">
             Curated Expressions
           </span>
-          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-charcoal">
+          <h2 className="text-3xl sm:text-4xl font-serif font-black text-gray-950">
             Explore By Category
           </h2>
-          <div className="w-16 h-0.5 bg-gold mx-auto my-4"></div>
-          <p className="text-sm text-charcoal-muted leading-relaxed">
+          <div className="w-20 h-1 bg-gold mx-auto my-4 rounded-full"></div>
+          <p className="text-sm sm:text-base text-gray-600 font-medium leading-relaxed">
             From majestic 22K bridal adornments to featherlight daily wear solitaires, discover our expansive catalog tailored to every milestone.
           </p>
         </div>
@@ -27,7 +27,7 @@ export const ShopByCategory = () => {
             <Link
               key={category.id}
               to={`/shop?category=${category.slug}`}
-              className="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-luxury transition-all duration-300 border border-borderLuxury hover:border-gold/60 flex flex-col"
+              className="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-luxury transition-all duration-300 border border-borderLuxury hover:border-gold/80 flex flex-col"
             >
               {/* Image Container */}
               <div className="aspect-square w-full overflow-hidden bg-ivory relative">
@@ -37,22 +37,22 @@ export const ShopByCategory = () => {
                   className="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-500"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-950/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </div>
 
               {/* Text Info */}
-              <div className="p-4 text-center flex-grow flex flex-col justify-between">
+              <div className="p-4 text-center flex-grow flex flex-col justify-between space-y-2">
                 <div>
-                  <h3 className="font-serif font-bold text-sm sm:text-base text-charcoal group-hover:text-emeraldTheme transition-colors">
+                  <h3 className="font-bold text-base text-gray-900 group-hover:text-emeraldTheme transition-colors">
                     {category.name}
                   </h3>
-                  <p className="text-[11px] text-charcoal-muted mt-1 line-clamp-1">
+                  <p className="text-xs text-gray-600 font-medium line-clamp-1 mt-1">
                     {category.description}
                   </p>
                 </div>
-                <div className="mt-3 pt-2 border-t border-borderLuxury/50 flex items-center justify-center text-[11px] font-bold text-gold-dark group-hover:text-emeraldTheme transition-colors">
+                <div className="pt-2 border-t border-borderLuxury flex items-center justify-center text-xs font-extrabold text-gold-dark group-hover:text-emeraldTheme transition-colors">
                   <span>Explore Designs</span>
-                  <ArrowRight className="w-3 h-3 ml-1 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-1.5 transition-transform" />
                 </div>
               </div>
             </Link>

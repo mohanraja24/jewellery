@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Lock, Mail, ShieldCheck, Sparkles, UserCheck } from 'lucide-react';
+import { Lock, Mail, Crown } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useBrand } from '../context/BrandContext';
 import toast from 'react-hot-toast';
@@ -33,23 +33,26 @@ export const LoginPage = () => {
   };
 
   return (
-    <div className="bg-ivory/50 min-h-[85vh] flex items-center justify-center py-16 px-4">
-      <div className="max-w-md w-full bg-white rounded-2xl border border-borderLuxury p-8 shadow-luxury space-y-6">
+    <div className="bg-ivory min-h-[85vh] flex items-center justify-center py-16 px-4">
+      <div className="max-w-md w-full bg-white rounded-2xl border-2 border-borderLuxury p-8 sm:p-10 shadow-luxury space-y-6">
         <div className="text-center space-y-2">
-          <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-gold-dark">
+          <div className="w-12 h-12 rounded-xl bg-emeraldTheme mx-auto flex items-center justify-center text-amber-300 shadow-sm border border-gold/40 mb-3">
+            <Crown className="w-6 h-6" />
+          </div>
+          <span className="text-xs uppercase font-extrabold tracking-[0.2em] text-gold-dark">
             Privé Access
           </span>
-          <h1 className="text-2xl sm:text-3xl font-serif font-bold text-charcoal">
+          <h1 className="text-2xl sm:text-3xl font-serif font-black text-gray-950">
             Welcome to {brand.brandName}
           </h1>
-          <p className="text-xs text-charcoal-muted">
+          <p className="text-xs sm:text-sm text-gray-600 font-medium">
             Sign in to track orders, manage your wishlist, and lock live bullion quotes.
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-5 font-medium">
           <div>
-            <label className="block text-xs uppercase font-bold text-charcoal-muted mb-1">
+            <label className="block text-xs uppercase font-extrabold text-gray-800 mb-1.5">
               Email Address
             </label>
             <div className="relative">
@@ -59,21 +62,21 @@ export const LoginPage = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="name@example.com"
                 required
-                className="w-full bg-ivory border border-borderLuxury rounded-lg px-3.5 py-2.5 text-xs text-charcoal focus:outline-none focus:border-gold"
+                className="w-full bg-ivory border-2 border-borderLuxury rounded-xl px-4 py-3 text-xs sm:text-sm font-bold text-gray-950 focus:outline-none focus:border-gold"
               />
-              <Mail className="w-4 h-4 text-charcoal-muted absolute right-3 top-3" />
+              <Mail className="w-4 h-4 text-gray-500 absolute right-3.5 top-3.5" />
             </div>
           </div>
 
           <div>
-            <div className="flex justify-between items-center mb-1">
-              <label className="text-xs uppercase font-bold text-charcoal-muted">
+            <div className="flex justify-between items-center mb-1.5">
+              <label className="text-xs uppercase font-extrabold text-gray-800">
                 Password
               </label>
               <button
                 type="button"
                 onClick={() => toast.success('Password reset link dispatched to email!')}
-                className="text-[11px] text-burgundy hover:underline"
+                className="text-xs font-bold text-emeraldTheme hover:underline"
               >
                 Forgot Password?
               </button>
@@ -85,47 +88,47 @@ export const LoginPage = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
                 required
-                className="w-full bg-ivory border border-borderLuxury rounded-lg px-3.5 py-2.5 text-xs text-charcoal focus:outline-none focus:border-gold"
+                className="w-full bg-ivory border-2 border-borderLuxury rounded-xl px-4 py-3 text-xs sm:text-sm font-bold text-gray-950 focus:outline-none focus:border-gold"
               />
-              <Lock className="w-4 h-4 text-charcoal-muted absolute right-3 top-3" />
+              <Lock className="w-4 h-4 text-gray-500 absolute right-3.5 top-3.5" />
             </div>
           </div>
 
           <button
             type="submit"
-            className="w-full py-3.5 bg-burgundy hover:bg-burgundy-light text-white text-xs uppercase font-bold tracking-widest rounded-lg shadow-luxury transition"
+            className="w-full py-4 bg-emeraldTheme hover:bg-emeraldTheme-light text-white text-xs sm:text-sm uppercase font-extrabold tracking-widest rounded-xl shadow-luxury transition border border-gold/40"
           >
             Sign In to Account
           </button>
         </form>
 
         {/* Quick Demo Switcher */}
-        <div className="pt-4 border-t border-borderLuxury space-y-2">
-          <p className="text-[11px] text-charcoal-muted text-center font-medium">
-            Quick Testing Credentials:
+        <div className="pt-4 border-t border-borderLuxury space-y-2.5">
+          <p className="text-xs text-gray-700 text-center font-bold">
+            One-Click Quick Testing Access:
           </p>
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-3">
             <button
               onClick={() => {
                 setEmail('priyanka@example.com');
                 setPassword('password123');
               }}
-              className="py-1.5 px-2 bg-ivory hover:bg-gold-50 border border-borderLuxury text-[11px] font-semibold text-charcoal rounded text-center transition"
+              className="py-2.5 px-3 bg-ivory hover:bg-gold-50 border-2 border-borderLuxury text-xs font-bold text-gray-900 rounded-xl text-center transition"
             >
               Demo Customer
             </button>
             <button
               onClick={handleAdminDemoLogin}
-              className="py-1.5 px-2 bg-burgundy-50 hover:bg-burgundy-100/60 border border-burgundy/30 text-[11px] font-semibold text-burgundy rounded text-center transition"
+              className="py-2.5 px-3 bg-emeraldTheme-50 hover:bg-emeraldTheme-100 border-2 border-emeraldTheme/40 text-xs font-extrabold text-emeraldTheme rounded-xl text-center transition"
             >
               Demo Admin Portal
             </button>
           </div>
         </div>
 
-        <div className="text-center pt-2 text-xs text-charcoal-muted">
+        <div className="text-center pt-2 text-xs sm:text-sm text-gray-600 font-medium">
           Don't have an account yet?{' '}
-          <Link to="/register" className="text-burgundy font-bold hover:underline">
+          <Link to="/register" className="text-emeraldTheme font-extrabold hover:underline">
             Register as New Patron
           </Link>
         </div>

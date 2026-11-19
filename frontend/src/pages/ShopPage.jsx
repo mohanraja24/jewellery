@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Filter, SlidersHorizontal, X, ArrowUpDown, Sparkles } from 'lucide-react';
+import { Filter, SlidersHorizontal, Sparkles } from 'lucide-react';
 import { ProductCard } from '../components/common/ProductCard';
 import { INITIAL_PRODUCTS, INITIAL_CATEGORIES } from '../data/mockData';
 import { useMetalRate } from '../context/MetalRateContext';
@@ -102,47 +102,47 @@ export const ShopPage = () => {
   };
 
   return (
-    <div className="bg-ivory/40 min-h-screen py-10">
+    <div className="bg-ivory/50 min-h-screen py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Breadcrumbs & Title */}
         <div className="mb-8">
-          <span className="text-[11px] uppercase font-bold tracking-widest text-gold-dark">
+          <span className="text-xs uppercase font-extrabold tracking-widest text-gold-dark">
             Artisanal Collections
           </span>
-          <h1 className="text-3xl sm:text-4xl font-serif font-bold text-charcoal mt-1">
+          <h1 className="text-3xl sm:text-4xl font-serif font-black text-gray-950 mt-1">
             {selectedCategory === 'all'
               ? 'All Fine Jewellery'
               : INITIAL_CATEGORIES.find((c) => c.slug === selectedCategory)?.name || 'Jewellery Catalog'}
           </h1>
           {activeSearchParam && (
-            <p className="text-xs text-charcoal-muted mt-1">
-              Search results for: <strong className="text-charcoal">"{activeSearchParam}"</strong>
+            <p className="text-sm text-gray-700 font-semibold mt-1">
+              Search results for: <strong className="text-gray-950">"{activeSearchParam}"</strong>
             </p>
           )}
         </div>
 
         {/* Action Bar (Total Count, Sort, Mobile Filter Button) */}
-        <div className="bg-white p-4 rounded-xl border border-borderLuxury mb-8 flex flex-wrap items-center justify-between gap-4">
+        <div className="bg-white p-4 sm:p-5 rounded-2xl border-2 border-borderLuxury mb-8 flex flex-wrap items-center justify-between gap-4 shadow-sm">
           <div className="flex items-center space-x-3">
             <button
               onClick={() => setMobileFilterOpen(!mobileFilterOpen)}
-              className="lg:hidden flex items-center space-x-2 px-3 py-2 bg-ivory border border-borderLuxury rounded-lg text-xs font-semibold text-charcoal"
+              className="lg:hidden flex items-center space-x-2 px-4 py-2.5 bg-ivory border-2 border-borderLuxury rounded-xl text-xs font-bold text-gray-900"
             >
               <Filter className="w-4 h-4 text-gold-dark" />
               <span>Filters</span>
             </button>
-            <span className="text-xs text-charcoal-muted">
-              Showing <strong className="text-charcoal">{filteredProducts.length}</strong> heirloom designs
+            <span className="text-xs sm:text-sm text-gray-700 font-medium">
+              Showing <strong className="text-gray-950 font-bold">{filteredProducts.length}</strong> heirloom designs
             </span>
           </div>
 
           {/* Sort By Dropdown */}
-          <div className="flex items-center space-x-2">
-            <span className="text-xs text-charcoal-muted hidden sm:inline">Sort by:</span>
+          <div className="flex items-center space-x-2.5">
+            <span className="text-xs sm:text-sm text-gray-700 font-bold hidden sm:inline">Sort by:</span>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="bg-ivory border border-borderLuxury rounded-lg px-3 py-1.5 text-xs font-medium text-charcoal focus:outline-none focus:border-gold"
+              className="bg-ivory border-2 border-borderLuxury rounded-xl px-4 py-2 text-xs sm:text-sm font-bold text-gray-900 focus:outline-none focus:border-gold"
             >
               <option value="featured">Featured Curations</option>
               <option value="bestseller">Bestselling Popularity</option>
@@ -156,15 +156,15 @@ export const ShopPage = () => {
         {/* Main Content Layout (Sidebar Filters + Products Grid) */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Desktop Filter Sidebar */}
-          <aside className="hidden lg:block space-y-6 bg-white p-6 rounded-xl border border-borderLuxury h-fit">
-            <div className="flex items-center justify-between pb-3 border-b border-borderLuxury">
-              <h3 className="font-serif font-bold text-base text-charcoal flex items-center">
-                <SlidersHorizontal className="w-4 h-4 mr-2 text-gold-dark" />
+          <aside className="hidden lg:block space-y-6 bg-white p-6 rounded-2xl border-2 border-borderLuxury h-fit shadow-sm">
+            <div className="flex items-center justify-between pb-3.5 border-b border-borderLuxury">
+              <h3 className="font-serif font-black text-lg text-gray-950 flex items-center">
+                <SlidersHorizontal className="w-5 h-5 mr-2 text-gold-dark" />
                 Refine Selection
               </h3>
               <button
                 onClick={resetFilters}
-                className="text-[11px] font-semibold text-burgundy hover:underline"
+                className="text-xs font-bold text-emeraldTheme hover:underline cursor-pointer"
               >
                 Reset All
               </button>
@@ -172,16 +172,16 @@ export const ShopPage = () => {
 
             {/* Category Filter */}
             <div>
-              <h4 className="text-xs uppercase font-bold tracking-wider text-charcoal-muted mb-2.5">
+              <h4 className="text-xs uppercase font-extrabold tracking-wider text-gray-800 mb-3">
                 Category
               </h4>
-              <div className="space-y-1.5 text-xs">
+              <div className="space-y-1.5 text-xs sm:text-sm">
                 <button
                   onClick={() => setSelectedCategory('all')}
-                  className={`block w-full text-left px-2.5 py-1.5 rounded transition ${
+                  className={`block w-full text-left px-3 py-2 rounded-xl transition ${
                     selectedCategory === 'all'
-                      ? 'bg-burgundy text-white font-medium'
-                      : 'text-charcoal hover:bg-ivory'
+                      ? 'bg-emeraldTheme text-white font-bold shadow-sm'
+                      : 'text-gray-800 font-semibold hover:bg-ivory'
                   }`}
                 >
                   All Categories ({INITIAL_PRODUCTS.length})
@@ -190,10 +190,10 @@ export const ShopPage = () => {
                   <button
                     key={cat.id}
                     onClick={() => setSelectedCategory(cat.slug)}
-                    className={`block w-full text-left px-2.5 py-1.5 rounded transition ${
+                    className={`block w-full text-left px-3 py-2 rounded-xl transition ${
                       selectedCategory === cat.slug
-                        ? 'bg-burgundy text-white font-medium'
-                        : 'text-charcoal hover:bg-ivory'
+                        ? 'bg-emeraldTheme text-white font-bold shadow-sm'
+                        : 'text-gray-800 font-semibold hover:bg-ivory'
                     }`}
                   >
                     {cat.name}
@@ -204,20 +204,20 @@ export const ShopPage = () => {
 
             {/* Metal Type Filter */}
             <div className="pt-4 border-t border-borderLuxury">
-              <h4 className="text-xs uppercase font-bold tracking-wider text-charcoal-muted mb-2.5">
+              <h4 className="text-xs uppercase font-extrabold tracking-wider text-gray-800 mb-3">
                 Precious Metal
               </h4>
-              <div className="space-y-1.5 text-xs">
+              <div className="space-y-2 text-xs sm:text-sm">
                 {['ALL', 'GOLD', 'SILVER', 'PLATINUM', 'BRASS_GOLD_PLATED'].map((metal) => (
-                  <label key={metal} className="flex items-center space-x-2 cursor-pointer">
+                  <label key={metal} className="flex items-center space-x-2.5 cursor-pointer">
                     <input
                       type="radio"
                       name="metalFilter"
                       checked={selectedMetal === metal}
                       onChange={() => setSelectedMetal(metal)}
-                      className="text-burgundy focus:ring-gold"
+                      className="text-emeraldTheme focus:ring-gold"
                     />
-                    <span className="text-charcoal">
+                    <span className="text-gray-900 font-semibold">
                       {metal === 'ALL'
                         ? 'All Metals'
                         : metal === 'BRASS_GOLD_PLATED'
@@ -231,20 +231,20 @@ export const ShopPage = () => {
 
             {/* Purity Filter */}
             <div className="pt-4 border-t border-borderLuxury">
-              <h4 className="text-xs uppercase font-bold tracking-wider text-charcoal-muted mb-2.5">
+              <h4 className="text-xs uppercase font-extrabold tracking-wider text-gray-800 mb-3">
                 Gold Purity
               </h4>
-              <div className="space-y-1.5 text-xs">
+              <div className="space-y-2 text-xs sm:text-sm">
                 {['ALL', '24K', '22K', '18K', '14K'].map((purity) => (
-                  <label key={purity} className="flex items-center space-x-2 cursor-pointer">
+                  <label key={purity} className="flex items-center space-x-2.5 cursor-pointer">
                     <input
                       type="radio"
                       name="purityFilter"
                       checked={selectedPurity === purity}
                       onChange={() => setSelectedPurity(purity)}
-                      className="text-burgundy focus:ring-gold"
+                      className="text-emeraldTheme focus:ring-gold"
                     />
-                    <span className="text-charcoal">
+                    <span className="text-gray-900 font-semibold">
                       {purity === 'ALL' ? 'All Purities' : `${purity} Hallmarked`}
                     </span>
                   </label>
@@ -254,9 +254,9 @@ export const ShopPage = () => {
 
             {/* Max Price Range Slider */}
             <div className="pt-4 border-t border-borderLuxury">
-              <div className="flex justify-between text-xs mb-1.5">
-                <span className="font-bold text-charcoal-muted uppercase text-[11px]">Max Price</span>
-                <span className="font-bold text-burgundy">{formatINR(maxPrice)}</span>
+              <div className="flex justify-between text-xs sm:text-sm mb-2">
+                <span className="font-extrabold text-gray-800 uppercase text-xs">Max Price</span>
+                <span className="font-extrabold text-emeraldTheme">{formatINR(maxPrice)}</span>
               </div>
               <input
                 type="range"
@@ -265,9 +265,9 @@ export const ShopPage = () => {
                 step="5000"
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(Number(e.target.value))}
-                className="w-full accent-burgundy"
+                className="w-full accent-emeraldTheme"
               />
-              <div className="flex justify-between text-[10px] text-charcoal-muted mt-1">
+              <div className="flex justify-between text-xs text-gray-600 font-bold mt-1">
                 <span>₹5,000</span>
                 <span>₹5,00,000+</span>
               </div>
@@ -275,14 +275,14 @@ export const ShopPage = () => {
 
             {/* In Stock Only Checkbox */}
             <div className="pt-4 border-t border-borderLuxury">
-              <label className="flex items-center space-x-2 cursor-pointer text-xs">
+              <label className="flex items-center space-x-2.5 cursor-pointer text-xs sm:text-sm">
                 <input
                   type="checkbox"
                   checked={onlyInStock}
                   onChange={(e) => setOnlyInStock(e.target.checked)}
-                  className="rounded text-burgundy focus:ring-gold"
+                  className="rounded text-emeraldTheme focus:ring-gold"
                 />
-                <span className="text-charcoal font-medium">In Stock Designs Only</span>
+                <span className="text-gray-900 font-bold">In Stock Designs Only</span>
               </label>
             </div>
           </aside>
@@ -290,17 +290,17 @@ export const ShopPage = () => {
           {/* Product Grid Area */}
           <main className="lg:col-span-3">
             {filteredProducts.length === 0 ? (
-              <div className="bg-white rounded-xl border border-borderLuxury p-12 text-center space-y-4">
-                <Sparkles className="w-10 h-10 text-gold mx-auto" />
-                <h3 className="text-lg font-serif font-bold text-charcoal">
+              <div className="bg-white rounded-2xl border-2 border-borderLuxury p-12 text-center space-y-4">
+                <Sparkles className="w-12 h-12 text-gold mx-auto" />
+                <h3 className="text-xl font-serif font-black text-gray-950">
                   No jewellery matches your current filters
                 </h3>
-                <p className="text-xs text-charcoal-muted max-w-md mx-auto">
+                <p className="text-xs sm:text-sm text-gray-600 font-medium max-w-md mx-auto">
                   Try adjusting your price range, metal type, or clear active category filters to explore more heirloom pieces.
                 </p>
                 <button
                   onClick={resetFilters}
-                  className="px-6 py-2.5 bg-burgundy hover:bg-burgundy-light text-white text-xs font-semibold rounded-lg transition"
+                  className="px-6 py-3 bg-emeraldTheme hover:bg-emeraldTheme-light text-white text-xs sm:text-sm font-bold uppercase rounded-xl transition"
                 >
                   Reset All Filters
                 </button>

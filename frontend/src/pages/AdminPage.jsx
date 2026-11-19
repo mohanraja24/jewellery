@@ -2,27 +2,21 @@ import React, { useState } from 'react';
 import {
   TrendingUp,
   Package,
-  ShoppingBag,
-  Users,
   Settings,
   Upload,
-  AlertCircle,
   Plus,
   RefreshCw,
-  Edit2,
   Trash2,
   DollarSign,
   ShieldCheck,
-  CheckCircle,
-  Clock,
   Download,
   FileSpreadsheet
 } from 'lucide-react';
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
 import { useBrand } from '../context/BrandContext';
 import { useMetalRate } from '../context/MetalRateContext';
-import { INITIAL_PRODUCTS, INITIAL_CATEGORIES } from '../data/mockData';
-import { formatINR, formatINRDecimal, formatWeight, formatDate } from '../utils/formatters';
+import { INITIAL_PRODUCTS } from '../data/mockData';
+import { formatINR, formatWeight, formatDate } from '../utils/formatters';
 import toast from 'react-hot-toast';
 
 const REVENUE_DATA = [
@@ -38,7 +32,7 @@ export const AdminPage = () => {
   const { brand, updateBrandSettings } = useBrand();
   const { rates, updateRates, calculatePrice } = useMetalRate();
 
-  const [activeTab, setActiveTab] = useState('dashboard'); // 'dashboard' | 'rates' | 'products' | 'migration' | 'orders'
+  const [activeTab, setActiveTab] = useState('dashboard'); // 'dashboard' | 'rates' | 'products' | 'migration'
 
   // Admin Rate Management Form States
   const [manualGold24, setManualGold24] = useState(rates.gold24k);
@@ -166,48 +160,48 @@ export const AdminPage = () => {
   };
 
   return (
-    <div className="bg-ivory/50 min-h-screen py-8">
+    <div className="bg-ivory/60 min-h-screen py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Admin Header */}
-        <div className="bg-burgundy text-white rounded-2xl p-6 mb-8 shadow-luxury flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div className="bg-emeraldTheme text-white rounded-2xl p-6 sm:p-8 mb-8 shadow-luxury flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-2 border-gold/40">
           <div>
             <div className="flex items-center space-x-2">
-              <span className="bg-gold text-charcoal-dark text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded">
+              <span className="bg-amber-400 text-gray-950 text-xs uppercase font-extrabold tracking-wider px-2.5 py-0.5 rounded shadow-sm">
                 Admin Control Room
               </span>
-              <span className="text-xs text-gold-light">v2.4 Live Pricing Active</span>
+              <span className="text-xs sm:text-sm font-semibold text-amber-300">Live Bullion Pricing Engine Active</span>
             </div>
-            <h1 className="text-2xl font-serif font-bold text-ivory mt-1">
+            <h1 className="text-2xl sm:text-3xl font-serif font-black text-white mt-1">
               {brand.brandName} Store Management
             </h1>
-            <p className="text-xs text-ivory/80">
+            <p className="text-xs sm:text-sm text-gray-200 font-medium">
               Live Bullion Engine • Inventory & Catalog • Business Migration Settings
             </p>
           </div>
 
           <div className="flex items-center space-x-3">
-            <span className="text-xs text-ivory/80 hidden sm:inline">
-              Rate Status: <strong className="text-gold-light">{rates.status}</strong>
+            <span className="text-xs sm:text-sm text-white/90 font-medium hidden sm:inline">
+              Rate Status: <strong className="text-amber-300 font-bold">{rates.status}</strong>
             </span>
             <button
               onClick={() => {
                 updateRates(rates, false);
                 toast.success('Synced with live bullion API provider');
               }}
-              className="px-4 py-2 bg-gold hover:bg-gold-light text-charcoal-dark font-semibold text-xs rounded-lg transition flex items-center space-x-1.5"
+              className="px-4 py-2.5 bg-amber-400 hover:bg-amber-300 text-gray-950 font-extrabold text-xs sm:text-sm rounded-xl transition flex items-center space-x-2 shadow-sm"
             >
-              <RefreshCw className="w-3.5 h-3.5" />
+              <RefreshCw className="w-4 h-4" />
               <span>Sync Bullion Rates</span>
             </button>
           </div>
         </div>
 
         {/* Admin Tab Switcher */}
-        <div className="flex flex-wrap gap-2 mb-8 bg-white p-2 rounded-xl border border-borderLuxury">
+        <div className="flex flex-wrap gap-2.5 mb-8 bg-white p-2 rounded-2xl border-2 border-borderLuxury shadow-sm">
           <button
             onClick={() => setActiveTab('dashboard')}
-            className={`px-4 py-2 rounded-lg text-xs font-semibold flex items-center space-x-2 transition ${
-              activeTab === 'dashboard' ? 'bg-burgundy text-white shadow-sm' : 'text-charcoal hover:bg-ivory'
+            className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold flex items-center space-x-2 transition ${
+              activeTab === 'dashboard' ? 'bg-emeraldTheme text-white shadow-sm' : 'text-gray-800 hover:bg-ivory'
             }`}
           >
             <TrendingUp className="w-4 h-4" />
@@ -215,8 +209,8 @@ export const AdminPage = () => {
           </button>
           <button
             onClick={() => setActiveTab('rates')}
-            className={`px-4 py-2 rounded-lg text-xs font-semibold flex items-center space-x-2 transition ${
-              activeTab === 'rates' ? 'bg-burgundy text-white shadow-sm' : 'text-charcoal hover:bg-ivory'
+            className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold flex items-center space-x-2 transition ${
+              activeTab === 'rates' ? 'bg-emeraldTheme text-white shadow-sm' : 'text-gray-800 hover:bg-ivory'
             }`}
           >
             <DollarSign className="w-4 h-4" />
@@ -224,8 +218,8 @@ export const AdminPage = () => {
           </button>
           <button
             onClick={() => setActiveTab('products')}
-            className={`px-4 py-2 rounded-lg text-xs font-semibold flex items-center space-x-2 transition ${
-              activeTab === 'products' ? 'bg-burgundy text-white shadow-sm' : 'text-charcoal hover:bg-ivory'
+            className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold flex items-center space-x-2 transition ${
+              activeTab === 'products' ? 'bg-emeraldTheme text-white shadow-sm' : 'text-gray-800 hover:bg-ivory'
             }`}
           >
             <Package className="w-4 h-4" />
@@ -233,8 +227,8 @@ export const AdminPage = () => {
           </button>
           <button
             onClick={() => setActiveTab('migration')}
-            className={`px-4 py-2 rounded-lg text-xs font-semibold flex items-center space-x-2 transition ${
-              activeTab === 'migration' ? 'bg-burgundy text-white shadow-sm' : 'text-charcoal hover:bg-ivory'
+            className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold flex items-center space-x-2 transition ${
+              activeTab === 'migration' ? 'bg-emeraldTheme text-white shadow-sm' : 'text-gray-800 hover:bg-ivory'
             }`}
           >
             <Settings className="w-4 h-4" />
@@ -247,65 +241,65 @@ export const AdminPage = () => {
           <div className="space-y-8">
             {/* KPI Cards */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-              <div className="bg-white p-5 rounded-xl border border-borderLuxury shadow-sm">
-                <span className="text-[11px] uppercase font-bold text-charcoal-muted tracking-wider block">
+              <div className="bg-white p-6 rounded-2xl border-2 border-borderLuxury shadow-sm">
+                <span className="text-xs uppercase font-extrabold text-gray-600 tracking-wider block">
                   Total Revenue (Nov)
                 </span>
-                <div className="text-2xl font-serif font-bold text-burgundy mt-1">
+                <div className="text-2xl sm:text-3xl font-extrabold font-sans text-emeraldTheme mt-1">
                   ₹38,40,000
                 </div>
-                <div className="text-[10px] text-emerald-700 font-semibold mt-1">
+                <div className="text-xs text-emerald-800 font-bold mt-1">
                   +18.4% vs last month
                 </div>
               </div>
 
-              <div className="bg-white p-5 rounded-xl border border-borderLuxury shadow-sm">
-                <span className="text-[11px] uppercase font-bold text-charcoal-muted tracking-wider block">
+              <div className="bg-white p-6 rounded-2xl border-2 border-borderLuxury shadow-sm">
+                <span className="text-xs uppercase font-extrabold text-gray-600 tracking-wider block">
                   Total Orders
                 </span>
-                <div className="text-2xl font-serif font-bold text-charcoal mt-1">
+                <div className="text-2xl sm:text-3xl font-extrabold font-sans text-gray-950 mt-1">
                   48 Orders
                 </div>
-                <div className="text-[10px] text-charcoal-muted mt-1">
+                <div className="text-xs text-gray-600 font-semibold mt-1">
                   4 pending dispatch
                 </div>
               </div>
 
-              <div className="bg-white p-5 rounded-xl border border-borderLuxury shadow-sm">
-                <span className="text-[11px] uppercase font-bold text-charcoal-muted tracking-wider block">
+              <div className="bg-white p-6 rounded-2xl border-2 border-borderLuxury shadow-sm">
+                <span className="text-xs uppercase font-extrabold text-gray-600 tracking-wider block">
                   Live Gold 22K (916)
                 </span>
-                <div className="text-2xl font-serif font-bold text-gold-dark mt-1">
+                <div className="text-2xl sm:text-3xl font-extrabold font-sans text-gold-dark mt-1">
                   {formatINR(rates.gold22k)} / g
                 </div>
-                <div className="text-[10px] text-charcoal-muted mt-1">
+                <div className="text-xs text-gray-600 font-semibold mt-1">
                   Benchmark: {rates.source}
                 </div>
               </div>
 
-              <div className="bg-white p-5 rounded-xl border border-borderLuxury shadow-sm">
-                <span className="text-[11px] uppercase font-bold text-charcoal-muted tracking-wider block">
+              <div className="bg-white p-6 rounded-2xl border-2 border-borderLuxury shadow-sm">
+                <span className="text-xs uppercase font-extrabold text-gray-600 tracking-wider block">
                   Active SKUs
                 </span>
-                <div className="text-2xl font-serif font-bold text-charcoal mt-1">
+                <div className="text-2xl sm:text-3xl font-extrabold font-sans text-gray-950 mt-1">
                   {productsList.length} Designs
                 </div>
-                <div className="text-[10px] text-emerald-700 font-semibold mt-1">
+                <div className="text-xs text-emerald-800 font-bold mt-1">
                   All BIS Hallmarked
                 </div>
               </div>
             </div>
 
             {/* Sales Chart */}
-            <div className="bg-white p-6 rounded-2xl border border-borderLuxury shadow-sm">
+            <div className="bg-white p-6 sm:p-8 rounded-2xl border-2 border-borderLuxury shadow-sm">
               <div className="flex items-center justify-between mb-6">
                 <div>
-                  <h3 className="font-serif font-bold text-lg text-charcoal">
+                  <h3 className="font-serif font-black text-xl text-gray-950">
                     Precious Jewellery Sales & Revenue Velocity
                   </h3>
-                  <p className="text-xs text-charcoal-muted">Monthly gross revenue in INR</p>
+                  <p className="text-xs sm:text-sm text-gray-600 font-medium">Monthly gross revenue in INR</p>
                 </div>
-                <span className="text-xs font-bold text-burgundy bg-burgundy/10 px-3 py-1 rounded-full">
+                <span className="text-xs font-extrabold text-emeraldTheme bg-emeraldTheme-50 px-3.5 py-1.5 rounded-full border border-emeraldTheme/20">
                   FY 2026-27
                 </span>
               </div>
@@ -314,26 +308,27 @@ export const AdminPage = () => {
                   <AreaChart data={REVENUE_DATA}>
                     <defs>
                       <linearGradient id="colorRev" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#C6A15B" stopOpacity={0.4} />
-                        <stop offset="95%" stopColor="#C6A15B" stopOpacity={0} />
+                        <stop offset="5%" stopColor="#C59A27" stopOpacity={0.4} />
+                        <stop offset="95%" stopColor="#C59A27" stopOpacity={0} />
                       </linearGradient>
                     </defs>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#E8E1D7" />
-                    <XAxis dataKey="month" stroke="#666" fontSize={12} />
+                    <CartesianGrid strokeDasharray="3 3" stroke="#E5DED2" />
+                    <XAxis dataKey="month" stroke="#4B5563" fontSize={13} fontWeight="bold" />
                     <YAxis
-                      stroke="#666"
-                      fontSize={11}
+                      stroke="#4B5563"
+                      fontSize={12}
+                      fontWeight="bold"
                       tickFormatter={(val) => `₹${val / 100000}L`}
                     />
                     <Tooltip
                       formatter={(val) => [formatINR(val), 'Revenue']}
-                      contentStyle={{ backgroundColor: '#FAF7F0', borderColor: '#E8E1D7' }}
+                      contentStyle={{ backgroundColor: '#FAF8F5', borderColor: '#E5DED2', borderRadius: '12px', fontWeight: 'bold' }}
                     />
                     <Area
                       type="monotone"
                       dataKey="revenue"
-                      stroke="#5A1825"
-                      strokeWidth={2}
+                      stroke="#0B2F24"
+                      strokeWidth={3}
                       fillOpacity={1}
                       fill="url(#colorRev)"
                     />
@@ -347,18 +342,18 @@ export const AdminPage = () => {
         {/* TAB 2: LIVE RATE & PRICING ENGINE */}
         {activeTab === 'rates' && (
           <div className="space-y-8">
-            <div className="bg-white p-8 rounded-2xl border border-borderLuxury shadow-sm space-y-6">
+            <div className="bg-white p-8 rounded-2xl border-2 border-borderLuxury shadow-sm space-y-6">
               <div className="border-b border-borderLuxury pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div>
-                  <h2 className="text-xl font-serif font-bold text-charcoal flex items-center">
-                    <DollarSign className="w-5 h-5 mr-1.5 text-gold-dark" />
+                  <h2 className="text-xl sm:text-2xl font-serif font-black text-gray-950 flex items-center">
+                    <DollarSign className="w-6 h-6 mr-1.5 text-gold-dark" />
                     Bullion Benchmark & Rate Override Controls
                   </h2>
-                  <p className="text-xs text-charcoal-muted mt-0.5">
+                  <p className="text-xs sm:text-sm text-gray-600 font-medium mt-0.5">
                     Configure real-time per-gram bullion rates. Overriding rates updates all product prices instantly.
                   </p>
                 </div>
-                <span className="text-xs font-semibold px-3 py-1 rounded bg-gold-50 text-gold-dark border border-gold/40">
+                <span className="text-xs font-bold px-3 py-1 rounded-xl bg-gold-50 text-gold-dark border border-gold/40">
                   Last Updated: {formatDate(rates.lastUpdated)}
                 </span>
               </div>
@@ -366,40 +361,40 @@ export const AdminPage = () => {
               <form onSubmit={handleSaveRates} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                   <div>
-                    <label className="block text-xs uppercase font-bold text-charcoal-muted mb-1">
+                    <label className="block text-xs uppercase font-extrabold text-gray-800 mb-1.5">
                       Gold 24K (99.9% Pure) ₹/g
                     </label>
                     <input
                       type="number"
                       value={manualGold24}
                       onChange={(e) => setManualGold24(e.target.value)}
-                      className="w-full bg-ivory border border-borderLuxury rounded-lg p-2.5 text-sm font-bold text-charcoal focus:border-gold"
+                      className="w-full bg-ivory border-2 border-borderLuxury rounded-xl p-3 text-base font-black text-gray-950 focus:border-gold"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs uppercase font-bold text-charcoal-muted mb-1">
+                    <label className="block text-xs uppercase font-extrabold text-gray-800 mb-1.5">
                       Gold 22K (91.6% Hallmark 916) ₹/g
                     </label>
                     <input
                       type="number"
                       value={manualGold22}
                       onChange={(e) => setManualGold22(e.target.value)}
-                      className="w-full bg-ivory border border-borderLuxury rounded-lg p-2.5 text-sm font-bold text-burgundy focus:border-gold"
+                      className="w-full bg-ivory border-2 border-borderLuxury rounded-xl p-3 text-base font-black text-emeraldTheme focus:border-gold"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs uppercase font-bold text-charcoal-muted mb-1">
+                    <label className="block text-xs uppercase font-extrabold text-gray-800 mb-1.5">
                       Gold 18K (75.0% Hallmark 750) ₹/g
                     </label>
                     <input
                       type="number"
                       value={manualGold18}
                       onChange={(e) => setManualGold18(e.target.value)}
-                      className="w-full bg-ivory border border-borderLuxury rounded-lg p-2.5 text-sm font-bold text-charcoal focus:border-gold"
+                      className="w-full bg-ivory border-2 border-borderLuxury rounded-xl p-3 text-base font-black text-gray-950 focus:border-gold"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs uppercase font-bold text-charcoal-muted mb-1">
+                    <label className="block text-xs uppercase font-extrabold text-gray-800 mb-1.5">
                       Fine Silver 999 ₹/g
                     </label>
                     <input
@@ -407,19 +402,19 @@ export const AdminPage = () => {
                       step="0.01"
                       value={manualSilver}
                       onChange={(e) => setManualSilver(e.target.value)}
-                      className="w-full bg-ivory border border-borderLuxury rounded-lg p-2.5 text-sm font-bold text-charcoal focus:border-gold"
+                      className="w-full bg-ivory border-2 border-borderLuxury rounded-xl p-3 text-base font-black text-gray-950 focus:border-gold"
                     />
                   </div>
                 </div>
 
                 <div className="flex items-center justify-between pt-4 border-t border-borderLuxury">
-                  <div className="text-xs text-charcoal-muted flex items-center">
-                    <ShieldCheck className="w-4 h-4 text-emerald-700 mr-1.5" />
+                  <div className="text-xs sm:text-sm text-gray-600 font-semibold flex items-center">
+                    <ShieldCheck className="w-5 h-5 text-emerald-700 mr-2" />
                     <span>Every rate change creates an immutable entry in the audit log.</span>
                   </div>
                   <button
                     type="submit"
-                    className="px-6 py-2.5 bg-burgundy hover:bg-burgundy-light text-white text-xs uppercase font-bold tracking-wider rounded-lg shadow-luxury transition"
+                    className="px-6 py-3 bg-emeraldTheme hover:bg-emeraldTheme-light text-white text-xs sm:text-sm uppercase font-extrabold tracking-wider rounded-xl shadow-luxury transition"
                   >
                     Commit Rate Updates
                   </button>
@@ -433,73 +428,73 @@ export const AdminPage = () => {
         {activeTab === 'products' && (
           <div className="space-y-6">
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-serif font-bold text-charcoal">
+              <h2 className="text-xl sm:text-2xl font-serif font-black text-gray-950">
                 Active Product Inventory ({productsList.length})
               </h2>
               <button
                 onClick={() => setProductModalOpen(true)}
-                className="px-4 py-2 bg-burgundy hover:bg-burgundy-light text-white text-xs font-semibold rounded-lg transition flex items-center space-x-1.5"
+                className="px-5 py-2.5 bg-emeraldTheme hover:bg-emeraldTheme-light text-white text-xs sm:text-sm font-bold rounded-xl transition flex items-center space-x-2 shadow-sm"
               >
                 <Plus className="w-4 h-4" />
                 <span>Add New Jewellery Piece</span>
               </button>
             </div>
 
-            <div className="bg-white rounded-xl border border-borderLuxury overflow-hidden shadow-sm">
-              <table className="w-full text-left border-collapse text-xs">
+            <div className="bg-white rounded-2xl border-2 border-borderLuxury overflow-hidden shadow-sm">
+              <table className="w-full text-left border-collapse text-xs sm:text-sm">
                 <thead>
-                  <tr className="bg-ivory border-b border-borderLuxury text-charcoal-muted uppercase text-[10px] tracking-wider">
-                    <th className="p-3">Piece Details</th>
-                    <th className="p-3">SKU</th>
-                    <th className="p-3">Metal & Purity</th>
-                    <th className="p-3">Net Wt</th>
-                    <th className="p-3">Making Charge</th>
-                    <th className="p-3">Live Final Price</th>
-                    <th className="p-3">Stock</th>
-                    <th className="p-3 text-right">Actions</th>
+                  <tr className="bg-ivory border-b border-borderLuxury text-gray-800 uppercase text-xs font-black tracking-wider">
+                    <th className="p-4">Piece Details</th>
+                    <th className="p-4">SKU</th>
+                    <th className="p-4">Metal & Purity</th>
+                    <th className="p-4">Net Wt</th>
+                    <th className="p-4">Making Charge</th>
+                    <th className="p-4">Live Final Price</th>
+                    <th className="p-4">Stock</th>
+                    <th className="p-4 text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-borderLuxury">
+                <tbody className="divide-y divide-borderLuxury font-medium">
                   {productsList.map((item) => {
                     const priceDetails = calculatePrice(item);
                     return (
-                      <tr key={item.id} className="hover:bg-ivory/40">
-                        <td className="p-3 flex items-center space-x-3">
+                      <tr key={item.id} className="hover:bg-ivory/50">
+                        <td className="p-4 flex items-center space-x-3">
                           <img
                             src={item.images[0]}
                             alt=""
-                            className="w-10 h-10 rounded object-cover bg-ivory"
+                            className="w-12 h-12 rounded-xl object-cover bg-ivory border border-borderLuxury"
                           />
-                          <span className="font-semibold text-charcoal">{item.name}</span>
+                          <span className="font-bold text-gray-950">{item.name}</span>
                         </td>
-                        <td className="p-3 text-charcoal-muted font-mono">{item.sku}</td>
-                        <td className="p-3">
-                          <span className="font-bold text-burgundy">{item.purity}</span> {item.metalType}
+                        <td className="p-4 text-gray-600 font-mono font-bold">{item.sku}</td>
+                        <td className="p-4 font-bold">
+                          <span className="text-emeraldTheme font-black">{item.purity}</span> {item.metalType}
                         </td>
-                        <td className="p-3 font-semibold">{formatWeight(item.netMetalWeight)}</td>
-                        <td className="p-3 text-charcoal-muted">
+                        <td className="p-4 font-bold text-gray-950">{formatWeight(item.netMetalWeight)}</td>
+                        <td className="p-4 text-gray-700 font-semibold">
                           {item.makingChargeType === 'PERCENT' ? `${item.makingCharge}%` : `₹${item.makingCharge}`}
                         </td>
-                        <td className="p-3 font-bold font-serif text-burgundy">
+                        <td className="p-4 font-black font-sans text-base text-emeraldTheme">
                           {formatINR(priceDetails.finalPrice)}
                         </td>
-                        <td className="p-3">
-                          <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
-                            item.stock > 3 ? 'bg-emerald-50 text-emerald-800' : 'bg-red-50 text-red-800'
+                        <td className="p-4">
+                          <span className={`px-2.5 py-1 rounded-full text-xs font-extrabold ${
+                            item.stock > 3 ? 'bg-emerald-100 text-emerald-900' : 'bg-red-100 text-red-900'
                           }`}>
                             {item.stock} in stock
                           </span>
                         </td>
-                        <td className="p-3 text-right space-x-2">
+                        <td className="p-4 text-right">
                           <button
                             onClick={() => {
                               setProductsList(productsList.filter((p) => p.id !== item.id));
                               toast.success(`Deleted ${item.name}`);
                             }}
-                            className="text-red-600 hover:text-red-800"
+                            className="text-red-600 hover:text-red-800 p-1"
                             title="Delete SKU"
                           >
-                            <Trash2 className="w-4 h-4 inline" />
+                            <Trash2 className="w-5 h-5 inline" />
                           </button>
                         </td>
                       </tr>
@@ -515,133 +510,133 @@ export const AdminPage = () => {
         {activeTab === 'migration' && (
           <div className="space-y-8">
             {/* CSV Import Module */}
-            <div className="bg-white p-8 rounded-2xl border border-borderLuxury shadow-sm space-y-4">
-              <div className="flex items-center justify-between pb-3 border-b border-borderLuxury">
+            <div className="bg-white p-8 rounded-2xl border-2 border-borderLuxury shadow-sm space-y-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3.5 border-b border-borderLuxury gap-3">
                 <div>
-                  <h3 className="font-serif font-bold text-lg text-charcoal flex items-center">
-                    <FileSpreadsheet className="w-5 h-5 mr-2 text-gold-dark" />
+                  <h3 className="font-serif font-black text-xl text-gray-950 flex items-center">
+                    <FileSpreadsheet className="w-6 h-6 mr-2 text-gold-dark" />
                     Existing Business Product & Stock CSV Migration
                   </h3>
-                  <p className="text-xs text-charcoal-muted mt-0.5">
+                  <p className="text-xs sm:text-sm text-gray-600 font-medium mt-0.5">
                     Bulk import existing jewellery items, purities, weights, and stock figures without manual re-entry.
                   </p>
                 </div>
                 <button
                   onClick={handleDownloadCsvTemplate}
-                  className="px-4 py-2 border border-gold hover:bg-gold-50 text-gold-dark rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition"
+                  className="px-4 py-2.5 border-2 border-gold hover:bg-gold-50 text-gold-dark rounded-xl text-xs sm:text-sm font-extrabold flex items-center space-x-2 transition shadow-sm"
                 >
-                  <Download className="w-3.5 h-3.5" />
+                  <Download className="w-4 h-4" />
                   <span>Download Sample CSV Template</span>
                 </button>
               </div>
 
-              <div className="border-2 border-dashed border-borderLuxury rounded-xl p-8 text-center bg-ivory/40 space-y-3">
-                <Upload className="w-8 h-8 text-gold-dark mx-auto" />
-                <h4 className="font-semibold text-sm text-charcoal">
+              <div className="border-2 border-dashed border-borderLuxury rounded-2xl p-8 text-center bg-ivory/50 space-y-3">
+                <Upload className="w-10 h-10 text-gold-dark mx-auto" />
+                <h4 className="font-bold text-base text-gray-950">
                   Upload Completed Jewellery CSV File
                 </h4>
-                <p className="text-xs text-charcoal-muted max-w-md mx-auto">
+                <p className="text-xs sm:text-sm text-gray-600 font-medium max-w-md mx-auto">
                   Upload your completed CSV containing SKU, metal purity, gross weight, making charges, and initial stock.
                 </p>
                 <input
                   type="file"
                   accept=".csv"
                   onChange={handleCsvUpload}
-                  className="text-xs text-charcoal file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-burgundy file:text-white hover:file:bg-burgundy-light cursor-pointer"
+                  className="text-xs sm:text-sm text-charcoal file:mr-4 file:py-2.5 file:px-5 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-emeraldTheme file:text-white hover:file:bg-emeraldTheme-light cursor-pointer"
                 />
               </div>
             </div>
 
             {/* Brand Settings Form */}
-            <div className="bg-white p-8 rounded-2xl border border-borderLuxury shadow-sm space-y-6">
-              <h3 className="font-serif font-bold text-lg text-charcoal pb-3 border-b border-borderLuxury">
+            <div className="bg-white p-8 rounded-2xl border-2 border-borderLuxury shadow-sm space-y-6">
+              <h3 className="font-serif font-black text-xl text-gray-950 pb-3 border-b border-borderLuxury">
                 Configurable Brand & Store Details
               </h3>
               <form onSubmit={handleSaveBrand} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs uppercase font-bold text-charcoal-muted mb-1">
+                    <label className="block text-xs uppercase font-extrabold text-gray-800 mb-1.5">
                       Brand Name
                     </label>
                     <input
                       type="text"
                       value={brandForm.brandName}
                       onChange={(e) => setBrandForm({ ...brandForm, brandName: e.target.value })}
-                      className="w-full bg-ivory border border-borderLuxury rounded-lg p-2.5 text-xs text-charcoal font-semibold focus:border-gold"
+                      className="w-full bg-ivory border-2 border-borderLuxury rounded-xl p-3 text-xs sm:text-sm text-gray-950 font-bold focus:border-gold"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs uppercase font-bold text-charcoal-muted mb-1">
+                    <label className="block text-xs uppercase font-extrabold text-gray-800 mb-1.5">
                       Tagline / Motto
                     </label>
                     <input
                       type="text"
                       value={brandForm.tagline}
                       onChange={(e) => setBrandForm({ ...brandForm, tagline: e.target.value })}
-                      className="w-full bg-ivory border border-borderLuxury rounded-lg p-2.5 text-xs text-charcoal focus:border-gold"
+                      className="w-full bg-ivory border-2 border-borderLuxury rounded-xl p-3 text-xs sm:text-sm text-gray-950 font-bold focus:border-gold"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs uppercase font-bold text-charcoal-muted mb-1">
+                    <label className="block text-xs uppercase font-extrabold text-gray-800 mb-1.5">
                       Official Contact Phone
                     </label>
                     <input
                       type="tel"
                       value={brandForm.phone}
                       onChange={(e) => setBrandForm({ ...brandForm, phone: e.target.value })}
-                      className="w-full bg-ivory border border-borderLuxury rounded-lg p-2.5 text-xs text-charcoal focus:border-gold"
+                      className="w-full bg-ivory border-2 border-borderLuxury rounded-xl p-3 text-xs sm:text-sm text-gray-950 font-bold focus:border-gold"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs uppercase font-bold text-charcoal-muted mb-1">
+                    <label className="block text-xs uppercase font-extrabold text-gray-800 mb-1.5">
                       Official Concierge Email
                     </label>
                     <input
                       type="email"
                       value={brandForm.email}
                       onChange={(e) => setBrandForm({ ...brandForm, email: e.target.value })}
-                      className="w-full bg-ivory border border-borderLuxury rounded-lg p-2.5 text-xs text-charcoal focus:border-gold"
+                      className="w-full bg-ivory border-2 border-borderLuxury rounded-xl p-3 text-xs sm:text-sm text-gray-950 font-bold focus:border-gold"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs uppercase font-bold text-charcoal-muted mb-1">
+                    <label className="block text-xs uppercase font-extrabold text-gray-800 mb-1.5">
                       BIS Hallmark License No.
                     </label>
                     <input
                       type="text"
                       value={brandForm.bisLicenseNumber}
                       onChange={(e) => setBrandForm({ ...brandForm, bisLicenseNumber: e.target.value })}
-                      className="w-full bg-ivory border border-borderLuxury rounded-lg p-2.5 text-xs text-charcoal focus:border-gold"
+                      className="w-full bg-ivory border-2 border-borderLuxury rounded-xl p-3 text-xs sm:text-sm text-gray-950 font-bold focus:border-gold"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs uppercase font-bold text-charcoal-muted mb-1">
+                    <label className="block text-xs uppercase font-extrabold text-gray-800 mb-1.5">
                       GSTIN Identification Number
                     </label>
                     <input
                       type="text"
                       value={brandForm.gstin}
                       onChange={(e) => setBrandForm({ ...brandForm, gstin: e.target.value })}
-                      className="w-full bg-ivory border border-borderLuxury rounded-lg p-2.5 text-xs text-charcoal focus:border-gold"
+                      className="w-full bg-ivory border-2 border-borderLuxury rounded-xl p-3 text-xs sm:text-sm text-gray-950 font-bold focus:border-gold"
                     />
                   </div>
                 </div>
 
                 <div className="pt-2">
-                  <label className="block text-xs uppercase font-bold text-charcoal-muted mb-1">
+                  <label className="block text-xs uppercase font-extrabold text-gray-800 mb-1.5">
                     Headquarters Store Address
                   </label>
                   <input
                     type="text"
                     value={brandForm.addressLine1}
                     onChange={(e) => setBrandForm({ ...brandForm, addressLine1: e.target.value })}
-                    className="w-full bg-ivory border border-borderLuxury rounded-lg p-2.5 text-xs text-charcoal focus:border-gold"
+                    className="w-full bg-ivory border-2 border-borderLuxury rounded-xl p-3 text-xs sm:text-sm text-gray-950 font-bold focus:border-gold"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="px-6 py-2.5 bg-burgundy hover:bg-burgundy-light text-white text-xs font-semibold rounded-lg transition"
+                  className="px-6 py-3 bg-emeraldTheme hover:bg-emeraldTheme-light text-white text-xs sm:text-sm font-extrabold rounded-xl transition shadow-sm"
                 >
                   Save Store Details
                 </button>
@@ -652,24 +647,24 @@ export const AdminPage = () => {
 
         {/* Modal: Add New Product */}
         {productModalOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-charcoal/60 backdrop-blur-sm p-4">
-            <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full border border-gold/40 max-h-[90vh] overflow-y-auto animate-scaleUp">
-              <div className="bg-burgundy text-white p-5 flex items-center justify-between sticky top-0 z-10">
-                <h3 className="font-serif font-bold text-lg text-gold-light">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-950/70 backdrop-blur-sm p-4">
+            <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full border-2 border-gold max-h-[90vh] overflow-y-auto animate-scaleUp">
+              <div className="bg-emeraldTheme text-white p-5 flex items-center justify-between sticky top-0 z-10 border-b border-gold/40">
+                <h3 className="font-serif font-black text-xl text-amber-300">
                   Add New Jewellery Design
                 </h3>
                 <button
                   onClick={() => setProductModalOpen(false)}
-                  className="text-ivory hover:text-white"
+                  className="text-white hover:text-amber-300 font-bold"
                 >
                   ✕
                 </button>
               </div>
 
-              <form onSubmit={handleAddProduct} className="p-6 space-y-4">
+              <form onSubmit={handleAddProduct} className="p-6 space-y-4 font-medium">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs uppercase font-bold text-charcoal-muted mb-1">
+                    <label className="block text-xs uppercase font-extrabold text-gray-800 mb-1.5">
                       Product Name
                     </label>
                     <input
@@ -678,11 +673,11 @@ export const AdminPage = () => {
                       placeholder="e.g. Royal Nizam Emerald Necklace"
                       value={newProduct.name}
                       onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
-                      className="w-full bg-ivory border border-borderLuxury rounded-lg p-2.5 text-xs text-charcoal"
+                      className="w-full bg-ivory border-2 border-borderLuxury rounded-xl p-3 text-xs sm:text-sm text-gray-950 font-bold"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs uppercase font-bold text-charcoal-muted mb-1">
+                    <label className="block text-xs uppercase font-extrabold text-gray-800 mb-1.5">
                       SKU Code
                     </label>
                     <input
@@ -691,17 +686,17 @@ export const AdminPage = () => {
                       placeholder="e.g. AUR-GLD-NK-010"
                       value={newProduct.sku}
                       onChange={(e) => setNewProduct({ ...newProduct, sku: e.target.value })}
-                      className="w-full bg-ivory border border-borderLuxury rounded-lg p-2.5 text-xs text-charcoal"
+                      className="w-full bg-ivory border-2 border-borderLuxury rounded-xl p-3 text-xs sm:text-sm text-gray-950 font-bold"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs uppercase font-bold text-charcoal-muted mb-1">
+                    <label className="block text-xs uppercase font-extrabold text-gray-800 mb-1.5">
                       Metal Type
                     </label>
                     <select
                       value={newProduct.metalType}
                       onChange={(e) => setNewProduct({ ...newProduct, metalType: e.target.value })}
-                      className="w-full bg-ivory border border-borderLuxury rounded-lg p-2.5 text-xs text-charcoal"
+                      className="w-full bg-ivory border-2 border-borderLuxury rounded-xl p-3 text-xs sm:text-sm text-gray-950 font-bold"
                     >
                       <option value="GOLD">Gold</option>
                       <option value="SILVER">Silver</option>
@@ -710,13 +705,13 @@ export const AdminPage = () => {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-xs uppercase font-bold text-charcoal-muted mb-1">
+                    <label className="block text-xs uppercase font-extrabold text-gray-800 mb-1.5">
                       Purity
                     </label>
                     <select
                       value={newProduct.purity}
                       onChange={(e) => setNewProduct({ ...newProduct, purity: e.target.value })}
-                      className="w-full bg-ivory border border-borderLuxury rounded-lg p-2.5 text-xs text-charcoal"
+                      className="w-full bg-ivory border-2 border-borderLuxury rounded-xl p-3 text-xs sm:text-sm text-gray-950 font-bold"
                     >
                       <option value="24K">24K (99.9%)</option>
                       <option value="22K">22K (91.6% Hallmark)</option>
@@ -726,7 +721,7 @@ export const AdminPage = () => {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-xs uppercase font-bold text-charcoal-muted mb-1">
+                    <label className="block text-xs uppercase font-extrabold text-gray-800 mb-1.5">
                       Gross Weight (g)
                     </label>
                     <input
@@ -741,11 +736,11 @@ export const AdminPage = () => {
                           netMetalWeight: e.target.value
                         })
                       }
-                      className="w-full bg-ivory border border-borderLuxury rounded-lg p-2.5 text-xs text-charcoal"
+                      className="w-full bg-ivory border-2 border-borderLuxury rounded-xl p-3 text-xs sm:text-sm text-gray-950 font-bold"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs uppercase font-bold text-charcoal-muted mb-1">
+                    <label className="block text-xs uppercase font-extrabold text-gray-800 mb-1.5">
                       Net Metal Weight (g)
                     </label>
                     <input
@@ -754,49 +749,49 @@ export const AdminPage = () => {
                       required
                       value={newProduct.netMetalWeight}
                       onChange={(e) => setNewProduct({ ...newProduct, netMetalWeight: e.target.value })}
-                      className="w-full bg-ivory border border-borderLuxury rounded-lg p-2.5 text-xs text-charcoal"
+                      className="w-full bg-ivory border-2 border-borderLuxury rounded-xl p-3 text-xs sm:text-sm text-gray-950 font-bold"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs uppercase font-bold text-charcoal-muted mb-1">
+                    <label className="block text-xs uppercase font-extrabold text-gray-800 mb-1.5">
                       Making Charge (%)
                     </label>
                     <input
                       type="number"
                       value={newProduct.makingCharge}
                       onChange={(e) => setNewProduct({ ...newProduct, makingCharge: e.target.value })}
-                      className="w-full bg-ivory border border-borderLuxury rounded-lg p-2.5 text-xs text-charcoal"
+                      className="w-full bg-ivory border-2 border-borderLuxury rounded-xl p-3 text-xs sm:text-sm text-gray-950 font-bold"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs uppercase font-bold text-charcoal-muted mb-1">
+                    <label className="block text-xs uppercase font-extrabold text-gray-800 mb-1.5">
                       Stock Units
                     </label>
                     <input
                       type="number"
                       value={newProduct.stock}
                       onChange={(e) => setNewProduct({ ...newProduct, stock: e.target.value })}
-                      className="w-full bg-ivory border border-borderLuxury rounded-lg p-2.5 text-xs text-charcoal"
+                      className="w-full bg-ivory border-2 border-borderLuxury rounded-xl p-3 text-xs sm:text-sm text-gray-950 font-bold"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs uppercase font-bold text-charcoal-muted mb-1">
+                  <label className="block text-xs uppercase font-extrabold text-gray-800 mb-1.5">
                     Image URL
                   </label>
                   <input
                     type="url"
                     value={newProduct.image}
                     onChange={(e) => setNewProduct({ ...newProduct, image: e.target.value })}
-                    className="w-full bg-ivory border border-borderLuxury rounded-lg p-2.5 text-xs text-charcoal"
+                    className="w-full bg-ivory border-2 border-borderLuxury rounded-xl p-3 text-xs sm:text-sm text-gray-950"
                   />
                 </div>
 
                 <div className="pt-2">
                   <button
                     type="submit"
-                    className="w-full py-3 bg-burgundy hover:bg-burgundy-light text-white text-xs uppercase font-bold tracking-wider rounded-lg shadow-luxury transition"
+                    className="w-full py-4 bg-emeraldTheme hover:bg-emeraldTheme-light text-white text-xs sm:text-sm uppercase font-extrabold tracking-wider rounded-xl shadow-luxury transition"
                   >
                     Save SKU to Catalog
                   </button>

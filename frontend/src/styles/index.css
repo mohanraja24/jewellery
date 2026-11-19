@@ -4,16 +4,17 @@
 
 @layer base {
   body {
-    @apply bg-ivory text-charcoal font-sans antialiased;
-    overflow-x: hidden;
+    @apply bg-ivory text-charcoal font-sans antialiased text-[15px];
+    letter-spacing: -0.01em;
+    line-height: 1.6;
     background-image: 
-      radial-gradient(at 100% 0%, rgba(212, 175, 55, 0.03) 0px, transparent 50%),
-      radial-gradient(at 0% 100%, rgba(11, 47, 36, 0.02) 0px, transparent 50%);
+      radial-gradient(at 100% 0%, rgba(212, 175, 55, 0.04) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, rgba(11, 47, 36, 0.03) 0px, transparent 50%);
     background-attachment: fixed;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif tracking-tight text-charcoal;
+    @apply font-serif tracking-normal text-charcoal font-bold;
   }
 }
 
@@ -28,17 +29,17 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #D4AF37;
+  background: #C59A27;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #B08823;
+  background: #9A7412;
 }
 
-/* Luxury Metallic Gold Gradient */
+/* Luxury Solid High-Visibility Gold Gradient */
 .text-gold-gradient {
-  background: linear-gradient(135deg, #F3DF9C 0%, #D4AF37 45%, #AA820A 100%);
+  background: linear-gradient(135deg, #ECC968 0%, #D4AF37 40%, #B08823 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -49,11 +50,11 @@
 }
 
 .bg-gold-gradient {
-  background: linear-gradient(135deg, #EAD38A 0%, #D4AF37 50%, #B08823 100%);
+  background: linear-gradient(135deg, #ECC968 0%, #D4AF37 50%, #9A7412 100%);
 }
 
 .luxury-border {
-  border-color: #E8E2D5;
+  border-color: #E5DED2;
 }
 
 /* Smooth Gold Shimmer */

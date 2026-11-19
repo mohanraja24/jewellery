@@ -39,14 +39,14 @@ export const WhyChooseUs = () => {
     <section className="py-20 bg-ivory border-b border-borderLuxury">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs uppercase font-bold tracking-[0.2em] text-gold-dark block mb-2">
+          <span className="text-xs uppercase font-extrabold tracking-[0.2em] text-gold-dark block mb-2">
             The Aurelia Benchmark
           </span>
-          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-charcoal">
+          <h2 className="text-3xl sm:text-4xl font-serif font-black text-gray-950">
             Why Discerning Patrons Choose Us
           </h2>
-          <div className="w-16 h-0.5 bg-gold mx-auto my-4"></div>
-          <p className="text-sm text-charcoal-muted leading-relaxed">
+          <div className="w-20 h-1 bg-gold mx-auto my-4 rounded-full"></div>
+          <p className="text-sm sm:text-base text-gray-600 font-medium leading-relaxed">
             Jewellery is not merely an ornament; it is a sacred investment of affection, heritage and wealth. Here is our unwavering pledge to you.
           </p>
         </div>
@@ -57,15 +57,15 @@ export const WhyChooseUs = () => {
             return (
               <div
                 key={index}
-                className="bg-white p-8 rounded-xl border border-borderLuxury hover:border-gold/60 shadow-sm hover:shadow-luxury transition-all group"
+                className="bg-white p-8 rounded-2xl border border-borderLuxury hover:border-gold/80 shadow-sm hover:shadow-luxury transition-all group"
               >
-                <div className="w-12 h-12 rounded-xl bg-gold-50 flex items-center justify-center text-gold-dark group-hover:bg-burgundy group-hover:text-gold transition-colors mb-5">
-                  <Icon className="w-6 h-6" />
+                <div className="w-14 h-14 rounded-2xl bg-gold-50 flex items-center justify-center text-gold-dark group-hover:bg-emeraldTheme group-hover:text-amber-300 transition-colors mb-5 border border-gold/30">
+                  <Icon className="w-7 h-7" />
                 </div>
-                <h3 className="font-serif font-bold text-lg text-charcoal mb-2 group-hover:text-burgundy transition-colors">
+                <h3 className="font-serif font-bold text-lg sm:text-xl text-gray-900 mb-2 group-hover:text-emeraldTheme transition-colors">
                   {item.title}
                 </h3>
-                <p className="text-xs text-charcoal-muted leading-relaxed">
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-medium">
                   {item.desc}
                 </p>
               </div>

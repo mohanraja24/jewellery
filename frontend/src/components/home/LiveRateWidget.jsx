@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TrendingUp, Clock, ShieldCheck, Calculator, Sparkles } from 'lucide-react';
+import { TrendingUp, Clock, ShieldCheck, Calculator } from 'lucide-react';
 import { useMetalRate } from '../../context/MetalRateContext';
 import { formatINR, formatINRDecimal, formatDate } from '../../utils/formatters';
 
@@ -34,30 +34,30 @@ export const LiveRateWidget = () => {
   const totalSimulated = subTotal + gst;
 
   return (
-    <section className="bg-white border-y border-borderLuxury py-7 px-4 sm:px-6 lg:px-8 shadow-sm">
+    <section className="bg-white border-y border-borderLuxury py-8 px-4 sm:px-6 lg:px-8 shadow-sm">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
           {/* Left Column: Live Indicator & Source */}
           <div className="lg:w-1/3 space-y-2">
             <div className="flex items-center space-x-2">
-              <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-600"></span>
+              <span className="relative flex h-3.5 w-3.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-600"></span>
               </span>
-              <span className="text-xs uppercase font-bold tracking-widest text-emeraldTheme">
+              <span className="text-xs uppercase font-extrabold tracking-widest text-emeraldTheme">
                 Verified Bullion Board
               </span>
-              <span className="bg-emeraldTheme-50 text-emeraldTheme text-[10px] uppercase font-bold px-2.5 py-0.5 rounded-full border border-emeraldTheme/20">
+              <span className="bg-emeraldTheme-50 text-emeraldTheme text-xs uppercase font-extrabold px-3 py-0.5 rounded-full border border-emeraldTheme/30">
                 {rates.status === 'LIVE' ? 'Live Bullion Exchange' : 'Manual Benchmark'}
               </span>
             </div>
-            <h3 className="text-xl sm:text-2xl font-serif font-bold text-charcoal">
+            <h3 className="text-2xl sm:text-3xl font-serif font-black text-gray-950">
               Today's Live Precious Metal Rates
             </h3>
-            <p className="text-xs text-charcoal-muted flex items-center">
-              <Clock className="w-3.5 h-3.5 mr-1 text-gold-dark" />
-              Source: <strong className="text-charcoal ml-1">{rates.source}</strong>
-              <span className="mx-2">•</span>
+            <p className="text-xs sm:text-sm text-gray-600 font-medium flex items-center">
+              <Clock className="w-4 h-4 mr-1 text-gold-dark" />
+              Source: <strong className="text-gray-900 font-bold ml-1">{rates.source}</strong>
+              <span className="mx-2 font-bold">•</span>
               {formatDate(rates.lastUpdated)}
             </p>
           </div>
@@ -65,56 +65,56 @@ export const LiveRateWidget = () => {
           {/* Center Column: Rate Ticker Cards */}
           <div className="lg:w-2/3 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
             {/* Gold 22K (916) */}
-            <div className="bg-gold-50/70 border-2 border-gold/50 rounded-xl p-3.5 relative overflow-hidden group hover:border-gold transition shadow-sm">
-              <div className="text-[10px] font-bold uppercase tracking-wider text-charcoal-muted">
+            <div className="bg-gold-50 border-2 border-gold rounded-2xl p-4 relative overflow-hidden group hover:border-gold-dark transition shadow-sm">
+              <div className="text-xs font-extrabold uppercase tracking-wider text-gray-800">
                 Gold 22K (916)
               </div>
-              <div className="text-lg sm:text-xl font-bold font-serif text-emeraldTheme mt-1">
+              <div className="text-xl sm:text-2xl font-black font-sans text-emeraldTheme mt-1">
                 {formatINR(rates.gold22k)}
               </div>
-              <div className="text-[10px] text-charcoal-muted mt-0.5">
+              <div className="text-xs text-gray-600 font-bold mt-0.5">
                 per 1.0 gram
               </div>
-              <div className="absolute top-2.5 right-2.5 text-gold-dark">
+              <div className="absolute top-3 right-3 text-gold-dark">
                 <TrendingUp className="w-4 h-4" />
               </div>
             </div>
 
             {/* Gold 24K */}
-            <div className="bg-ivory border border-borderLuxury rounded-xl p-3.5 relative overflow-hidden group hover:border-gold transition shadow-sm">
-              <div className="text-[10px] font-bold uppercase tracking-wider text-charcoal-muted">
+            <div className="bg-ivory border-2 border-borderLuxury rounded-2xl p-4 relative overflow-hidden group hover:border-gold transition shadow-sm">
+              <div className="text-xs font-extrabold uppercase tracking-wider text-gray-800">
                 Gold 24K (999)
               </div>
-              <div className="text-lg sm:text-xl font-bold font-serif text-charcoal mt-1">
+              <div className="text-xl sm:text-2xl font-black font-sans text-gray-950 mt-1">
                 {formatINR(rates.gold24k)}
               </div>
-              <div className="text-[10px] text-charcoal-muted mt-0.5">
+              <div className="text-xs text-gray-600 font-bold mt-0.5">
                 per 1.0 gram
               </div>
             </div>
 
             {/* Gold 18K */}
-            <div className="bg-ivory border border-borderLuxury rounded-xl p-3.5 relative overflow-hidden group hover:border-gold transition shadow-sm">
-              <div className="text-[10px] font-bold uppercase tracking-wider text-charcoal-muted">
+            <div className="bg-ivory border-2 border-borderLuxury rounded-2xl p-4 relative overflow-hidden group hover:border-gold transition shadow-sm">
+              <div className="text-xs font-extrabold uppercase tracking-wider text-gray-800">
                 Gold 18K (750)
               </div>
-              <div className="text-lg sm:text-xl font-bold font-serif text-charcoal mt-1">
+              <div className="text-xl sm:text-2xl font-black font-sans text-gray-950 mt-1">
                 {formatINR(rates.gold18k)}
               </div>
-              <div className="text-[10px] text-charcoal-muted mt-0.5">
+              <div className="text-xs text-gray-600 font-bold mt-0.5">
                 per 1.0 gram
               </div>
             </div>
 
             {/* Silver 999 */}
-            <div className="bg-ivory border border-borderLuxury rounded-xl p-3.5 relative overflow-hidden group hover:border-gold transition shadow-sm">
-              <div className="text-[10px] font-bold uppercase tracking-wider text-charcoal-muted">
+            <div className="bg-ivory border-2 border-borderLuxury rounded-2xl p-4 relative overflow-hidden group hover:border-gold transition shadow-sm">
+              <div className="text-xs font-extrabold uppercase tracking-wider text-gray-800">
                 Silver 999 (Pure)
               </div>
-              <div className="text-lg sm:text-xl font-bold font-serif text-charcoal mt-1">
+              <div className="text-xl sm:text-2xl font-black font-sans text-gray-950 mt-1">
                 {formatINRDecimal(rates.silver999)}
               </div>
-              <div className="text-[10px] text-charcoal-muted mt-0.5">
+              <div className="text-xs text-gray-600 font-bold mt-0.5">
                 per 1.0 gram
               </div>
             </div>
@@ -122,44 +122,44 @@ export const LiveRateWidget = () => {
         </div>
 
         {/* Live Calculation Guarantee Strip */}
-        <div className="mt-4 pt-4 border-t border-borderLuxury/60 flex flex-wrap items-center justify-between gap-3 text-xs text-charcoal-muted">
+        <div className="mt-5 pt-4 border-t border-borderLuxury flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm text-gray-700">
           <div className="flex items-center space-x-2">
-            <ShieldCheck className="w-4 h-4 text-emerald-600" />
+            <ShieldCheck className="w-5 h-5 text-emerald-700 flex-shrink-0" />
             <span>
-              <strong>Zero Hidden Markups:</strong> All jewellery prices recalculate automatically based on prevailing daily bullion benchmark rates.
+              <strong className="text-gray-950">Zero Hidden Markups:</strong> All jewellery prices recalculate automatically based on prevailing daily bullion benchmark rates.
             </span>
           </div>
           <button
             onClick={() => setCalculatorOpen(!calculatorOpen)}
-            className="flex items-center text-xs font-bold text-emeraldTheme hover:text-gold-dark transition"
+            className="flex items-center text-xs sm:text-sm font-extrabold text-emeraldTheme hover:text-gold-dark transition cursor-pointer"
           >
-            <Calculator className="w-3.5 h-3.5 mr-1.5 text-gold-dark" />
+            <Calculator className="w-4 h-4 mr-1.5 text-gold-dark" />
             {calculatorOpen ? 'Hide Price Simulator' : 'Simulate Custom Rate Price'}
           </button>
         </div>
 
         {/* Expandable Price Simulator */}
         {calculatorOpen && (
-          <div className="mt-4 p-5 bg-ivory rounded-xl border border-gold/40 animate-fadeIn">
+          <div className="mt-5 p-6 bg-ivory rounded-2xl border-2 border-gold/40 animate-fadeIn">
             <div className="flex items-center justify-between mb-4">
-              <h4 className="text-sm font-serif font-bold text-charcoal flex items-center">
-                <Calculator className="w-4 h-4 mr-2 text-gold-dark" />
+              <h4 className="text-base font-bold text-gray-950 flex items-center">
+                <Calculator className="w-5 h-5 mr-2 text-gold-dark" />
                 Live Gold & Silver Price Calculator (Interactive Simulator)
               </h4>
-              <span className="text-xs text-charcoal-muted">
+              <span className="text-xs sm:text-sm text-gray-600 font-semibold">
                 Simulate exact pricing breakdown for any net weight
               </span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
               <div>
-                <label className="block text-[11px] uppercase font-bold text-charcoal-muted mb-1">
+                <label className="block text-xs uppercase font-extrabold text-gray-800 mb-1.5">
                   Metal & Purity
                 </label>
                 <select
                   value={calcPurity}
                   onChange={(e) => setCalcPurity(e.target.value)}
-                  className="w-full bg-white border border-borderLuxury rounded-lg p-2.5 text-xs font-medium text-charcoal focus:outline-none focus:border-gold"
+                  className="w-full bg-white border-2 border-borderLuxury rounded-xl p-3 text-xs sm:text-sm font-bold text-gray-900 focus:outline-none focus:border-gold"
                 >
                   <option value="24K">Gold 24K (99.9%) - {formatINR(rates.gold24k)}/g</option>
                   <option value="22K">Gold 22K (91.6%) - {formatINR(rates.gold22k)}/g</option>
@@ -171,7 +171,7 @@ export const LiveRateWidget = () => {
               </div>
 
               <div>
-                <label className="block text-[11px] uppercase font-bold text-charcoal-muted mb-1">
+                <label className="block text-xs uppercase font-extrabold text-gray-800 mb-1.5">
                   Net Metal Weight (Grams)
                 </label>
                 <input
@@ -180,25 +180,25 @@ export const LiveRateWidget = () => {
                   min="0.1"
                   value={calcWeight}
                   onChange={(e) => setCalcWeight(e.target.value)}
-                  className="w-full bg-white border border-borderLuxury rounded-lg p-2.5 text-xs font-medium text-charcoal focus:outline-none focus:border-gold"
+                  className="w-full bg-white border-2 border-borderLuxury rounded-xl p-3 text-xs sm:text-sm font-bold text-gray-900 focus:outline-none focus:border-gold"
                 />
               </div>
 
               <div>
-                <label className="block text-[11px] uppercase font-bold text-charcoal-muted mb-1">
+                <label className="block text-xs uppercase font-extrabold text-gray-800 mb-1.5">
                   Making Charges
                 </label>
-                <div className="flex gap-1">
+                <div className="flex gap-1.5">
                   <input
                     type="number"
                     value={calcMakingValue}
                     onChange={(e) => setCalcMakingValue(e.target.value)}
-                    className="w-2/3 bg-white border border-borderLuxury rounded-lg p-2.5 text-xs font-medium text-charcoal focus:outline-none focus:border-gold"
+                    className="w-2/3 bg-white border-2 border-borderLuxury rounded-xl p-3 text-xs sm:text-sm font-bold text-gray-900 focus:outline-none focus:border-gold"
                   />
                   <select
                     value={calcMakingType}
                     onChange={(e) => setCalcMakingType(e.target.value)}
-                    className="w-1/3 bg-white border border-borderLuxury rounded-lg p-2.5 text-xs font-medium text-charcoal focus:outline-none focus:border-gold"
+                    className="w-1/3 bg-white border-2 border-borderLuxury rounded-xl p-3 text-xs sm:text-sm font-bold text-gray-900 focus:outline-none focus:border-gold"
                   >
                     <option value="PERCENT">%</option>
                     <option value="FIXED">₹/g</option>
@@ -206,14 +206,14 @@ export const LiveRateWidget = () => {
                 </div>
               </div>
 
-              <div className="bg-white p-3.5 rounded-xl border-2 border-gold/40 flex flex-col justify-center shadow-sm">
-                <span className="text-[10px] uppercase font-bold tracking-wider text-charcoal-muted">
+              <div className="bg-white p-4 rounded-xl border-2 border-gold flex flex-col justify-center shadow-sm">
+                <span className="text-xs uppercase font-extrabold tracking-wider text-gray-600">
                   Simulated Price (Incl. 3% GST)
                 </span>
-                <span className="text-xl font-bold font-serif text-emeraldTheme mt-0.5">
+                <span className="text-2xl font-black font-sans text-emeraldTheme mt-0.5">
                   {formatINR(totalSimulated)}
                 </span>
-                <span className="text-[10px] text-charcoal-muted">
+                <span className="text-xs text-gray-600 font-bold mt-1">
                   Metal: {formatINR(metalVal)} + Making: {formatINR(makingCharge)} + GST: {formatINR(gst)}
                 </span>
               </div>

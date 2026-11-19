@@ -17,21 +17,21 @@ export const ProductCard = ({ product }) => {
   const isWishlisted = isInWishlist(product.id);
 
   return (
-    <div className="group relative bg-white rounded-2xl overflow-hidden border border-borderLuxury hover:border-gold/60 shadow-sm hover:shadow-luxury transition-all duration-300 flex flex-col justify-between">
+    <div className="group relative bg-white rounded-2xl overflow-hidden border border-borderLuxury hover:border-gold/80 shadow-sm hover:shadow-luxury transition-all duration-300 flex flex-col justify-between">
       {/* 1. Top Badges & Wishlist Action */}
       <div className="relative aspect-square w-full overflow-hidden bg-ivory">
         {/* Purity & Metal Badge */}
-        <div className="absolute top-3 left-3 z-10 flex flex-col gap-1 items-start">
-          <span className="bg-charcoal/90 text-gold-light text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full shadow-sm backdrop-blur-sm border border-gold/30">
+        <div className="absolute top-3.5 left-3.5 z-10 flex flex-col gap-1.5 items-start">
+          <span className="bg-gray-950/95 text-amber-300 text-xs font-extrabold uppercase tracking-wider px-3 py-1 rounded-full shadow-md backdrop-blur-sm border border-gold/40">
             {product.purity} {product.metalType}
           </span>
           {product.isBestSeller && (
-            <span className="bg-emeraldTheme text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full shadow-sm">
+            <span className="bg-emeraldTheme text-white text-xs font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full shadow-sm">
               Bestseller
             </span>
           )}
           {product.isNewArrival && (
-            <span className="bg-gold text-charcoal-dark text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full shadow-sm">
+            <span className="bg-amber-400 text-gray-950 text-xs font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full shadow-sm">
               New
             </span>
           )}
@@ -43,10 +43,10 @@ export const ProductCard = ({ product }) => {
             e.preventDefault();
             toggleWishlist(product);
           }}
-          className={`absolute top-3 right-3 z-10 p-2.5 rounded-full backdrop-blur-md transition-all shadow-sm ${
+          className={`absolute top-3.5 right-3.5 z-10 p-3 rounded-full backdrop-blur-md transition-all shadow-md ${
             isWishlisted
-              ? 'bg-emeraldTheme text-gold'
-              : 'bg-white/85 hover:bg-white text-charcoal hover:text-emeraldTheme'
+              ? 'bg-emeraldTheme text-amber-300'
+              : 'bg-white/90 hover:bg-white text-gray-900 hover:text-emeraldTheme'
           }`}
           aria-label="Toggle Wishlist"
         >
@@ -65,50 +65,50 @@ export const ProductCard = ({ product }) => {
       </div>
 
       {/* 2. Product Meta & Pricing */}
-      <div className="p-4 sm:p-5 flex flex-col flex-grow justify-between">
+      <div className="p-5 flex flex-col flex-grow justify-between space-y-4">
         <div>
           {/* Weight & Specification Specs */}
-          <div className="text-[11px] text-charcoal-muted flex items-center justify-between mb-1.5">
+          <div className="text-xs text-gray-600 font-bold flex items-center justify-between mb-2">
             <span>
-              Net: <strong className="text-charcoal font-semibold">{formatWeight(product.netMetalWeight)}</strong>
+              Net: <strong className="text-gray-950 text-sm">{formatWeight(product.netMetalWeight)}</strong>
             </span>
             {product.stoneWeight > 0 && (
-              <span>Stone: {product.stoneWeight} {product.metalType === 'GOLD' && product.category === 'diamond' ? 'ct' : 'g'}</span>
+              <span className="text-gray-700">Stone: {product.stoneWeight} {product.metalType === 'GOLD' && product.category === 'diamond' ? 'ct' : 'g'}</span>
             )}
-            <span className="text-[10px] text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full font-bold">
-              {product.pricingType === 'RATE_BASED' ? 'Live Rate' : 'Fixed'}
+            <span className="text-xs text-emerald-900 bg-emerald-100 px-2.5 py-0.5 rounded-full font-extrabold">
+              {product.pricingType === 'RATE_BASED' ? 'Live Price' : 'Fixed'}
             </span>
           </div>
 
           {/* Product Title */}
           <Link to={`/product/${product.id}`}>
-            <h3 className="font-serif font-bold text-sm sm:text-base text-charcoal group-hover:text-emeraldTheme line-clamp-1 transition-colors">
+            <h3 className="font-bold text-base sm:text-lg text-gray-900 group-hover:text-emeraldTheme line-clamp-1 transition-colors">
               {product.name}
             </h3>
           </Link>
-          <p className="text-[11px] text-charcoal-muted line-clamp-1 mt-0.5">
+          <p className="text-xs text-gray-500 font-semibold line-clamp-1 mt-1">
             SKU: {product.sku}
           </p>
         </div>
 
         {/* Price & Action */}
-        <div className="mt-4 pt-3.5 border-t border-borderLuxury flex items-center justify-between">
+        <div className="pt-3.5 border-t border-borderLuxury flex items-center justify-between">
           <div>
-            <div className="text-base sm:text-lg font-bold font-serif text-emeraldTheme">
+            <div className="text-lg sm:text-xl font-extrabold text-emeraldTheme font-sans">
               {formatINR(priceDetails.finalPrice)}
             </div>
-            <div className="text-[10px] text-charcoal-muted">
+            <div className="text-xs text-gray-500 font-medium">
               Incl. making & 3% GST
             </div>
           </div>
 
           <button
             onClick={() => addToCart(product)}
-            className="p-2 sm:px-3.5 sm:py-2 bg-ivory hover:bg-emeraldTheme text-charcoal hover:text-white rounded-xl border border-borderLuxury hover:border-emeraldTheme transition-all flex items-center space-x-1.5 text-xs font-semibold shadow-sm"
+            className="px-4 py-2.5 bg-ivory hover:bg-emeraldTheme text-gray-900 hover:text-white rounded-xl border-2 border-borderLuxury hover:border-emeraldTheme transition-all flex items-center space-x-2 text-xs font-extrabold shadow-sm"
             title="Add to Shopping Bag"
           >
-            <ShoppingBag className="w-3.5 h-3.5 text-gold-dark" />
-            <span className="hidden sm:inline">Add</span>
+            <ShoppingBag className="w-4 h-4 text-gold-dark" />
+            <span>Add</span>
           </button>
         </div>
       </div>

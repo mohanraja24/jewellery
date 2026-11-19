@@ -9,16 +9,16 @@ export const StoreInfo = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
           <div>
-            <span className="text-xs uppercase font-bold tracking-[0.2em] text-gold-dark block mb-2">
+            <span className="text-xs uppercase font-extrabold tracking-[0.2em] text-gold-dark block mb-2">
               Physical Boutiques
             </span>
-            <h2 className="text-3xl sm:text-4xl font-serif font-bold text-charcoal">
+            <h2 className="text-3xl sm:text-4xl font-serif font-black text-gray-950">
               Experience Bespoke Luxury In-Store
             </h2>
           </div>
           <Link
             to="/stores"
-            className="mt-4 md:mt-0 text-xs uppercase font-bold tracking-widest text-burgundy hover:text-gold-dark transition flex items-center"
+            className="mt-4 md:mt-0 text-xs sm:text-sm uppercase font-extrabold tracking-widest text-emeraldTheme hover:text-gold-dark transition flex items-center"
           >
             <span>All Store Locations</span>
             <ArrowRight className="w-4 h-4 ml-1.5" />
@@ -29,36 +29,38 @@ export const StoreInfo = () => {
           {STORE_LOCATIONS.map((store) => (
             <div
               key={store.id}
-              className="bg-ivory/60 rounded-xl overflow-hidden border border-borderLuxury shadow-sm hover:shadow-luxury transition-all flex flex-col justify-between"
+              className="bg-ivory/60 rounded-2xl overflow-hidden border border-borderLuxury shadow-sm hover:shadow-luxury transition-all flex flex-col justify-between"
             >
-              <div className="h-48 overflow-hidden relative">
+              <div className="h-52 overflow-hidden relative">
                 <img
                   src={store.image}
                   alt={store.city}
                   className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute top-3 left-3 bg-charcoal/80 text-white text-[10px] uppercase font-bold tracking-wider px-2 py-1 rounded backdrop-blur-sm">
+                <div className="absolute top-3.5 left-3.5 bg-gray-950/90 text-amber-300 text-xs uppercase font-extrabold tracking-wider px-3 py-1 rounded-full backdrop-blur-sm border border-gold/40">
                   {store.city.split(' ')[0]}
                 </div>
               </div>
 
-              <div className="p-6 flex-grow flex flex-col justify-between space-y-4">
+              <div className="p-6 flex-grow flex flex-col justify-between space-y-5">
                 <div>
-                  <h3 className="font-serif font-bold text-base text-charcoal">
+                  <h3 className="font-bold text-lg text-gray-950">
                     {store.city}
                   </h3>
-                  <p className="text-xs text-charcoal-muted mt-2 flex items-start">
-                    <MapPin className="w-4 h-4 text-gold-dark mr-2 flex-shrink-0 mt-0.5" />
-                    <span>{store.address}</span>
-                  </p>
-                  <p className="text-xs text-charcoal-muted mt-2 flex items-center">
-                    <Phone className="w-4 h-4 text-gold-dark mr-2 flex-shrink-0" />
-                    <span>{store.phone}</span>
-                  </p>
-                  <p className="text-xs text-charcoal-muted mt-2 flex items-center">
-                    <Clock className="w-4 h-4 text-gold-dark mr-2 flex-shrink-0" />
-                    <span>{store.hours}</span>
-                  </p>
+                  <div className="mt-3 space-y-2 text-xs sm:text-sm text-gray-700 font-medium">
+                    <p className="flex items-start">
+                      <MapPin className="w-4 h-4 text-gold-dark mr-2 flex-shrink-0 mt-0.5" />
+                      <span>{store.address}</span>
+                    </p>
+                    <p className="flex items-center">
+                      <Phone className="w-4 h-4 text-gold-dark mr-2 flex-shrink-0" />
+                      <span className="font-bold text-gray-900">{store.phone}</span>
+                    </p>
+                    <p className="flex items-center">
+                      <Clock className="w-4 h-4 text-gold-dark mr-2 flex-shrink-0" />
+                      <span>{store.hours}</span>
+                    </p>
+                  </div>
                 </div>
 
                 <div className="pt-4 border-t border-borderLuxury flex items-center justify-between">
@@ -66,15 +68,15 @@ export const StoreInfo = () => {
                     href={store.mapUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-xs font-semibold text-charcoal hover:text-burgundy underline"
+                    className="text-xs sm:text-sm font-bold text-emeraldTheme hover:underline"
                   >
-                    View Map
+                    View Map Directions →
                   </a>
                   <Link
                     to="/stores"
-                    className="px-3 py-1.5 bg-burgundy hover:bg-burgundy-light text-white text-xs font-medium rounded flex items-center transition"
+                    className="px-4 py-2 bg-emeraldTheme hover:bg-emeraldTheme-light text-white text-xs font-bold rounded-xl flex items-center transition shadow-sm"
                   >
-                    <Calendar className="w-3.5 h-3.5 mr-1 text-gold" />
+                    <Calendar className="w-3.5 h-3.5 mr-1.5 text-gold-light" />
                     Book Visit
                   </Link>
                 </div>

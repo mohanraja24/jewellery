@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 const COLLECTIONS = [
   {
@@ -35,19 +35,19 @@ export const FeaturedCollections = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
           <div>
-            <span className="text-xs uppercase font-bold tracking-[0.2em] text-gold-dark block mb-2">
+            <span className="text-xs uppercase font-extrabold tracking-[0.2em] text-gold-dark block mb-2">
               Bespoke Lineage
             </span>
-            <h2 className="text-3xl sm:text-4xl font-serif font-bold text-charcoal">
+            <h2 className="text-3xl sm:text-4xl font-serif font-black text-gray-950">
               Featured Signature Collections
             </h2>
           </div>
           <Link
             to="/shop"
-            className="mt-4 md:mt-0 text-xs uppercase font-bold tracking-widest text-burgundy hover:text-gold-dark transition flex items-center"
+            className="mt-4 md:mt-0 text-xs sm:text-sm uppercase font-extrabold tracking-widest text-emeraldTheme hover:text-gold-dark transition flex items-center"
           >
             <span>View All Curations</span>
-            <ArrowRight className="w-4 h-4 ml-1.5" />
+            <ArrowRight className="w-4 h-4 ml-2" />
           </Link>
         </div>
 
@@ -63,21 +63,21 @@ export const FeaturedCollections = () => {
                 alt={col.title}
                 className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-charcoal/95 via-charcoal/40 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-950/95 via-gray-950/50 to-transparent"></div>
 
               <div className="relative z-10 text-white space-y-2">
-                <span className="inline-block px-2.5 py-1 rounded bg-gold/90 text-charcoal-dark text-[10px] uppercase font-bold tracking-wider">
+                <span className="inline-block px-3 py-1 rounded-full bg-amber-400 text-gray-950 text-xs uppercase font-extrabold tracking-wider shadow-sm">
                   {col.badge}
                 </span>
-                <h3 className="text-2xl font-serif font-bold text-ivory group-hover:text-gold-light transition-colors">
+                <h3 className="text-2xl font-serif font-bold text-white group-hover:text-amber-300 transition-colors">
                   {col.title}
                 </h3>
-                <p className="text-xs text-ivory/80 font-light">
+                <p className="text-xs sm:text-sm text-gray-200 font-medium">
                   {col.subtitle}
                 </p>
-                <div className="pt-2 flex items-center text-xs font-semibold text-gold group-hover:translate-x-1 transition-transform">
+                <div className="pt-2 flex items-center text-xs sm:text-sm font-bold text-amber-300 group-hover:translate-x-1.5 transition-transform">
                   <span>Explore Collection</span>
-                  <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                  <ArrowRight className="w-4 h-4 ml-1.5" />
                 </div>
               </div>
             </Link>

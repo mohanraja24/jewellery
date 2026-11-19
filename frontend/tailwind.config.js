@@ -17,7 +17,6 @@ export default {
           50: '#F2F8F6',
           100: '#E1EFEA',
         },
-        // Backwards-compatible alias for existing burgundy references mapped to Royal Emerald
         burgundy: {
           DEFAULT: '#0B2F24', // Royal Emerald
           dark: '#061D16',    // Deep Forest Obsidian
@@ -26,11 +25,11 @@ export default {
           100: '#E1EFEA',
         },
         gold: {
-          DEFAULT: '#D4AF37', // Imperial Metallic Gold
-          light: '#EAD38A',   // Champagne Glow
-          dark: '#B08823',    // Rich Antique Gold
+          DEFAULT: '#C59A27', // Rich Visible Gold
+          light: '#ECC968',   // Luminous Champagne
+          dark: '#9A7412',    // Antique Deep Gold
           soft: '#F9F5EA',
-          50: '#FAF7EE',
+          50: '#FAF6ED',
           100: '#F4ECD4',
         },
         ivory: {
@@ -39,21 +38,22 @@ export default {
           light: '#FFFFFF'
         },
         charcoal: {
-          DEFAULT: '#1A1A1A', // Obsidian Charcoal
-          light: '#333333',
-          dark: '#0D0D0D',
-          muted: '#666666'
+          DEFAULT: '#111827', // High-contrast crisp dark (Slate 900)
+          light: '#1F2937',   // Slate 800
+          dark: '#030712',    // Slate 950
+          muted: '#4B5563'    // Gray 600 (Highly visible and readable)
         },
-        borderLuxury: '#E8E2D5',
+        borderLuxury: '#E5DED2',
       },
       fontFamily: {
-        serif: ['"Playfair Display"', 'Georgia', 'serif'],
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        serif: ['"Cinzel"', '"Marcellus"', 'Georgia', 'serif'],
+        display: ['"Marcellus"', '"Cinzel"', 'serif'],
+        sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
       },
       boxShadow: {
-        'luxury': '0 12px 35px -8px rgba(11, 47, 36, 0.10)',
-        'luxury-lg': '0 24px 50px -12px rgba(11, 47, 36, 0.16)',
-        'gold-glow': '0 0 25px rgba(212, 175, 55, 0.35)',
+        'luxury': '0 12px 35px -8px rgba(11, 47, 36, 0.12)',
+        'luxury-lg': '0 24px 50px -12px rgba(11, 47, 36, 0.18)',
+        'gold-glow': '0 0 25px rgba(212, 175, 55, 0.40)',
         'emerald-glow': '0 0 25px rgba(11, 47, 36, 0.25)',
       }
     },

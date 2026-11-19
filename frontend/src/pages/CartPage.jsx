@@ -2,17 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   Trash2,
-  Plus,
-  Minus,
   ShoppingBag,
   ArrowRight,
   ShieldCheck,
   Clock,
-  Sparkles,
   Tag,
-  CheckCircle2,
   Lock,
-  ChevronRight
 } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useMetalRate } from '../context/MetalRateContext';
@@ -35,13 +30,12 @@ export const CartPage = () => {
     lockPriceQuote
   } = useCart();
   const { rates, calculatePrice } = useMetalRate();
-  const { user, isAuthenticated } = useAuth();
+  const { user } = useAuth();
 
   const [couponInput, setCouponInput] = useState('');
   const [secondsRemaining, setSecondsRemaining] = useState(null);
   const [checkoutModalOpen, setCheckoutModalOpen] = useState(false);
 
-  // Handle price quote timer (15 minutes locked price)
   useEffect(() => {
     if (cartItems.length > 0 && !quoteExpiry) {
       lockPriceQuote();
@@ -74,20 +68,20 @@ export const CartPage = () => {
 
   if (cartItems.length === 0) {
     return (
-      <div className="bg-ivory/40 min-h-[70vh] flex items-center justify-center py-20 px-4">
-        <div className="max-w-md w-full bg-white rounded-2xl border border-borderLuxury p-8 text-center space-y-4 shadow-sm">
-          <div className="w-16 h-16 rounded-full bg-gold-50 mx-auto flex items-center justify-center text-gold-dark">
+      <div className="bg-ivory min-h-[70vh] flex items-center justify-center py-20 px-4">
+        <div className="max-w-md w-full bg-white rounded-2xl border-2 border-borderLuxury p-8 text-center space-y-4 shadow-sm">
+          <div className="w-16 h-16 rounded-full bg-gold-50 mx-auto flex items-center justify-center text-gold-dark border border-gold/30">
             <ShoppingBag className="w-8 h-8" />
           </div>
-          <h2 className="text-2xl font-serif font-bold text-charcoal">
+          <h2 className="text-2xl font-serif font-black text-gray-950">
             Your Shopping Bag is Empty
           </h2>
-          <p className="text-xs text-charcoal-muted leading-relaxed">
+          <p className="text-xs sm:text-sm text-gray-600 font-medium leading-relaxed">
             Discover our hallmarked gold necklaces, solitaire diamond rings, and royal bridal sets to add your desired bespoke pieces.
           </p>
           <Link
             to="/shop"
-            className="inline-flex items-center px-6 py-3 bg-burgundy hover:bg-burgundy-light text-white text-xs uppercase font-bold tracking-widest rounded-lg shadow-luxury transition"
+            className="inline-flex items-center px-6 py-3.5 bg-emeraldTheme hover:bg-emeraldTheme-light text-white text-xs sm:text-sm uppercase font-extrabold tracking-widest rounded-xl shadow-luxury transition"
           >
             <span>Explore Collections</span>
             <ArrowRight className="w-4 h-4 ml-2" />
@@ -98,36 +92,36 @@ export const CartPage = () => {
   }
 
   return (
-    <div className="bg-ivory/40 min-h-screen py-10">
+    <div className="bg-ivory min-h-screen py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Title */}
         <div className="mb-6">
-          <span className="text-[11px] uppercase font-bold tracking-widest text-gold-dark">
+          <span className="text-xs uppercase font-extrabold tracking-widest text-gold-dark">
             Order Review
           </span>
-          <h1 className="text-3xl font-serif font-bold text-charcoal mt-1">
+          <h1 className="text-3xl sm:text-4xl font-serif font-black text-gray-950 mt-1">
             Bespoke Shopping Bag ({cartSummary.totalQuantity} {cartSummary.totalQuantity === 1 ? 'item' : 'items'})
           </h1>
         </div>
 
         {/* 15-Minute Price Lock Banner */}
-        <div className="bg-white rounded-xl border border-gold/40 p-4 mb-8 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div className="flex items-center space-x-3">
-            <div className="p-2 bg-gold-50 text-gold-dark rounded-lg">
-              <Clock className="w-5 h-5" />
+        <div className="bg-white rounded-2xl border-2 border-gold/50 p-5 mb-8 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-center space-x-3.5">
+            <div className="p-3 bg-gold-50 text-gold-dark rounded-xl border border-gold/30">
+              <Clock className="w-6 h-6" />
             </div>
             <div>
-              <span className="text-xs uppercase font-bold tracking-wider text-burgundy block">
+              <span className="text-xs sm:text-sm uppercase font-black tracking-wider text-emeraldTheme block">
                 Live Price Quote Locked
               </span>
-              <p className="text-xs text-charcoal-muted">
-                Your cart total is locked against bullion rate fluctuations for:
+              <p className="text-xs sm:text-sm text-gray-600 font-medium">
+                Your cart total is locked against intraday bullion rate fluctuations for:
               </p>
             </div>
           </div>
-          <div className="flex items-center space-x-2 bg-burgundy/10 px-4 py-2 rounded-lg border border-burgundy/20">
-            <span className="text-xs font-semibold text-burgundy">Quote Expiry:</span>
-            <span className="text-base font-mono font-bold text-burgundy">
+          <div className="flex items-center space-x-2 bg-emeraldTheme-50 px-5 py-2.5 rounded-xl border border-emeraldTheme/30">
+            <span className="text-xs font-bold text-emeraldTheme">Quote Expiry:</span>
+            <span className="text-lg font-mono font-black text-emeraldTheme">
               {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
             </span>
           </div>
@@ -137,58 +131,58 @@ export const CartPage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Left Column: Cart Items List */}
           <div className="lg:col-span-8 space-y-4">
-            {cartItems.map((item, index) => {
+            {cartItems.map((item) => {
               const priceDetails = calculatePrice(item.product);
               return (
                 <div
                   key={`${item.product.id}-${item.selectedSize}`}
-                  className="bg-white rounded-xl border border-borderLuxury p-5 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+                  className="bg-white rounded-2xl border border-borderLuxury p-5 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
                 >
                   {/* Product Info */}
                   <div className="flex items-center space-x-4">
                     <img
                       src={item.product.images[0]}
                       alt={item.product.name}
-                      className="w-20 h-20 rounded-lg object-cover bg-ivory border border-borderLuxury flex-shrink-0"
+                      className="w-22 h-22 rounded-xl object-cover bg-ivory border-2 border-borderLuxury flex-shrink-0"
                     />
                     <div>
-                      <span className="text-[10px] uppercase font-bold text-gold-dark tracking-wider">
+                      <span className="text-xs uppercase font-extrabold text-gold-dark tracking-wider">
                         {item.product.purity} {item.product.metalType}
                       </span>
                       <Link to={`/product/${item.product.id}`}>
-                        <h3 className="font-serif font-bold text-sm text-charcoal hover:text-burgundy line-clamp-1">
+                        <h3 className="font-bold text-base text-gray-900 hover:text-emeraldTheme line-clamp-1">
                           {item.product.name}
                         </h3>
                       </Link>
-                      <p className="text-xs text-charcoal-muted mt-0.5">
-                        Size: <strong className="text-charcoal">{item.selectedSize}</strong> • Net Wt: {formatWeight(item.product.netMetalWeight)}
+                      <p className="text-xs sm:text-sm text-gray-600 font-semibold mt-1">
+                        Size: <strong className="text-gray-900">{item.selectedSize}</strong> • Net Wt: {formatWeight(item.product.netMetalWeight)}
                       </p>
-                      <p className="text-[11px] text-charcoal-muted">
+                      <p className="text-xs text-emerald-800 font-bold mt-0.5">
                         Live Rate: {formatINR(priceDetails.rateUsed)}/g
                       </p>
                     </div>
                   </div>
 
                   {/* Quantity & Unit Price */}
-                  <div className="flex items-center justify-between sm:justify-end space-x-6 w-full sm:w-auto pt-3 sm:pt-0 border-t sm:border-t-0 border-borderLuxury/60">
+                  <div className="flex items-center justify-between sm:justify-end space-x-6 w-full sm:w-auto pt-3 sm:pt-0 border-t sm:border-t-0 border-borderLuxury">
                     {/* Quantity Selector */}
-                    <div className="flex items-center border border-borderLuxury rounded-lg bg-ivory">
+                    <div className="flex items-center border-2 border-borderLuxury rounded-xl bg-ivory">
                       <button
                         onClick={() =>
                           updateQuantity(item.product.id, item.selectedSize, item.quantity - 1)
                         }
-                        className="px-2.5 py-1 text-charcoal hover:bg-white text-xs font-bold"
+                        className="px-3 py-1.5 text-gray-900 hover:bg-white text-xs font-black"
                       >
                         -
                       </button>
-                      <span className="px-3 py-1 text-xs font-bold text-charcoal">
+                      <span className="px-3 py-1.5 text-xs font-black text-gray-950">
                         {item.quantity}
                       </span>
                       <button
                         onClick={() =>
                           updateQuantity(item.product.id, item.selectedSize, item.quantity + 1)
                         }
-                        className="px-2.5 py-1 text-charcoal hover:bg-white text-xs font-bold"
+                        className="px-3 py-1.5 text-gray-900 hover:bg-white text-xs font-black"
                       >
                         +
                       </button>
@@ -196,10 +190,10 @@ export const CartPage = () => {
 
                     {/* Total for this item */}
                     <div className="text-right">
-                      <div className="text-base font-serif font-bold text-burgundy">
+                      <div className="text-lg font-black font-sans text-emeraldTheme">
                         {formatINR(priceDetails.finalPrice * item.quantity)}
                       </div>
-                      <div className="text-[10px] text-charcoal-muted">
+                      <div className="text-xs text-gray-500 font-medium">
                         {formatINR(priceDetails.finalPrice)} each
                       </div>
                     </div>
@@ -207,10 +201,10 @@ export const CartPage = () => {
                     {/* Remove Action */}
                     <button
                       onClick={() => removeFromCart(item.product.id, item.selectedSize)}
-                      className="text-charcoal-muted hover:text-red-600 transition p-1"
+                      className="text-gray-400 hover:text-red-600 transition p-1"
                       title="Remove item"
                     >
-                      <Trash2 className="w-4 h-4" />
+                      <Trash2 className="w-5 h-5" />
                     </button>
                   </div>
                 </div>
@@ -221,13 +215,13 @@ export const CartPage = () => {
             <div className="flex justify-between items-center pt-2">
               <Link
                 to="/shop"
-                className="text-xs uppercase font-bold tracking-wider text-burgundy hover:underline flex items-center"
+                className="text-xs sm:text-sm uppercase font-extrabold tracking-wider text-emeraldTheme hover:underline flex items-center"
               >
                 ← Continue Shopping
               </Link>
               <button
                 onClick={clearCart}
-                className="text-xs text-charcoal-muted hover:text-red-600 underline"
+                className="text-xs sm:text-sm text-red-600 font-bold hover:underline cursor-pointer"
               >
                 Empty Entire Bag
               </button>
@@ -236,30 +230,30 @@ export const CartPage = () => {
 
           {/* Right Column: Order Summary & Checkout */}
           <div className="lg:col-span-4 space-y-6">
-            <div className="bg-white rounded-xl border border-borderLuxury p-6 shadow-sm space-y-5">
-              <h3 className="font-serif font-bold text-lg text-charcoal pb-3 border-b border-borderLuxury">
+            <div className="bg-white rounded-2xl border-2 border-borderLuxury p-6 shadow-sm space-y-5">
+              <h3 className="font-serif font-black text-xl text-gray-950 pb-3 border-b border-borderLuxury">
                 Order Value Summary
               </h3>
 
               {/* Coupon Form */}
               <div>
-                <label className="block text-[11px] uppercase font-bold tracking-wider text-charcoal-muted mb-2">
+                <label className="block text-xs uppercase font-extrabold tracking-wider text-gray-700 mb-2">
                   Apply Privilege Voucher
                 </label>
                 {appliedCoupon ? (
-                  <div className="flex items-center justify-between p-2.5 rounded-lg bg-emerald-50 border border-emerald-300 text-xs text-emerald-900">
+                  <div className="flex items-center justify-between p-3 rounded-xl bg-emerald-50 border border-emerald-300 text-xs sm:text-sm text-emerald-900">
                     <div className="flex items-center space-x-2">
                       <Tag className="w-4 h-4 text-emerald-700" />
                       <div>
                         <strong>{appliedCoupon.code}</strong>
-                        <span className="block text-[10px] text-emerald-700">
+                        <span className="block text-xs text-emerald-700 font-medium">
                           {appliedCoupon.description}
                         </span>
                       </div>
                     </div>
                     <button
                       onClick={removeCoupon}
-                      className="text-xs text-red-600 font-semibold hover:underline"
+                      className="text-xs text-red-600 font-bold hover:underline"
                     >
                       Remove
                     </button>
@@ -271,11 +265,11 @@ export const CartPage = () => {
                       placeholder="e.g. AURELIA10 or WELCOME2000"
                       value={couponInput}
                       onChange={(e) => setCouponInput(e.target.value)}
-                      className="bg-ivory border border-borderLuxury rounded-l-lg px-3 py-2 text-xs text-charcoal uppercase placeholder:normal-case focus:outline-none focus:border-gold flex-grow"
+                      className="bg-ivory border-2 border-borderLuxury rounded-l-xl px-3.5 py-2.5 text-xs sm:text-sm text-gray-950 font-bold uppercase placeholder:normal-case placeholder:font-normal focus:outline-none focus:border-gold flex-grow"
                     />
                     <button
                       type="submit"
-                      className="bg-burgundy hover:bg-burgundy-light text-white px-4 text-xs font-semibold rounded-r-lg transition"
+                      className="bg-emeraldTheme hover:bg-emeraldTheme-light text-white px-5 text-xs uppercase font-extrabold rounded-r-xl transition"
                     >
                       Apply
                     </button>
@@ -284,38 +278,38 @@ export const CartPage = () => {
               </div>
 
               {/* Breakdown Table */}
-              <div className="space-y-2 text-xs pt-2 border-t border-borderLuxury/60">
-                <div className="flex justify-between text-charcoal-muted">
+              <div className="space-y-2.5 text-xs sm:text-sm pt-2 border-t border-borderLuxury">
+                <div className="flex justify-between text-gray-600 font-medium">
                   <span>Pure Precious Metal Value:</span>
-                  <span className="text-charcoal font-semibold">{formatINR(cartSummary.totalMetalValue)}</span>
+                  <span className="text-gray-950 font-bold">{formatINR(cartSummary.totalMetalValue)}</span>
                 </div>
-                <div className="flex justify-between text-charcoal-muted">
+                <div className="flex justify-between text-gray-600 font-medium">
                   <span>Craftsmanship & Making Charges:</span>
-                  <span className="text-charcoal font-semibold">{formatINR(cartSummary.totalMakingCharges)}</span>
+                  <span className="text-gray-950 font-bold">{formatINR(cartSummary.totalMakingCharges)}</span>
                 </div>
-                <div className="flex justify-between text-charcoal-muted">
+                <div className="flex justify-between text-gray-600 font-medium">
                   <span>Applicable GST (3% Precious Metal):</span>
-                  <span className="text-charcoal font-semibold">{formatINR(cartSummary.totalTax)}</span>
+                  <span className="text-gray-950 font-bold">{formatINR(cartSummary.totalTax)}</span>
                 </div>
-                <div className="flex justify-between text-charcoal-muted">
+                <div className="flex justify-between text-gray-600 font-medium">
                   <span>Insured Pan-India Vault Courier:</span>
-                  <span className="text-emerald-700 font-bold">FREE (Complimentary)</span>
+                  <span className="text-emerald-700 font-black">FREE (Complimentary)</span>
                 </div>
 
                 {appliedCoupon && (
-                  <div className="flex justify-between text-emerald-700 font-semibold">
+                  <div className="flex justify-between text-emerald-700 font-bold">
                     <span>Privilege Coupon Discount:</span>
                     <span>- {formatINR(cartSummary.discountAmount)}</span>
                   </div>
                 )}
 
-                <div className="pt-3 border-t border-borderLuxury flex justify-between items-baseline">
-                  <span className="text-sm font-bold text-charcoal">Net Payable:</span>
+                <div className="pt-3.5 border-t-2 border-borderLuxury flex justify-between items-baseline">
+                  <span className="text-base font-extrabold text-gray-900">Net Payable:</span>
                   <div className="text-right">
-                    <span className="text-2xl font-serif font-bold text-burgundy">
+                    <span className="text-2xl sm:text-3xl font-black font-sans text-emeraldTheme">
                       {formatINR(cartSummary.netPayable)}
                     </span>
-                    <span className="block text-[10px] text-charcoal-muted">
+                    <span className="block text-xs text-gray-500 font-semibold">
                       Price locked based on live bullion index
                     </span>
                   </div>
@@ -325,14 +319,14 @@ export const CartPage = () => {
               {/* Checkout CTA */}
               <button
                 onClick={() => setCheckoutModalOpen(true)}
-                className="w-full py-4 bg-gold hover:bg-gold-light text-charcoal-dark font-bold text-xs uppercase tracking-widest rounded-lg shadow-luxury transition flex items-center justify-center space-x-2"
+                className="w-full py-4 bg-amber-400 hover:bg-amber-300 text-gray-950 font-black text-xs sm:text-sm uppercase tracking-widest rounded-xl shadow-gold-glow transition flex items-center justify-center space-x-2"
               >
-                <Lock className="w-4 h-4 text-charcoal-dark" />
+                <Lock className="w-4 h-4 text-gray-950" />
                 <span>Proceed to Secure Checkout</span>
               </button>
 
               <div className="text-center pt-2">
-                <span className="text-[11px] text-charcoal-muted flex items-center justify-center">
+                <span className="text-xs text-gray-600 font-semibold flex items-center justify-center">
                   <ShieldCheck className="w-4 h-4 text-emerald-700 mr-1" />
                   Razorpay 256-bit Encrypted • 100% Insured Delivery
                 </span>
@@ -344,21 +338,21 @@ export const CartPage = () => {
 
       {/* Checkout Preview Modal / Drawer */}
       {checkoutModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-charcoal/60 backdrop-blur-sm p-4">
-          <div className="bg-white rounded-2xl shadow-2xl max-w-xl w-full border border-gold/40 overflow-hidden animate-scaleUp">
-            <div className="bg-burgundy text-white p-5 flex items-center justify-between">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-950/70 backdrop-blur-sm p-4">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-xl w-full border-2 border-gold overflow-hidden animate-scaleUp">
+            <div className="bg-emeraldTheme text-white p-5 flex items-center justify-between border-b border-gold/40">
               <div>
-                <h3 className="text-lg font-serif font-bold text-gold-light flex items-center">
-                  <Lock className="w-4 h-4 mr-2 text-gold" />
+                <h3 className="text-lg font-serif font-black text-amber-300 flex items-center">
+                  <Lock className="w-5 h-5 mr-2 text-amber-300" />
                   Secure Checkout Confirmation
                 </h3>
-                <p className="text-xs text-ivory/80">
-                  Step 1 of 2: Confirm delivery destination & payment mode
+                <p className="text-xs text-white/90 font-medium">
+                  Confirm delivery destination & payment mode
                 </p>
               </div>
               <button
                 onClick={() => setCheckoutModalOpen(false)}
-                className="text-ivory/70 hover:text-white p-1"
+                className="text-white hover:text-amber-300 p-1 font-bold"
               >
                 ✕
               </button>
@@ -367,17 +361,17 @@ export const CartPage = () => {
             <div className="p-6 space-y-5">
               {/* Delivery Address */}
               <div>
-                <h4 className="text-xs uppercase font-bold tracking-wider text-charcoal-muted mb-2">
+                <h4 className="text-xs uppercase font-extrabold tracking-wider text-gray-800 mb-2">
                   Delivery Address
                 </h4>
-                <div className="p-3 bg-ivory rounded-lg border border-borderLuxury text-xs text-charcoal space-y-1">
-                  <p className="font-bold text-charcoal">
+                <div className="p-4 bg-ivory rounded-xl border border-borderLuxury text-xs sm:text-sm text-gray-800 space-y-1">
+                  <p className="font-bold text-gray-950 text-sm">
                     {user?.name || 'Priyanka Sharma'} (+91 98450 12345)
                   </p>
-                  <p className="text-charcoal-muted">
+                  <p className="text-gray-600 font-medium">
                     Villa 14, Prestige Silver Springs, Outer Ring Road
                   </p>
-                  <p className="text-charcoal-muted">
+                  <p className="text-gray-600 font-medium">
                     Bengaluru, Karnataka - 560037
                   </p>
                 </div>
@@ -385,19 +379,19 @@ export const CartPage = () => {
 
               {/* Price Snapshot */}
               <div>
-                <h4 className="text-xs uppercase font-bold tracking-wider text-charcoal-muted mb-2">
+                <h4 className="text-xs uppercase font-extrabold tracking-wider text-gray-800 mb-2">
                   Immutable Price Snapshot
                 </h4>
-                <div className="p-3 bg-gold-50/50 rounded-lg border border-gold/40 text-xs flex justify-between items-center">
+                <div className="p-4 bg-gold-50 rounded-xl border border-gold/60 text-xs sm:text-sm flex justify-between items-center">
                   <div>
-                    <span className="font-semibold text-charcoal">
+                    <span className="font-bold text-gray-950">
                       Total Order Amount ({cartSummary.totalQuantity} items):
                     </span>
-                    <span className="block text-[10px] text-charcoal-muted">
+                    <span className="block text-xs text-gray-600 font-medium mt-0.5">
                       Locked at rate: Gold 22K {formatINR(rates.gold22k)}/g
                     </span>
                   </div>
-                  <span className="text-xl font-serif font-bold text-burgundy">
+                  <span className="text-2xl font-black font-sans text-emeraldTheme">
                     {formatINR(cartSummary.netPayable)}
                   </span>
                 </div>
@@ -405,25 +399,25 @@ export const CartPage = () => {
 
               {/* Payment Gateways Option */}
               <div>
-                <h4 className="text-xs uppercase font-bold tracking-wider text-charcoal-muted mb-2">
+                <h4 className="text-xs uppercase font-extrabold tracking-wider text-gray-800 mb-2">
                   Select Payment Method
                 </h4>
-                <div className="space-y-2 text-xs">
-                  <label className="flex items-center justify-between p-3 border-2 border-gold rounded-lg bg-gold-50/20 cursor-pointer">
-                    <div className="flex items-center space-x-2">
-                      <input type="radio" name="paymentOption" defaultChecked className="text-burgundy" />
-                      <span className="font-semibold text-charcoal">Razorpay Online Gateway</span>
+                <div className="space-y-2.5 text-xs sm:text-sm">
+                  <label className="flex items-center justify-between p-3.5 border-2 border-gold rounded-xl bg-gold-50/40 cursor-pointer">
+                    <div className="flex items-center space-x-2.5">
+                      <input type="radio" name="paymentOption" defaultChecked className="text-emeraldTheme" />
+                      <span className="font-bold text-gray-950">Razorpay Online Gateway</span>
                     </div>
-                    <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
+                    <span className="text-xs font-bold text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-full">
                       Cards, UPI, NetBanking
                     </span>
                   </label>
-                  <label className="flex items-center justify-between p-3 border border-borderLuxury rounded-lg hover:bg-ivory cursor-pointer">
-                    <div className="flex items-center space-x-2">
-                      <input type="radio" name="paymentOption" className="text-burgundy" />
-                      <span className="font-semibold text-charcoal">Bank Wire Transfer (NEFT/RTGS)</span>
+                  <label className="flex items-center justify-between p-3.5 border-2 border-borderLuxury rounded-xl hover:bg-ivory cursor-pointer">
+                    <div className="flex items-center space-x-2.5">
+                      <input type="radio" name="paymentOption" className="text-emeraldTheme" />
+                      <span className="font-bold text-gray-950">Bank Wire Transfer (NEFT/RTGS)</span>
                     </div>
-                    <span className="text-[10px] text-charcoal-muted">For high-value orders</span>
+                    <span className="text-xs text-gray-500 font-medium">For high-value orders</span>
                   </label>
                 </div>
               </div>
@@ -437,7 +431,7 @@ export const CartPage = () => {
                     setCheckoutModalOpen(false);
                     navigate('/account');
                   }}
-                  className="w-full py-3.5 bg-burgundy hover:bg-burgundy-light text-white font-bold text-xs uppercase tracking-widest rounded-lg shadow-luxury transition"
+                  className="w-full py-4 bg-emeraldTheme hover:bg-emeraldTheme-light text-white font-extrabold text-xs sm:text-sm uppercase tracking-widest rounded-xl shadow-luxury transition border border-gold"
                 >
                   Pay {formatINR(cartSummary.netPayable)} & Confirm Order
                 </button>
