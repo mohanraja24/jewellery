@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import {
   Search,
@@ -463,13 +464,14 @@ export const Header = () => {
         </div>
       )}
 
-      {/* 4. Live Metal Rate Breakdown Modal */}
-      {rateModalOpen && (
+      {/* 4. Live Metal Rate Breakdown Modal — rendered via Portal directly on body to avoid sticky positioning context */}
+      {rateModalOpen && createPortal(
         <div
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-charcoal/70 backdrop-blur-sm p-4"
           onClick={(e) => { if (e.target === e.currentTarget) setRateModalOpen(false); }}
         >
-          <div className="bg-white max-w-lg w-full rounded-2xl shadow-2xl border border-gold/40 flex flex-col"
+          <div
+            className="bg-white max-w-lg w-full rounded-2xl shadow-2xl border border-gold/40 flex flex-col"
             style={{ maxHeight: '88vh' }}
           >
             {/* Modal Header — sticky */}
@@ -583,7 +585,8 @@ export const Header = () => {
               </button>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </header>
   );
