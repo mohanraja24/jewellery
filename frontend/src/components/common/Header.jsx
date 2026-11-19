@@ -118,7 +118,7 @@ export const Header = () => {
           <div className="flex items-center flex-shrink-0 min-w-0">
             <Link to="/" className="flex items-center space-x-2.5 sm:space-x-3.5 group py-1">
               <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-emeraldTheme flex items-center justify-center text-amber-300 shadow-sm group-hover:scale-105 transition-transform border border-gold/40 flex-shrink-0">
-                <Crown className="w-4.5 h-4.5 sm:w-6 sm:h-6" />
+                <Crown className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
               <div className="flex flex-col justify-center min-w-0">
                 <span className="text-lg sm:text-2xl font-serif font-black tracking-[0.15em] sm:tracking-[0.2em] text-gray-950 group-hover:text-emeraldTheme transition-colors leading-tight truncate">
@@ -173,12 +173,12 @@ export const Header = () => {
             {/* Wishlist */}
             <Link
               to="/wishlist"
-              className="relative p-1.5 sm:p-2.5 text-charcoal hover:text-emeraldTheme hover:bg-ivory rounded-full transition-colors"
+              className="relative p-2 text-charcoal hover:text-emeraldTheme hover:bg-ivory rounded-full transition-colors flex items-center justify-center flex-shrink-0"
               title="View Wishlist"
             >
               <Heart className="w-5 h-5" />
               {wishlistCount > 0 && (
-                <span className="absolute top-0.5 right-0.5 sm:top-1 sm:right-1 bg-emeraldTheme text-amber-300 text-[10px] w-4.5 h-4.5 rounded-full flex items-center justify-center font-extrabold border border-gold shadow-sm">
+                <span className="absolute -top-1 -right-1 w-5 h-5 bg-emeraldTheme text-amber-300 text-[10px] font-black rounded-full flex items-center justify-center leading-none border border-gold shadow-sm pointer-events-none">
                   {wishlistCount}
                 </span>
               )}
@@ -187,12 +187,12 @@ export const Header = () => {
             {/* Cart / Bag */}
             <Link
               to="/cart"
-              className="relative p-1.5 sm:p-2.5 text-charcoal hover:text-emeraldTheme hover:bg-ivory rounded-full transition-colors"
+              className="relative p-2 text-charcoal hover:text-emeraldTheme hover:bg-ivory rounded-full transition-colors flex items-center justify-center flex-shrink-0"
               title="Shopping Bag"
             >
               <ShoppingBag className="w-5 h-5" />
               {cartSummary.totalQuantity > 0 && (
-                <span className="absolute top-0.5 right-0.5 sm:top-1 sm:right-1 bg-amber-600 text-white text-[10px] w-4.5 h-4.5 rounded-full flex items-center justify-center font-extrabold shadow-sm">
+                <span className="absolute -top-1 -right-1 w-5 h-5 bg-amber-600 text-white text-[10px] font-black rounded-full flex items-center justify-center leading-none shadow-sm pointer-events-none">
                   {cartSummary.totalQuantity}
                 </span>
               )}
