@@ -7,13 +7,18 @@
     @apply bg-ivory text-charcoal font-sans antialiased text-[15px];
     letter-spacing: -0.01em;
     line-height: 1.6;
-    background-image: 
+    background-image:
       radial-gradient(at 100% 0%, rgba(212, 175, 55, 0.04) 0px, transparent 50%),
       radial-gradient(at 0% 100%, rgba(11, 47, 36, 0.03) 0px, transparent 50%);
     background-attachment: fixed;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-serif tracking-normal text-charcoal font-bold;
   }
 }
@@ -59,20 +64,32 @@
 
 /* Smooth Gold Shimmer */
 @keyframes goldShimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 .shimmer-gold {
-  background: linear-gradient(90deg, rgba(212,175,55,0.08) 0%, rgba(212,175,55,0.25) 50%, rgba(212,175,55,0.08) 100%);
+  background: linear-gradient(90deg, rgba(212, 175, 55, 0.08) 0%, rgba(212, 175, 55, 0.25) 50%, rgba(212, 175, 55, 0.08) 100%);
   background-size: 200% 100%;
   animation: goldShimmer 3s infinite linear;
 }
 
 /* Soft Fade In */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .animate-fadeIn {

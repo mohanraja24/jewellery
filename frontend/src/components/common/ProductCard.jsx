@@ -43,11 +43,10 @@ export const ProductCard = ({ product }) => {
             e.preventDefault();
             toggleWishlist(product);
           }}
-          className={`absolute top-3.5 right-3.5 z-10 p-3 rounded-full backdrop-blur-md transition-all shadow-md ${
-            isWishlisted
-              ? 'bg-emeraldTheme text-amber-300'
-              : 'bg-white/90 hover:bg-white text-gray-900 hover:text-emeraldTheme'
-          }`}
+          className={`absolute top-3.5 right-3.5 z-10 p-3 rounded-full backdrop-blur-md transition-all shadow-md ${isWishlisted
+            ? 'bg-emeraldTheme text-amber-300'
+            : 'bg-white/90 hover:bg-white text-gray-900 hover:text-emeraldTheme'
+            }`}
           aria-label="Toggle Wishlist"
         >
           <Heart className={`w-4 h-4 ${isWishlisted ? 'fill-current' : ''}`} />

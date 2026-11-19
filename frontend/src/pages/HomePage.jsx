@@ -51,31 +51,28 @@ export const HomePage = () => {
             <div className="flex items-center space-x-2 mt-4 md:mt-0 p-1.5 bg-ivory rounded-xl border border-borderLuxury">
               <button
                 onClick={() => setActiveTab('featured')}
-                className={`px-4 py-2 text-xs font-semibold rounded-lg transition ${
-                  activeTab === 'featured'
-                    ? 'bg-emeraldTheme text-white shadow-sm'
-                    : 'text-charcoal-muted hover:text-charcoal'
-                }`}
+                className={`px-4 py-2 text-xs font-semibold rounded-lg transition ${activeTab === 'featured'
+                  ? 'bg-emeraldTheme text-white shadow-sm'
+                  : 'text-charcoal-muted hover:text-charcoal'
+                  }`}
               >
                 Featured Icons
               </button>
               <button
                 onClick={() => setActiveTab('bestsellers')}
-                className={`px-4 py-2 text-xs font-semibold rounded-lg transition ${
-                  activeTab === 'bestsellers'
-                    ? 'bg-emeraldTheme text-white shadow-sm'
-                    : 'text-charcoal-muted hover:text-charcoal'
-                }`}
+                className={`px-4 py-2 text-xs font-semibold rounded-lg transition ${activeTab === 'bestsellers'
+                  ? 'bg-emeraldTheme text-white shadow-sm'
+                  : 'text-charcoal-muted hover:text-charcoal'
+                  }`}
               >
                 Bestsellers
               </button>
               <button
                 onClick={() => setActiveTab('new')}
-                className={`px-4 py-2 text-xs font-semibold rounded-lg transition ${
-                  activeTab === 'new'
-                    ? 'bg-emeraldTheme text-white shadow-sm'
-                    : 'text-charcoal-muted hover:text-charcoal'
-                }`}
+                className={`px-4 py-2 text-xs font-semibold rounded-lg transition ${activeTab === 'new'
+                  ? 'bg-emeraldTheme text-white shadow-sm'
+                  : 'text-charcoal-muted hover:text-charcoal'
+                  }`}
               >
                 New Additions
               </button>

@@ -136,61 +136,70 @@ export const CartPage = () => {
               return (
                 <div
                   key={`${item.product.id}-${item.selectedSize}`}
-                  className="bg-white rounded-2xl border border-borderLuxury p-5 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+                  className="bg-white rounded-2xl border-2 border-borderLuxury p-5 sm:p-6 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6"
                 >
-                  {/* Product Info */}
-                  <div className="flex items-center space-x-4">
+                  {/* Left: Product Media & Information */}
+                  <div className="flex items-start space-x-4 flex-1 min-w-0">
                     <img
                       src={item.product.images[0]}
                       alt={item.product.name}
-                      className="w-22 h-22 rounded-xl object-cover bg-ivory border-2 border-borderLuxury flex-shrink-0"
+                      className="w-24 h-24 sm:w-28 sm:h-28 rounded-xl object-cover bg-ivory border-2 border-borderLuxury flex-shrink-0"
                     />
-                    <div>
-                      <span className="text-xs uppercase font-extrabold text-gold-dark tracking-wider">
+                    <div className="flex-1 min-w-0 space-y-1.5">
+                      <span className="inline-block text-xs uppercase font-extrabold text-gold-dark tracking-wider">
                         {item.product.purity} {item.product.metalType}
                       </span>
                       <Link to={`/product/${item.product.id}`}>
-                        <h3 className="font-bold text-base text-gray-900 hover:text-emeraldTheme line-clamp-1">
+                        <h3 className="font-bold text-base sm:text-lg text-gray-900 hover:text-emeraldTheme transition-colors leading-snug">
                           {item.product.name}
                         </h3>
                       </Link>
-                      <p className="text-xs sm:text-sm text-gray-600 font-semibold mt-1">
-                        Size: <strong className="text-gray-900">{item.selectedSize}</strong> • Net Wt: {formatWeight(item.product.netMetalWeight)}
-                      </p>
-                      <p className="text-xs text-emerald-800 font-bold mt-0.5">
-                        Live Rate: {formatINR(priceDetails.rateUsed)}/g
-                      </p>
+
+                      {/* Meta Information Tags */}
+                      <div className="flex flex-wrap items-center gap-2 pt-1 text-xs text-gray-700 font-semibold">
+                        <span className="bg-ivory border border-borderLuxury px-2.5 py-1 rounded-md">
+                          Size: <strong className="text-gray-950 font-bold">{item.selectedSize}</strong>
+                        </span>
+                        <span className="bg-ivory border border-borderLuxury px-2.5 py-1 rounded-md">
+                          Net Wt: <strong className="text-gray-950 font-bold">{formatWeight(item.product.netMetalWeight)}</strong>
+                        </span>
+                        <span className="text-emerald-900 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-md font-bold">
+                          Live Rate: {formatINR(priceDetails.rateUsed)}/g
+                        </span>
+                      </div>
                     </div>
                   </div>
 
-                  {/* Quantity & Unit Price */}
-                  <div className="flex items-center justify-between sm:justify-end space-x-6 w-full sm:w-auto pt-3 sm:pt-0 border-t sm:border-t-0 border-borderLuxury">
-                    {/* Quantity Selector */}
-                    <div className="flex items-center border-2 border-borderLuxury rounded-xl bg-ivory">
+                  {/* Right: Quantity Stepper, Total Price & Remove Button */}
+                  <div className="flex items-center justify-between md:justify-end gap-5 sm:gap-6 w-full md:w-auto pt-4 md:pt-0 border-t md:border-t-0 border-borderLuxury flex-shrink-0">
+                    {/* Quantity Stepper */}
+                    <div className="flex items-center border-2 border-borderLuxury rounded-xl bg-ivory shadow-sm overflow-hidden">
                       <button
                         onClick={() =>
                           updateQuantity(item.product.id, item.selectedSize, item.quantity - 1)
                         }
-                        className="px-3 py-1.5 text-gray-900 hover:bg-white text-xs font-black"
+                        className="w-9 h-9 flex items-center justify-center text-gray-900 hover:bg-white text-sm font-black transition cursor-pointer"
+                        aria-label="Decrease quantity"
                       >
                         -
                       </button>
-                      <span className="px-3 py-1.5 text-xs font-black text-gray-950">
+                      <span className="w-10 text-center text-sm font-black text-gray-950 select-none">
                         {item.quantity}
                       </span>
                       <button
                         onClick={() =>
                           updateQuantity(item.product.id, item.selectedSize, item.quantity + 1)
                         }
-                        className="px-3 py-1.5 text-gray-900 hover:bg-white text-xs font-black"
+                        className="w-9 h-9 flex items-center justify-center text-gray-900 hover:bg-white text-sm font-black transition cursor-pointer"
+                        aria-label="Increase quantity"
                       >
                         +
                       </button>
                     </div>
 
-                    {/* Total for this item */}
-                    <div className="text-right">
-                      <div className="text-lg font-black font-sans text-emeraldTheme">
+                    {/* Price Block */}
+                    <div className="text-right whitespace-nowrap min-w-[110px]">
+                      <div className="text-xl sm:text-2xl font-black font-sans text-emeraldTheme">
                         {formatINR(priceDetails.finalPrice * item.quantity)}
                       </div>
                       <div className="text-xs text-gray-500 font-medium">
@@ -198,11 +207,12 @@ export const CartPage = () => {
                       </div>
                     </div>
 
-                    {/* Remove Action */}
+                    {/* Delete Item Button */}
                     <button
                       onClick={() => removeFromCart(item.product.id, item.selectedSize)}
-                      className="text-gray-400 hover:text-red-600 transition p-1"
-                      title="Remove item"
+                      className="p-2.5 rounded-xl text-gray-400 hover:text-red-600 hover:bg-red-50 border border-transparent hover:border-red-200 transition cursor-pointer"
+                      title="Remove from bag"
+                      aria-label="Remove item"
                     >
                       <Trash2 className="w-5 h-5" />
                     </button>
