@@ -466,11 +466,11 @@ export const Header = () => {
       {/* 4. Live Metal Rate Breakdown Modal */}
       {rateModalOpen && (
         <div
-          className="fixed inset-0 z-[9999] flex items-end sm:items-center justify-center bg-charcoal/70 backdrop-blur-sm p-0 sm:p-4"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-charcoal/70 backdrop-blur-sm p-4"
           onClick={(e) => { if (e.target === e.currentTarget) setRateModalOpen(false); }}
         >
-          <div className="bg-white w-full sm:max-w-lg sm:rounded-2xl shadow-2xl border border-gold/40 flex flex-col rounded-t-2xl"
-            style={{ maxHeight: '85vh' }}
+          <div className="bg-white max-w-lg w-full rounded-2xl shadow-2xl border border-gold/40 flex flex-col"
+            style={{ maxHeight: '88vh' }}
           >
             {/* Modal Header — sticky */}
             <div className="bg-emeraldTheme text-white p-4 sm:p-5 flex items-center justify-between border-b border-gold/30 flex-shrink-0 rounded-t-2xl">
