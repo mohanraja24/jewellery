@@ -465,12 +465,17 @@ export const Header = () => {
 
       {/* 4. Live Metal Rate Breakdown Modal */}
       {rateModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-charcoal/70 backdrop-blur-sm p-4">
-          <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full border border-gold/40 flex flex-col max-h-[90vh] animate-scaleUp">
-            {/* Modal Header — fixed */}
-            <div className="bg-emeraldTheme text-white p-5 flex items-center justify-between border-b border-gold/30 flex-shrink-0 rounded-t-2xl">
+        <div
+          className="fixed inset-0 z-[9999] flex items-end sm:items-center justify-center bg-charcoal/70 backdrop-blur-sm p-0 sm:p-4"
+          onClick={(e) => { if (e.target === e.currentTarget) setRateModalOpen(false); }}
+        >
+          <div className="bg-white w-full sm:max-w-lg sm:rounded-2xl shadow-2xl border border-gold/40 flex flex-col rounded-t-2xl"
+            style={{ maxHeight: '85vh' }}
+          >
+            {/* Modal Header — sticky */}
+            <div className="bg-emeraldTheme text-white p-4 sm:p-5 flex items-center justify-between border-b border-gold/30 flex-shrink-0 rounded-t-2xl">
               <div>
-                <h3 className="text-xl font-serif font-bold text-amber-300 flex items-center">
+                <h3 className="text-lg sm:text-xl font-serif font-bold text-amber-300 flex items-center">
                   <Sparkles className="w-5 h-5 mr-2 text-amber-300" />
                   Live Bullion Rate Board
                 </h3>
@@ -480,14 +485,14 @@ export const Header = () => {
               </div>
               <button
                 onClick={() => setRateModalOpen(false)}
-                className="text-ivory/70 hover:text-white p-1 rounded-full hover:bg-white/10"
+                className="text-ivory/70 hover:text-white p-1.5 rounded-full hover:bg-white/10 cursor-pointer flex-shrink-0"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            {/* Modal Body — scrollable */}
-            <div className="p-6 space-y-5 overflow-y-auto flex-1">
+            {/* Modal Body — scrollable middle section */}
+            <div className="p-4 sm:p-6 space-y-4 overflow-y-auto flex-1">
               {/* Status and Source Banner */}
               <div className="flex items-center justify-between text-xs bg-ivory p-3.5 rounded-xl border border-borderLuxury">
                 <div>
@@ -566,15 +571,16 @@ export const Header = () => {
                   </code>
                 </p>
               </div>
+            </div>
 
-              <div className="text-center pt-2 pb-1">
-                <button
-                  onClick={() => setRateModalOpen(false)}
-                  className="w-full py-3.5 bg-emeraldTheme hover:bg-emeraldTheme-light text-white font-bold text-xs uppercase tracking-widest rounded-xl transition shadow-luxury cursor-pointer"
-                >
-                  Continue Shopping with Live Rates
-                </button>
-              </div>
+            {/* Modal Footer — always visible at bottom */}
+            <div className="p-4 sm:p-5 border-t border-borderLuxury flex-shrink-0 bg-white rounded-b-2xl">
+              <button
+                onClick={() => setRateModalOpen(false)}
+                className="w-full py-3.5 bg-emeraldTheme hover:bg-emeraldTheme-light text-white font-bold text-xs uppercase tracking-widest rounded-xl transition shadow-luxury cursor-pointer"
+              >
+                Continue Shopping with Live Rates
+              </button>
             </div>
           </div>
         </div>
