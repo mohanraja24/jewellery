@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import {
   Search,
@@ -14,7 +14,8 @@ import {
   ChevronDown,
   Sparkles,
   Clock,
-  Crown
+  Crown,
+  LogOut
 } from 'lucide-react';
 import { useBrand } from '../../context/BrandContext';
 import { useMetalRate } from '../../context/MetalRateContext';
@@ -36,6 +37,20 @@ export const Header = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchOpen, setSearchOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
+  const userDropdownRef = useRef(null);
+
+  // Close user dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (userDropdownRef.current && !userDropdownRef.current.contains(event.target)) {
+        setUserDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -55,7 +70,7 @@ export const Header = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-borderLuxury shadow-sm transition-all max-w-full overflow-hidden">
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-borderLuxury shadow-sm transition-all max-w-full overflow-visible">
       {/* 1. Top Luxury Announcement Bar - High Readability & Fully Responsive */}
       <div className="bg-emeraldTheme-dark text-white text-xs py-2 px-3 sm:px-4 border-b border-gold/30 overflow-hidden">
         <div className="max-w-[1400px] mx-auto flex items-center justify-between gap-3 min-w-0">
@@ -199,97 +214,112 @@ export const Header = () => {
             </Link>
 
             {/* User Dropdown */}
-            <div className="relative">
+            <div
+              className="relative"
+              ref={userDropdownRef}
+              onMouseEnter={() => setUserDropdownOpen(true)}
+              onMouseLeave={() => setUserDropdownOpen(false)}
+            >
               <button
-                onClick={() => setUserDropdownOpen(!userDropdownOpen)}
+                onClick={() => {
+                  if (!isAuthenticated) {
+                    navigate('/login');
+                  } else {
+                    setUserDropdownOpen((prev) => !prev);
+                  }
+                }}
                 className="flex items-center space-x-1.5 p-1 sm:p-1.5 sm:pl-2 sm:pr-2.5 rounded-full hover:bg-ivory text-charcoal hover:text-emeraldTheme transition-colors border border-transparent hover:border-borderLuxury cursor-pointer"
+                title={isAuthenticated ? 'My Account' : 'Sign In'}
               >
                 <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-emeraldTheme-50 border border-emeraldTheme/20 flex items-center justify-center text-emeraldTheme font-bold flex-shrink-0">
                   <User className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </div>
                 <span className="hidden sm:inline text-xs font-bold text-gray-900 whitespace-nowrap">
-                  {isAuthenticated ? (user.name.split(' ')[0]) : 'Sign In'}
+                  {isAuthenticated ? (user?.name?.split(' ')[0] || 'Patron') : 'Sign In'}
                 </span>
                 <ChevronDown className="hidden sm:inline w-3 h-3 text-charcoal-muted" />
               </button>
 
               {userDropdownOpen && (
-                <div
-                  className="absolute right-0 mt-2 w-60 bg-white rounded-xl shadow-luxury-lg border border-borderLuxury py-2 z-50 animate-fadeIn"
-                  onMouseLeave={() => setUserDropdownOpen(false)}
-                >
-                  {isAuthenticated ? (
-                    <>
-                      <div className="px-4 py-3 border-b border-borderLuxury">
-                        <p className="text-xs text-charcoal-muted font-medium">Signed in as</p>
-                        <p className="text-sm font-bold text-charcoal truncate">{user.name}</p>
-                        <span className="inline-block mt-1 text-xs uppercase font-extrabold tracking-wider px-2.5 py-0.5 rounded bg-emeraldTheme-50 text-emeraldTheme">
-                          {user.role}
-                        </span>
-                      </div>
-                      <Link
-                        to="/account"
-                        onClick={() => setUserDropdownOpen(false)}
-                        className="block px-4 py-2.5 text-xs sm:text-sm font-semibold text-charcoal hover:bg-ivory hover:text-emeraldTheme"
-                      >
-                        My Profile & Orders
-                      </Link>
-                      <Link
-                        to="/wishlist"
-                        onClick={() => setUserDropdownOpen(false)}
-                        className="block px-4 py-2.5 text-xs sm:text-sm font-semibold text-charcoal hover:bg-ivory hover:text-emeraldTheme"
-                      >
-                        Saved Wishlist ({wishlistCount})
-                      </Link>
-                      <Link
-                        to="/admin"
-                        onClick={() => setUserDropdownOpen(false)}
-                        className="block px-4 py-2.5 text-xs sm:text-sm font-bold text-emeraldTheme hover:bg-emeraldTheme-50"
-                      >
-                        Admin Portal
-                      </Link>
-                      <div className="border-t border-borderLuxury my-1"></div>
-                      <button
-                        onClick={() => {
-                          logout();
-                          setUserDropdownOpen(false);
-                        }}
-                        className="w-full text-left px-4 py-2.5 text-xs sm:text-sm font-bold text-red-600 hover:bg-red-50"
-                      >
-                        Sign Out
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <div className="p-4 text-center border-b border-borderLuxury">
-                        <p className="text-xs text-charcoal-muted mb-2.5 font-medium">Access your bespoke bag and orders</p>
+                <div className="absolute right-0 top-full pt-1.5 w-64 z-50 animate-fadeIn">
+                  <div className="bg-white rounded-2xl shadow-luxury-xl border-2 border-borderLuxury py-2 overflow-hidden">
+                    {isAuthenticated ? (
+                      <>
+                        <div className="px-4 py-3 border-b border-borderLuxury">
+                          <p className="text-xs text-charcoal-muted font-medium">Signed in as</p>
+                          <p className="text-sm font-bold text-charcoal truncate">{user?.name}</p>
+                          <span className="inline-block mt-1 text-xs uppercase font-extrabold tracking-wider px-2.5 py-0.5 rounded bg-emeraldTheme-50 text-emeraldTheme">
+                            {user?.role}
+                          </span>
+                        </div>
                         <Link
-                          to="/login"
+                          to="/account"
                           onClick={() => setUserDropdownOpen(false)}
-                          className="block w-full py-2.5 px-3 bg-emeraldTheme hover:bg-emeraldTheme-light text-white text-xs uppercase tracking-wider font-bold rounded-lg shadow-sm transition"
+                          className="block px-4 py-2.5 text-xs sm:text-sm font-semibold text-charcoal hover:bg-ivory hover:text-emeraldTheme transition"
                         >
-                          Customer Login
+                          My Profile & Orders
                         </Link>
                         <Link
-                          to="/register"
+                          to="/wishlist"
                           onClick={() => setUserDropdownOpen(false)}
-                          className="block mt-2.5 text-xs text-emeraldTheme font-bold hover:underline"
+                          className="block px-4 py-2.5 text-xs sm:text-sm font-semibold text-charcoal hover:bg-ivory hover:text-emeraldTheme transition"
                         >
-                          New to Aurelia? Register
+                          Saved Wishlist ({wishlistCount})
                         </Link>
-                      </div>
-                      <div className="px-4 py-2.5 bg-ivory/60">
                         <Link
                           to="/admin"
                           onClick={() => setUserDropdownOpen(false)}
-                          className="text-xs font-bold text-charcoal-muted hover:text-emeraldTheme flex items-center justify-between"
+                          className="block px-4 py-2.5 text-xs sm:text-sm font-bold text-emeraldTheme hover:bg-emeraldTheme-50 transition"
                         >
-                          <span>Store Admin Portal</span>
-                          <span className="text-xs text-gold-dark font-extrabold">→</span>
+                          Admin Portal
                         </Link>
-                      </div>
-                    </>
-                  )}
+                        <div className="border-t border-borderLuxury my-1"></div>
+                        <button
+                          onClick={() => {
+                            logout();
+                            setUserDropdownOpen(false);
+                            navigate('/');
+                          }}
+                          className="w-full text-left px-4 py-2.5 text-xs sm:text-sm font-bold text-red-600 hover:bg-red-50 flex items-center space-x-2 transition cursor-pointer"
+                        >
+                          <LogOut className="w-4 h-4" />
+                          <span>Sign Out</span>
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <div className="p-4 text-center border-b border-borderLuxury space-y-2">
+                          <p className="text-xs text-charcoal-muted font-medium">
+                            Access your bespoke bag and orders
+                          </p>
+                          <Link
+                            to="/login"
+                            onClick={() => setUserDropdownOpen(false)}
+                            className="block w-full py-2.5 px-3 bg-emeraldTheme hover:bg-emeraldTheme-light text-white text-xs uppercase tracking-wider font-bold rounded-xl shadow-sm transition"
+                          >
+                            Customer Login
+                          </Link>
+                          <Link
+                            to="/register"
+                            onClick={() => setUserDropdownOpen(false)}
+                            className="block pt-1 text-xs text-emeraldTheme font-bold hover:underline"
+                          >
+                            New to Aurelia? Register
+                          </Link>
+                        </div>
+                        <div className="px-4 py-2.5 bg-ivory/60">
+                          <Link
+                            to="/admin"
+                            onClick={() => setUserDropdownOpen(false)}
+                            className="text-xs font-bold text-charcoal-muted hover:text-emeraldTheme flex items-center justify-between transition"
+                          >
+                            <span>Store Admin Portal</span>
+                            <span className="text-xs text-gold-dark font-extrabold">→</span>
+                          </Link>
+                        </div>
+                      </>
+                    )}
+                  </div>
                 </div>
               )}
             </div>
@@ -357,7 +387,61 @@ export const Header = () => {
             ))}
           </div>
 
-          <div className="pt-3 border-t border-borderLuxury flex items-center justify-between">
+          {/* Mobile Auth Bar */}
+          <div className="pt-2 border-t border-borderLuxury">
+            {isAuthenticated ? (
+              <div className="flex items-center justify-between bg-ivory p-3 rounded-xl border border-borderLuxury">
+                <div className="flex items-center space-x-2.5">
+                  <div className="w-8 h-8 rounded-full bg-emeraldTheme text-amber-300 flex items-center justify-center font-bold text-xs">
+                    {user?.name?.[0] || 'U'}
+                  </div>
+                  <div>
+                    <span className="text-xs font-bold text-gray-900 block truncate max-w-[130px]">{user?.name}</span>
+                    <span className="text-[10px] text-emeraldTheme font-extrabold uppercase">{user?.role}</span>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Link
+                    to="/account"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-xs font-bold text-emeraldTheme hover:underline"
+                  >
+                    Account
+                  </Link>
+                  <span className="text-gray-300">•</span>
+                  <button
+                    onClick={() => {
+                      logout();
+                      setMobileMenuOpen(false);
+                      navigate('/');
+                    }}
+                    className="text-xs font-bold text-red-600 hover:underline cursor-pointer"
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 gap-2">
+                <Link
+                  to="/login"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="py-2.5 px-3 bg-emeraldTheme hover:bg-emeraldTheme-light text-white text-xs font-bold uppercase tracking-wider text-center rounded-xl shadow-sm transition"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  to="/register"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="py-2.5 px-3 bg-ivory border border-borderLuxury hover:border-gold text-gray-900 text-xs font-bold uppercase tracking-wider text-center rounded-xl transition"
+                >
+                  Register
+                </Link>
+              </div>
+            )}
+          </div>
+
+          <div className="pt-2 border-t border-borderLuxury flex items-center justify-between">
             <button
               onClick={() => {
                 setRateModalOpen(true);

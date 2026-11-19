@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   User,
   Package,
@@ -58,15 +59,38 @@ const MOCK_ORDERS = [
 ];
 
 export const CustomerAccountPage = () => {
-  const { user, logout, updateProfile } = useAuth();
+  const navigate = useNavigate();
+  const { user, isAuthenticated, logout, updateProfile } = useAuth();
   const [activeTab, setActiveTab] = useState('orders'); // 'orders' | 'profile' | 'addresses'
 
-  const [editName, setEditName] = useState(user?.name || 'Priyanka Sharma');
-  const [editPhone, setEditPhone] = useState(user?.phone || '+91 98450 12345');
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/login');
+    }
+  }, [isAuthenticated, navigate]);
+
+  const [editName, setEditName] = useState(user?.name || '');
+  const [editPhone, setEditPhone] = useState(user?.phone || '');
+
+  useEffect(() => {
+    if (user) {
+      setEditName(user.name || '');
+      setEditPhone(user.phone || '');
+    }
+  }, [user]);
+
+  if (!isAuthenticated) {
+    return null;
+  }
 
   const handleProfileSave = (e) => {
     e.preventDefault();
     updateProfile({ name: editName, phone: editPhone });
+  };
+
+  const handleSignOut = () => {
+    logout();
+    navigate('/');
   };
 
   return (
@@ -90,8 +114,8 @@ export const CustomerAccountPage = () => {
           </div>
 
           <button
-            onClick={logout}
-            className="flex items-center space-x-2 px-5 py-2.5 border-2 border-borderLuxury hover:border-red-500 rounded-xl text-xs sm:text-sm font-bold text-gray-800 hover:text-red-600 transition"
+            onClick={handleSignOut}
+            className="flex items-center space-x-2 px-5 py-2.5 border-2 border-borderLuxury hover:border-red-500 rounded-xl text-xs sm:text-sm font-bold text-gray-800 hover:text-red-600 transition cursor-pointer"
           >
             <LogOut className="w-4 h-4" />
             <span>Sign Out</span>
