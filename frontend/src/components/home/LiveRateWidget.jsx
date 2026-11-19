@@ -37,29 +37,33 @@ export const LiveRateWidget = () => {
     <section className="bg-white border-y border-borderLuxury py-8 px-4 sm:px-6 lg:px-8 shadow-sm">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-          {/* Left Column: Live Indicator & Source */}
-          <div className="lg:w-1/3 space-y-2">
-            <div className="flex items-center space-x-2">
-              <span className="relative flex h-3.5 w-3.5">
+          {/* Left Column: Live Benchmark Indicator & Source Metadata */}
+          <div className="lg:w-1/3 space-y-3">
+            {/* Clean, Single Status Pill */}
+            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-900 text-xs font-bold shadow-xs">
+              <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-600"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
               </span>
-              <span className="text-xs uppercase font-extrabold tracking-widest text-emeraldTheme">
-                Verified Bullion Board
-              </span>
-              <span className="bg-emeraldTheme-50 text-emeraldTheme text-xs uppercase font-extrabold px-3 py-0.5 rounded-full border border-emeraldTheme/30">
-                {rates.status === 'LIVE' ? 'Live Bullion Exchange' : 'Manual Benchmark'}
-              </span>
+              <span className="tracking-wider uppercase text-[11px] font-extrabold">Verified Live Bullion Board</span>
             </div>
-            <h3 className="text-2xl sm:text-3xl font-serif font-black text-gray-950">
-              Today's Live Precious Metal Rates
-            </h3>
-            <p className="text-xs sm:text-sm text-gray-600 font-medium flex items-center">
-              <Clock className="w-4 h-4 mr-1 text-gold-dark" />
-              Source: <strong className="text-gray-900 font-bold ml-1">{rates.source}</strong>
-              <span className="mx-2 font-bold">•</span>
-              {formatDate(rates.lastUpdated)}
-            </p>
+
+            {/* Elegant Serif Title in Proportional Mixed Case */}
+            <h2 className="text-2xl sm:text-3xl font-serif font-bold text-gray-950 tracking-tight leading-snug">
+              Today's Precious Metal Rates
+            </h2>
+
+            {/* Clean, Non-wrapping Metadata Grid */}
+            <div className="space-y-1.5 text-xs text-gray-600 font-medium pt-0.5">
+              <div className="flex items-center space-x-2">
+                <Clock className="w-3.5 h-3.5 text-gold-dark flex-shrink-0" />
+                <span>Last Updated: <strong className="text-gray-950 font-semibold">{formatDate(rates.lastUpdated)}</strong></span>
+              </div>
+              <div className="flex items-center space-x-2 text-gray-500">
+                <span className="w-3.5 flex justify-center text-gold-dark font-black">•</span>
+                <span>Benchmark: <strong className="text-gray-900 font-semibold">IBJA & Verified Spot Index</strong></span>
+              </div>
+            </div>
           </div>
 
           {/* Center Column: Rate Ticker Cards */}

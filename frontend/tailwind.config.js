@@ -46,8 +46,8 @@ export default {
         borderLuxury: '#E5DED2',
       },
       fontFamily: {
-        serif: ['"Cinzel"', '"Marcellus"', 'Georgia', 'serif'],
-        display: ['"Marcellus"', '"Cinzel"', 'serif'],
+        serif: ['"Playfair Display"', '"Marcellus"', 'Georgia', 'serif'],
+        display: ['"Playfair Display"', '"Cinzel"', 'serif'],
         sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
       },
       boxShadow: {
