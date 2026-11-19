@@ -1,0 +1,14 @@
+{
+  "name": "aurelia-jewellery-ecommerce",
+  "version": "1.0.0",
+  "description": "Production-grade MERN Stack Jewellery E-Commerce Platform with Live Metal Rates",
+  "scripts": {
+    "frontend:dev": "npm --prefix frontend run dev",
+    "frontend:build": "npm --prefix frontend run build",
+    "backend:dev": "npm --prefix backend run dev",
+    "backend:start": "npm --prefix backend start"
+  },
+  "keywords": ["jewellery", "ecommerce", "mern", "gold-rate", "silver-rate"],
+  "author": "",
+  "license": "ISC"
+}
