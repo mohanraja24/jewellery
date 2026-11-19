@@ -75,7 +75,7 @@ export const StoreLocationsPage = () => {
                     href={store.mapUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-xs font-semibold text-burgundy hover:underline"
+                    className="text-xs font-semibold text-emeraldTheme hover:underline"
                   >
                     Google Maps Directions →
                   </a>
@@ -84,7 +84,7 @@ export const StoreLocationsPage = () => {
                       setSelectedStore(store.city);
                       window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
                     }}
-                    className="px-3.5 py-1.5 bg-burgundy hover:bg-burgundy-light text-white text-xs font-medium rounded-lg transition"
+                    className="px-3.5 py-1.5 bg-emeraldTheme hover:bg-emeraldTheme-light text-white text-xs font-medium rounded-lg transition"
                   >
                     Select Store
                   </button>
@@ -104,7 +104,7 @@ export const StoreLocationsPage = () => {
               Book a Private In-Store Bridal & Solitaire Trial
             </h2>
             <p className="text-xs text-charcoal-muted mt-1">
-              Currently selected: <strong className="text-burgundy">{selectedStore}</strong>
+              Currently selected: <strong className="text-emeraldTheme">{selectedStore}</strong>
             </p>
           </div>
 
@@ -170,7 +170,7 @@ export const StoreLocationsPage = () => {
 
             <button
               type="submit"
-              className="w-full py-3.5 bg-burgundy hover:bg-burgundy-light text-white text-xs uppercase font-bold tracking-widest rounded-lg shadow-luxury transition flex items-center justify-center space-x-2"
+              className="w-full py-3.5 bg-emeraldTheme hover:bg-emeraldTheme-light text-white text-xs uppercase font-bold tracking-widest rounded-lg shadow-luxury transition flex items-center justify-center space-x-2"
             >
               <Calendar className="w-4 h-4 text-gold-light" />
               <span>Confirm VIP Appointment</span>

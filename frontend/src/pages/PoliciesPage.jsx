@@ -41,7 +41,7 @@ export const PoliciesPage = () => {
             onClick={() => handleTabChange('shipping')}
             className={`px-5 py-2.5 rounded-lg text-xs font-semibold flex items-center space-x-2 transition ${
               activeTab === 'shipping'
-                ? 'bg-burgundy text-white shadow-sm'
+                ? 'bg-emeraldTheme text-white shadow-sm'
                 : 'bg-white text-charcoal border border-borderLuxury hover:bg-ivory'
             }`}
           >
@@ -52,7 +52,7 @@ export const PoliciesPage = () => {
             onClick={() => handleTabChange('returns')}
             className={`px-5 py-2.5 rounded-lg text-xs font-semibold flex items-center space-x-2 transition ${
               activeTab === 'returns'
-                ? 'bg-burgundy text-white shadow-sm'
+                ? 'bg-emeraldTheme text-white shadow-sm'
                 : 'bg-white text-charcoal border border-borderLuxury hover:bg-ivory'
             }`}
           >
@@ -63,7 +63,7 @@ export const PoliciesPage = () => {
             onClick={() => handleTabChange('privacy')}
             className={`px-5 py-2.5 rounded-lg text-xs font-semibold flex items-center space-x-2 transition ${
               activeTab === 'privacy'
-                ? 'bg-burgundy text-white shadow-sm'
+                ? 'bg-emeraldTheme text-white shadow-sm'
                 : 'bg-white text-charcoal border border-borderLuxury hover:bg-ivory'
             }`}
           >
@@ -74,7 +74,7 @@ export const PoliciesPage = () => {
             onClick={() => handleTabChange('terms')}
             className={`px-5 py-2.5 rounded-lg text-xs font-semibold flex items-center space-x-2 transition ${
               activeTab === 'terms'
-                ? 'bg-burgundy text-white shadow-sm'
+                ? 'bg-emeraldTheme text-white shadow-sm'
                 : 'bg-white text-charcoal border border-borderLuxury hover:bg-ivory'
             }`}
           >
@@ -87,7 +87,7 @@ export const PoliciesPage = () => {
         <div className="bg-white rounded-2xl border border-borderLuxury p-8 sm:p-10 shadow-sm leading-relaxed text-xs sm:text-sm text-charcoal space-y-6">
           {activeTab === 'shipping' && (
             <div className="space-y-4">
-              <h2 className="text-xl font-serif font-bold text-burgundy">
+              <h2 className="text-xl font-serif font-bold text-emeraldTheme">
                 100% Insured Pan-India Shipping Policy
               </h2>
               <p>
@@ -105,7 +105,7 @@ export const PoliciesPage = () => {
 
           {activeTab === 'returns' && (
             <div className="space-y-4">
-              <h2 className="text-xl font-serif font-bold text-burgundy">
+              <h2 className="text-xl font-serif font-bold text-emeraldTheme">
                 15-Day Return & Lifetime Exchange Policy
               </h2>
               <p>
@@ -122,7 +122,7 @@ export const PoliciesPage = () => {
 
           {activeTab === 'privacy' && (
             <div className="space-y-4">
-              <h2 className="text-xl font-serif font-bold text-burgundy">
+              <h2 className="text-xl font-serif font-bold text-emeraldTheme">
                 Privacy & Data Security Policy
               </h2>
               <p>
@@ -138,7 +138,7 @@ export const PoliciesPage = () => {
 
           {activeTab === 'terms' && (
             <div className="space-y-4">
-              <h2 className="text-xl font-serif font-bold text-burgundy">
+              <h2 className="text-xl font-serif font-bold text-emeraldTheme">
                 Terms and Conditions of Sale
               </h2>
               <p>

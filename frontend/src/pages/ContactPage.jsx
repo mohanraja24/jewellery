@@ -114,7 +114,7 @@ export const ContactPage = () => {
 
               <button
                 type="submit"
-                className="px-8 py-3.5 bg-burgundy hover:bg-burgundy-light text-white text-xs uppercase font-bold tracking-widest rounded-lg shadow-luxury transition flex items-center justify-center space-x-2"
+                className="px-8 py-3.5 bg-emeraldTheme hover:bg-emeraldTheme-light text-white text-xs uppercase font-bold tracking-widest rounded-lg shadow-luxury transition flex items-center justify-center space-x-2"
               >
                 <Send className="w-4 h-4 text-gold-light" />
                 <span>Submit Concierge Request</span>
@@ -137,13 +137,13 @@ export const ContactPage = () => {
                 </div>
                 <div className="flex items-center space-x-3">
                   <Phone className="w-5 h-5 text-gold-dark flex-shrink-0" />
-                  <a href={`tel:${brand.phone}`} className="hover:text-burgundy font-medium text-charcoal">
+                  <a href={`tel:${brand.phone}`} className="hover:text-emeraldTheme font-medium text-charcoal">
                     {brand.phone}
                   </a>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Mail className="w-5 h-5 text-gold-dark flex-shrink-0" />
-                  <a href={`mailto:${brand.email}`} className="hover:text-burgundy font-medium text-charcoal">
+                  <a href={`mailto:${brand.email}`} className="hover:text-emeraldTheme font-medium text-charcoal">
                     {brand.email}
                   </a>
                 </div>

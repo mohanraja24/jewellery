@@ -15,7 +15,7 @@ export const WishlistPage = () => {
     return (
       <div className="bg-ivory/40 min-h-[70vh] flex items-center justify-center py-20 px-4">
         <div className="max-w-md w-full bg-white rounded-2xl border border-borderLuxury p-8 text-center space-y-4 shadow-sm">
-          <div className="w-16 h-16 rounded-full bg-burgundy/10 mx-auto flex items-center justify-center text-burgundy">
+          <div className="w-16 h-16 rounded-full bg-emeraldTheme/10 mx-auto flex items-center justify-center text-emeraldTheme">
             <Heart className="w-8 h-8" />
           </div>
           <h2 className="text-2xl font-serif font-bold text-charcoal">
@@ -26,7 +26,7 @@ export const WishlistPage = () => {
           </p>
           <Link
             to="/shop"
-            className="inline-flex items-center px-6 py-3 bg-burgundy hover:bg-burgundy-light text-white text-xs uppercase font-bold tracking-widest rounded-lg shadow-luxury transition"
+            className="inline-flex items-center px-6 py-3 bg-emeraldTheme hover:bg-emeraldTheme-light text-white text-xs uppercase font-bold tracking-widest rounded-lg shadow-luxury transition"
           >
             <span>Browse Fine Jewellery</span>
             <ArrowRight className="w-4 h-4 ml-2" />
@@ -82,11 +82,11 @@ export const WishlistPage = () => {
                       Net: {formatWeight(product.netMetalWeight)}
                     </div>
                     <Link to={`/product/${product.id}`}>
-                      <h3 className="font-serif font-bold text-sm text-charcoal hover:text-burgundy mt-1 line-clamp-1">
+                      <h3 className="font-serif font-bold text-sm text-charcoal hover:text-emeraldTheme mt-1 line-clamp-1">
                         {product.name}
                       </h3>
                     </Link>
-                    <div className="text-base font-serif font-bold text-burgundy mt-2">
+                    <div className="text-base font-serif font-bold text-emeraldTheme mt-2">
                       {formatINR(priceDetails.finalPrice)}
                     </div>
                   </div>
@@ -96,7 +96,7 @@ export const WishlistPage = () => {
                       addToCart(product);
                       removeFromWishlist(product.id);
                     }}
-                    className="mt-4 w-full py-2.5 bg-burgundy hover:bg-burgundy-light text-white text-xs font-semibold rounded-lg transition flex items-center justify-center space-x-2"
+                    className="mt-4 w-full py-2.5 bg-emeraldTheme hover:bg-emeraldTheme-light text-white text-xs font-semibold rounded-lg transition flex items-center justify-center space-x-2"
                   >
                     <ShoppingBag className="w-3.5 h-3.5 text-gold-light" />
                     <span>Move to Shopping Bag</span>
