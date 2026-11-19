@@ -1,15 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, ArrowRight, ShieldCheck, Gem } from 'lucide-react';
+import { Sparkles, ArrowRight, Crown } from 'lucide-react';
 import { useBrand } from '../../context/BrandContext';
 
 export const HeroBanner = () => {
   const { brand } = useBrand();
 
   return (
-    <div className="relative bg-burgundy overflow-hidden min-h-[580px] lg:min-h-[660px] flex items-center">
+    <div className="relative bg-emeraldTheme-dark overflow-hidden min-h-[600px] lg:min-h-[680px] flex items-center border-b border-gold/30">
       {/* Background Subtle Gradient & Luxury Texture */}
-      <div className="absolute inset-0 bg-radial-gradient opacity-40 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-radial-gradient opacity-30 pointer-events-none"></div>
       <div
         className="absolute inset-0 opacity-20 mix-blend-overlay bg-cover bg-center"
         style={{
@@ -22,34 +22,34 @@ export const HeroBanner = () => {
           {/* Left Text Column */}
           <div className="lg:col-span-7 space-y-6 text-white text-center lg:text-left">
             {/* Super Header Badge */}
-            <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-burgundy-dark/80 border border-gold/40 text-gold-light text-xs font-medium tracking-widest uppercase">
-              <Sparkles className="w-3.5 h-3.5 text-gold" />
-              <span>Timeless Heritage • Handcrafted Splendour</span>
+            <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-emeraldTheme border border-gold/40 text-gold-light text-xs font-semibold tracking-widest uppercase shadow-sm">
+              <Crown className="w-3.5 h-3.5 text-gold" />
+              <span>Royal Lineage • Imperial Karigari</span>
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold tracking-tight leading-[1.15] text-ivory">
-              Where Royal Heritage Meets <br className="hidden sm:inline" />
-              <span className="text-gold-gradient italic font-normal">Artisanal Perfection</span>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold tracking-tight leading-[1.12] text-ivory">
+              Where Royal Lineage Meets <br className="hidden sm:inline" />
+              <span className="text-gold-gradient italic font-normal">Artisanal Splendour</span>
             </h1>
 
             {/* Subtitle */}
             <p className="text-sm sm:text-base text-ivory/80 max-w-2xl font-light leading-relaxed mx-auto lg:mx-0">
-              Discover opulent 22K hallmarked gold, certified solitaire diamonds, and regal bridal sets crafted by fourth-generation master karigars. Experience pure transparency with live bullion pricing.
+              Discover opulent 22K hallmarked gold, certified solitaire diamonds, and regal bridal sets crafted by generational master karigars. Experience pure transparency with live bullion pricing.
             </p>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
               <Link
                 to="/shop"
-                className="w-full sm:w-auto px-8 py-3.5 bg-gold hover:bg-gold-light text-charcoal-dark font-semibold text-xs tracking-widest uppercase rounded shadow-luxury hover:shadow-gold-glow transition-all flex items-center justify-center group"
+                className="w-full sm:w-auto px-8 py-3.5 bg-gold hover:bg-gold-light text-charcoal-dark font-bold text-xs tracking-widest uppercase rounded-lg shadow-gold-glow transition-all flex items-center justify-center group"
               >
                 <span>Explore Fine Collections</span>
                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 to="/shop?category=bridal"
-                className="w-full sm:w-auto px-7 py-3.5 border border-gold/60 hover:bg-white/10 text-ivory font-medium text-xs tracking-widest uppercase rounded transition flex items-center justify-center"
+                className="w-full sm:w-auto px-7 py-3.5 border border-gold/70 hover:bg-white/10 text-ivory font-semibold text-xs tracking-widest uppercase rounded-lg transition flex items-center justify-center"
               >
                 <span>The Bridal Heritage 2026</span>
               </Link>
@@ -63,7 +63,7 @@ export const HeroBanner = () => {
               </div>
               <div>
                 <p className="text-lg sm:text-xl font-serif font-bold text-gold-light">IGI & GIA</p>
-                <p className="text-[11px] text-ivory/70 leading-tight">Independently Certified Diamonds</p>
+                <p className="text-[11px] text-ivory/70 leading-tight">Certified Solitaires</p>
               </div>
               <div>
                 <p className="text-lg sm:text-xl font-serif font-bold text-gold-light">Live Rate</p>
@@ -75,19 +75,19 @@ export const HeroBanner = () => {
           {/* Right Visual Column: Luxury Jewellery Spotlight Card */}
           <div className="lg:col-span-5 relative">
             <div className="relative mx-auto max-w-sm lg:max-w-none">
-              {/* Outer Decorative Gold Border */}
-              <div className="absolute -inset-2 rounded-2xl bg-gradient-to-r from-gold/30 via-transparent to-gold/30 blur-sm"></div>
+              {/* Outer Decorative Gold Glow */}
+              <div className="absolute -inset-2 rounded-2xl bg-gradient-to-r from-gold/30 via-gold/10 to-gold/30 blur-md"></div>
 
               {/* Card Container */}
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gold/40 bg-charcoal">
                 <img
                   src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1000&q=80"
                   alt="Aurelia Maharani Royal Heritage Gold Jewellery"
-                  className="w-full h-[400px] object-cover object-center transform hover:scale-105 transition-transform duration-700"
+                  className="w-full h-[420px] object-cover object-center transform hover:scale-105 transition-transform duration-700"
                 />
 
                 {/* Floating Glass Pill */}
-                <div className="absolute bottom-4 left-4 right-4 bg-charcoal/80 backdrop-blur-md p-4 rounded-xl border border-white/10 text-white">
+                <div className="absolute bottom-4 left-4 right-4 bg-charcoal/85 backdrop-blur-md p-4 rounded-xl border border-gold/30 text-white">
                   <div className="flex items-center justify-between">
                     <div>
                       <span className="text-[10px] uppercase font-bold tracking-widest text-gold">
@@ -102,7 +102,7 @@ export const HeroBanner = () => {
                     </div>
                     <Link
                       to="/product/PROD-001"
-                      className="px-3.5 py-1.5 bg-burgundy hover:bg-burgundy-light text-white text-xs font-medium rounded transition"
+                      className="px-4 py-2 bg-emeraldTheme hover:bg-emeraldTheme-light text-white text-xs font-semibold rounded-lg transition shadow-sm border border-gold/40"
                     >
                       View Piece
                     </Link>

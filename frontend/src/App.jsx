@@ -36,16 +36,18 @@ export function App() {
                   position="top-right"
                   toastOptions={{
                     style: {
-                      background: '#5A1825',
-                      color: '#FAF7F0',
-                      border: '1px solid #C6A15B',
+                      background: '#0B2F24',
+                      color: '#FAF8F5',
+                      border: '1px solid #D4AF37',
                       fontSize: '12px',
-                      fontWeight: 500,
+                      fontWeight: 600,
+                      borderRadius: '12px',
+                      boxShadow: '0 10px 30px rgba(0,0,0,0.15)',
                     },
                     success: {
                       iconTheme: {
-                        primary: '#C6A15B',
-                        secondary: '#5A1825',
+                        primary: '#D4AF37',
+                        secondary: '#0B2F24',
                       },
                     },
                   }}

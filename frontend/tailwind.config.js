@@ -7,42 +7,54 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Royal Emerald & Imperial Gold Palette
+        emeraldTheme: {
+          DEFAULT: '#0B2F24',
+          dark: '#061D16',
+          deep: '#041510',
+          light: '#134737',
+          soft: '#EAF3F0',
+          50: '#F2F8F6',
+          100: '#E1EFEA',
+        },
+        // Backwards-compatible alias for existing burgundy references mapped to Royal Emerald
         burgundy: {
-          DEFAULT: '#5A1825',
-          dark: '#42111B',
-          light: '#7A2233',
-          50: '#FDF7F8',
-          100: '#FBECEE',
+          DEFAULT: '#0B2F24', // Royal Emerald
+          dark: '#061D16',    // Deep Forest Obsidian
+          light: '#164E3D',   // Luminous Emerald
+          50: '#F2F8F6',
+          100: '#E1EFEA',
         },
         gold: {
-          DEFAULT: '#C6A15B',
-          light: '#DFBF7C',
-          dark: '#A6843E',
-          soft: '#F4ECE1',
-          50: '#FAF6EF',
-          100: '#F4ECD8',
+          DEFAULT: '#D4AF37', // Imperial Metallic Gold
+          light: '#EAD38A',   // Champagne Glow
+          dark: '#B08823',    // Rich Antique Gold
+          soft: '#F9F5EA',
+          50: '#FAF7EE',
+          100: '#F4ECD4',
         },
         ivory: {
-          DEFAULT: '#FAF7F0',
-          dark: '#F0EBE1',
-          light: '#FFFDF9'
+          DEFAULT: '#FBF9F5', // Alabaster Silk
+          dark: '#F2EEE6',
+          light: '#FFFFFF'
         },
         charcoal: {
-          DEFAULT: '#252525',
-          light: '#3D3D3D',
-          dark: '#141414',
+          DEFAULT: '#1A1A1A', // Obsidian Charcoal
+          light: '#333333',
+          dark: '#0D0D0D',
           muted: '#666666'
         },
-        borderLuxury: '#E8E1D7',
+        borderLuxury: '#E8E2D5',
       },
       fontFamily: {
         serif: ['"Playfair Display"', 'Georgia', 'serif'],
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
       },
       boxShadow: {
-        'luxury': '0 10px 30px -10px rgba(90, 24, 37, 0.08)',
-        'luxury-lg': '0 20px 40px -15px rgba(90, 24, 37, 0.12)',
-        'gold-glow': '0 0 20px rgba(198, 161, 91, 0.25)',
+        'luxury': '0 12px 35px -8px rgba(11, 47, 36, 0.10)',
+        'luxury-lg': '0 24px 50px -12px rgba(11, 47, 36, 0.16)',
+        'gold-glow': '0 0 25px rgba(212, 175, 55, 0.35)',
+        'emerald-glow': '0 0 25px rgba(11, 47, 36, 0.25)',
       }
     },
   },

@@ -24,7 +24,7 @@ export const HomePage = () => {
   });
 
   return (
-    <div className="bg-white">
+    <div className="bg-ivory/30">
       {/* 1. Hero Section */}
       <HeroBanner />
 
@@ -48,12 +48,12 @@ export const HomePage = () => {
             </div>
 
             {/* Filter Tabs */}
-            <div className="flex items-center space-x-2 mt-4 md:mt-0 p-1 bg-ivory rounded-lg border border-borderLuxury">
+            <div className="flex items-center space-x-2 mt-4 md:mt-0 p-1.5 bg-ivory rounded-xl border border-borderLuxury">
               <button
                 onClick={() => setActiveTab('featured')}
-                className={`px-4 py-2 text-xs font-semibold rounded-md transition ${
+                className={`px-4 py-2 text-xs font-semibold rounded-lg transition ${
                   activeTab === 'featured'
-                    ? 'bg-burgundy text-white shadow-sm'
+                    ? 'bg-emeraldTheme text-white shadow-sm'
                     : 'text-charcoal-muted hover:text-charcoal'
                 }`}
               >
@@ -61,9 +61,9 @@ export const HomePage = () => {
               </button>
               <button
                 onClick={() => setActiveTab('bestsellers')}
-                className={`px-4 py-2 text-xs font-semibold rounded-md transition ${
+                className={`px-4 py-2 text-xs font-semibold rounded-lg transition ${
                   activeTab === 'bestsellers'
-                    ? 'bg-burgundy text-white shadow-sm'
+                    ? 'bg-emeraldTheme text-white shadow-sm'
                     : 'text-charcoal-muted hover:text-charcoal'
                 }`}
               >
@@ -71,9 +71,9 @@ export const HomePage = () => {
               </button>
               <button
                 onClick={() => setActiveTab('new')}
-                className={`px-4 py-2 text-xs font-semibold rounded-md transition ${
+                className={`px-4 py-2 text-xs font-semibold rounded-lg transition ${
                   activeTab === 'new'
-                    ? 'bg-burgundy text-white shadow-sm'
+                    ? 'bg-emeraldTheme text-white shadow-sm'
                     : 'text-charcoal-muted hover:text-charcoal'
                 }`}
               >
@@ -92,10 +92,10 @@ export const HomePage = () => {
           <div className="text-center mt-12">
             <Link
               to="/shop"
-              className="inline-flex items-center px-8 py-3.5 bg-burgundy hover:bg-burgundy-light text-white text-xs uppercase font-semibold tracking-widest rounded shadow-luxury transition group"
+              className="inline-flex items-center px-8 py-3.5 bg-emeraldTheme hover:bg-emeraldTheme-light text-white text-xs uppercase font-bold tracking-widest rounded-xl shadow-luxury transition group border border-gold/30"
             >
               <span>Explore Complete Catalog ({INITIAL_PRODUCTS.length}+ Designs)</span>
-              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform text-gold-light" />
             </Link>
           </div>
         </div>

@@ -27,7 +27,7 @@ export const ShopByCategory = () => {
             <Link
               key={category.id}
               to={`/shop?category=${category.slug}`}
-              className="group relative bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-luxury transition-all duration-300 border border-borderLuxury flex flex-col"
+              className="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-luxury transition-all duration-300 border border-borderLuxury hover:border-gold/60 flex flex-col"
             >
               {/* Image Container */}
               <div className="aspect-square w-full overflow-hidden bg-ivory relative">
@@ -43,14 +43,14 @@ export const ShopByCategory = () => {
               {/* Text Info */}
               <div className="p-4 text-center flex-grow flex flex-col justify-between">
                 <div>
-                  <h3 className="font-serif font-bold text-sm sm:text-base text-charcoal group-hover:text-burgundy transition-colors">
+                  <h3 className="font-serif font-bold text-sm sm:text-base text-charcoal group-hover:text-emeraldTheme transition-colors">
                     {category.name}
                   </h3>
                   <p className="text-[11px] text-charcoal-muted mt-1 line-clamp-1">
                     {category.description}
                   </p>
                 </div>
-                <div className="mt-3 pt-2 border-t border-borderLuxury/40 flex items-center justify-center text-[11px] font-semibold text-gold-dark group-hover:text-burgundy transition-colors">
+                <div className="mt-3 pt-2 border-t border-borderLuxury/50 flex items-center justify-center text-[11px] font-bold text-gold-dark group-hover:text-emeraldTheme transition-colors">
                   <span>Explore Designs</span>
                   <ArrowRight className="w-3 h-3 ml-1 group-hover:translate-x-1 transition-transform" />
                 </div>

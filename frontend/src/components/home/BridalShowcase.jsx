@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, Calendar, ArrowRight, ShieldCheck, Gem } from 'lucide-react';
+import { Sparkles, Calendar, ArrowRight, ShieldCheck, Gem, Crown } from 'lucide-react';
 import { useBrand } from '../../context/BrandContext';
 
 export const BridalShowcase = () => {
   const { brand } = useBrand();
 
   return (
-    <section className="py-20 bg-burgundy-dark text-white relative overflow-hidden">
+    <section className="py-20 bg-emeraldTheme-deep text-white relative overflow-hidden border-y border-gold/30">
       <div
         className="absolute inset-0 opacity-15 bg-cover bg-center pointer-events-none"
         style={{
@@ -19,8 +19,8 @@ export const BridalShowcase = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Text */}
           <div className="lg:col-span-6 space-y-6">
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-burgundy border border-gold/40 text-gold-light text-xs font-semibold uppercase tracking-widest">
-              <Sparkles className="w-3.5 h-3.5 text-gold" />
+            <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-emeraldTheme border border-gold/40 text-gold-light text-xs font-semibold uppercase tracking-widest shadow-sm">
+              <Crown className="w-3.5 h-3.5 text-gold" />
               <span>Imperial Wedding Troussier</span>
             </div>
 
@@ -51,13 +51,13 @@ export const BridalShowcase = () => {
             <div className="flex flex-wrap gap-4 pt-4">
               <Link
                 to="/shop?category=bridal"
-                className="px-8 py-3.5 bg-gold hover:bg-gold-light text-charcoal-dark font-semibold text-xs uppercase tracking-widest rounded shadow-luxury transition"
+                className="px-8 py-3.5 bg-gold hover:bg-gold-light text-charcoal-dark font-bold text-xs uppercase tracking-widest rounded-lg shadow-gold-glow transition"
               >
                 Browse Bridal Suite
               </Link>
               <Link
                 to="/stores"
-                className="px-6 py-3.5 border border-gold/60 hover:bg-white/10 text-ivory text-xs uppercase tracking-widest rounded transition"
+                className="px-6 py-3.5 border border-gold/60 hover:bg-white/10 text-ivory text-xs uppercase tracking-widest rounded-lg transition"
               >
                 Book In-Store Bridal Suite
               </Link>
@@ -70,24 +70,24 @@ export const BridalShowcase = () => {
               <img
                 src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?auto=format&fit=crop&w=700&q=80"
                 alt="Bridal Set"
-                className="rounded-xl shadow-xl object-cover h-64 w-full border border-gold/40"
+                className="rounded-2xl shadow-xl object-cover h-64 w-full border border-gold/40"
               />
               <img
                 src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=700&q=80"
                 alt="Gold Necklace"
-                className="rounded-xl shadow-xl object-cover h-48 w-full border border-gold/40"
+                className="rounded-2xl shadow-xl object-cover h-48 w-full border border-gold/40"
               />
             </div>
             <div className="space-y-4 pt-6">
               <img
                 src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=700&q=80"
                 alt="Temple Jhumkas"
-                className="rounded-xl shadow-xl object-cover h-48 w-full border border-gold/40"
+                className="rounded-2xl shadow-xl object-cover h-48 w-full border border-gold/40"
               />
               <img
                 src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=700&q=80"
                 alt="Diamond Ring"
-                className="rounded-xl shadow-xl object-cover h-64 w-full border border-gold/40"
+                className="rounded-2xl shadow-xl object-cover h-64 w-full border border-gold/40"
               />
             </div>
           </div>
