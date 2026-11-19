@@ -43,13 +43,13 @@ export const ProductCard = ({ product }) => {
             e.preventDefault();
             toggleWishlist(product);
           }}
-          className={`absolute top-3.5 right-3.5 z-10 p-3 rounded-full backdrop-blur-md transition-all shadow-md ${isWishlisted
+          className={`absolute top-3.5 right-3.5 z-10 p-2.5 rounded-full backdrop-blur-md transition-all shadow-sm ${isWishlisted
             ? 'bg-emeraldTheme text-amber-300'
-            : 'bg-white/90 hover:bg-white text-gray-900 hover:text-emeraldTheme'
+            : 'bg-white/90 hover:bg-white text-gray-900 hover:text-emeraldTheme border border-borderLuxury/40'
             }`}
           aria-label="Toggle Wishlist"
         >
-          <Heart className={`w-4 h-4 ${isWishlisted ? 'fill-current' : ''}`} />
+          <Heart className={`w-4 h-4 ${isWishlisted ? 'fill-current' : ''}`} strokeWidth={1.5} />
         </button>
 
         {/* Product Image Link */}
@@ -103,10 +103,10 @@ export const ProductCard = ({ product }) => {
 
           <button
             onClick={() => addToCart(product)}
-            className="px-4 py-2.5 bg-ivory hover:bg-emeraldTheme text-gray-900 hover:text-white rounded-xl border-2 border-borderLuxury hover:border-emeraldTheme transition-all flex items-center space-x-2 text-xs font-extrabold shadow-sm"
+            className="px-3.5 py-2 bg-ivory hover:bg-emeraldTheme text-gray-900 hover:text-white rounded-xl border border-borderLuxury hover:border-emeraldTheme transition-all flex items-center space-x-2 text-xs font-semibold shadow-xs group/btn cursor-pointer"
             title="Add to Shopping Bag"
           >
-            <ShoppingBag className="w-4 h-4 text-gold-dark" />
+            <ShoppingBag className="w-4 h-4 text-gold-dark group-hover/btn:text-amber-300 transition-colors" strokeWidth={1.5} />
             <span>Add</span>
           </button>
         </div>

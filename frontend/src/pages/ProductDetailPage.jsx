@@ -380,7 +380,7 @@ export const ProductDetailPage = () => {
                 onClick={() => addToCart(product, selectedSize, quantity)}
                 className="flex-grow py-4 px-6 bg-emeraldTheme hover:bg-emeraldTheme-light text-white font-extrabold text-xs sm:text-sm uppercase tracking-widest rounded-xl shadow-luxury transition flex items-center justify-center space-x-2 border border-gold/40"
               >
-                <ShoppingBag className="w-5 h-5 text-amber-300" />
+                <ShoppingBag className="w-5 h-5 text-amber-300" strokeWidth={1.5} />
                 <span>Add to Shopping Bag</span>
               </button>
             </div>

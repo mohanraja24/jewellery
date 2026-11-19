@@ -98,7 +98,7 @@ export const WishlistPage = () => {
                     }}
                     className="mt-4 w-full py-2.5 bg-emeraldTheme hover:bg-emeraldTheme-light text-white text-xs font-semibold rounded-lg transition flex items-center justify-center space-x-2"
                   >
-                    <ShoppingBag className="w-3.5 h-3.5 text-gold-light" />
+                    <ShoppingBag className="w-3.5 h-3.5 text-gold-light" strokeWidth={1.5} />
                     <span>Move to Shopping Bag</span>
                   </button>
                 </div>

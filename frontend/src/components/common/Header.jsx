@@ -176,7 +176,7 @@ export const Header = () => {
               className="relative p-2 text-charcoal hover:text-emeraldTheme hover:bg-ivory rounded-full transition-colors flex items-center justify-center flex-shrink-0"
               title="View Wishlist"
             >
-              <Heart className="w-5 h-5" />
+              <Heart className="w-5 h-5" strokeWidth={1.75} />
               {wishlistCount > 0 && (
                 <span className="absolute -top-1 -right-1 w-5 h-5 bg-emeraldTheme text-amber-300 text-[10px] font-black rounded-full flex items-center justify-center leading-none border border-gold shadow-sm pointer-events-none">
                   {wishlistCount}
@@ -190,7 +190,7 @@ export const Header = () => {
               className="relative p-2 text-charcoal hover:text-emeraldTheme hover:bg-ivory rounded-full transition-colors flex items-center justify-center flex-shrink-0"
               title="Shopping Bag"
             >
-              <ShoppingBag className="w-5 h-5" />
+              <ShoppingBag className="w-5 h-5" strokeWidth={1.75} />
               {cartSummary.totalQuantity > 0 && (
                 <span className="absolute -top-1 -right-1 w-5 h-5 bg-amber-600 text-white text-[10px] font-black rounded-full flex items-center justify-center leading-none shadow-sm pointer-events-none">
                   {cartSummary.totalQuantity}
