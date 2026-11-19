@@ -441,7 +441,8 @@ export const AdminPage = () => {
             </div>
 
             <div className="bg-white rounded-2xl border-2 border-borderLuxury overflow-hidden shadow-sm">
-              <table className="w-full text-left border-collapse text-xs sm:text-sm">
+              <div className="overflow-x-auto no-scrollbar w-full">
+                <table className="w-full text-left border-collapse text-xs sm:text-sm min-w-[700px]">
                 <thead>
                   <tr className="bg-ivory border-b border-borderLuxury text-gray-800 uppercase text-xs font-black tracking-wider">
                     <th className="p-4">Piece Details</th>
@@ -504,6 +505,7 @@ export const AdminPage = () => {
               </table>
             </div>
           </div>
+        </div>
         )}
 
         {/* TAB 4: STORE ONBOARDING & CSV MIGRATION */}

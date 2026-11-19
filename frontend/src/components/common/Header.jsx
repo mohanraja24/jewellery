@@ -55,44 +55,44 @@ export const Header = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-borderLuxury shadow-sm transition-all">
-      {/* 1. Top Luxury Announcement Bar - High Readability */}
-      <div className="bg-emeraldTheme-dark text-white text-xs py-2.5 px-4 border-b border-gold/30">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
-          {/* Rate Ticker Headline */}
-          <div className="flex items-center space-x-3 overflow-x-auto whitespace-nowrap">
-            <span className="flex items-center text-amber-300 font-extrabold tracking-wider uppercase text-xs bg-emeraldTheme-deep px-3 py-1 rounded border border-gold/40">
-              <TrendingUp className="w-3.5 h-3.5 mr-1.5 text-amber-300" />
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-borderLuxury shadow-sm transition-all max-w-full overflow-hidden">
+      {/* 1. Top Luxury Announcement Bar - High Readability & Fully Responsive */}
+      <div className="bg-emeraldTheme-dark text-white text-xs py-2 px-3 sm:px-4 border-b border-gold/30 overflow-hidden">
+        <div className="max-w-[1400px] mx-auto flex items-center justify-between gap-3 min-w-0">
+          {/* Rate Ticker Headline - Never forces page width */}
+          <div className="flex items-center space-x-2 sm:space-x-3 overflow-x-auto whitespace-nowrap min-w-0 flex-1 no-scrollbar py-0.5">
+            <span className="flex items-center text-amber-300 font-extrabold tracking-wider uppercase text-[10px] sm:text-xs bg-emeraldTheme-deep px-2.5 py-0.5 rounded border border-gold/40 flex-shrink-0">
+              <TrendingUp className="w-3.5 h-3.5 mr-1 text-amber-300" />
               LIVE BULLION:
             </span>
-            <span className="text-white font-medium text-xs">
-              Gold 22K (916): <strong className="text-amber-300 font-extrabold text-sm ml-1">{formatINR(rates.gold22k)}/g</strong>
+            <span className="text-white font-medium text-xs flex-shrink-0">
+              Gold 22K (916): <strong className="text-amber-300 font-extrabold text-xs ml-1">{formatINR(rates.gold22k)}/g</strong>
             </span>
-            <span className="text-gold/50 font-bold">•</span>
-            <span className="text-white font-medium text-xs">
-              Gold 24K: <strong className="text-amber-300 font-extrabold text-sm ml-1">{formatINR(rates.gold24k)}/g</strong>
+            <span className="text-gold/50 font-bold flex-shrink-0">•</span>
+            <span className="text-white font-medium text-xs flex-shrink-0">
+              Gold 24K: <strong className="text-amber-300 font-extrabold text-xs ml-1">{formatINR(rates.gold24k)}/g</strong>
             </span>
-            <span className="text-gold/50 font-bold">•</span>
-            <span className="text-white font-medium text-xs">
-              Silver 999: <strong className="text-amber-300 font-extrabold text-sm ml-1">{formatINRDecimal(rates.silver999)}/g</strong>
+            <span className="text-gold/50 font-bold flex-shrink-0">•</span>
+            <span className="text-white font-medium text-xs flex-shrink-0">
+              Silver 999: <strong className="text-amber-300 font-extrabold text-xs ml-1">{formatINRDecimal(rates.silver999)}/g</strong>
             </span>
             <button
               onClick={() => setRateModalOpen(true)}
-              className="text-xs font-bold text-amber-300 hover:text-white underline transition-colors ml-2 cursor-pointer"
+              className="text-xs font-bold text-amber-300 hover:text-white underline transition-colors ml-1 sm:ml-2 cursor-pointer flex-shrink-0"
             >
-              View Rate Card
+              Rate Card
             </button>
           </div>
 
-          {/* Quick links & contact */}
-          <div className="hidden md:flex items-center space-x-6 text-xs text-white/90 font-medium">
+          {/* Quick links & contact (Desktop) */}
+          <div className="hidden lg:flex items-center space-x-6 text-xs text-white/90 font-medium flex-shrink-0">
             <span className="flex items-center">
               <ShieldCheck className="w-4 h-4 mr-1 text-amber-300" />
-              100% BIS Hallmarked & Certified
+              100% BIS Hallmarked
             </span>
             <Link to="/stores" className="hover:text-amber-300 transition-colors flex items-center">
               <MapPin className="w-4 h-4 mr-1 text-amber-300" />
-              Store Locations
+              Stores
             </Link>
             <a href={`tel:${brand.phone}`} className="hover:text-amber-300 transition-colors flex items-center font-bold">
               <Phone className="w-4 h-4 mr-1 text-amber-300" />
@@ -103,36 +103,36 @@ export const Header = () => {
       </div>
 
       {/* 2. Main Navigation Bar */}
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 sm:h-22">
+      <div className="max-w-[1400px] mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-18 sm:h-20 lg:h-22">
           {/* Mobile menu trigger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-charcoal hover:text-emeraldTheme focus:outline-none"
+            className="xl:hidden p-2 -ml-1 text-charcoal hover:text-emeraldTheme focus:outline-none flex-shrink-0"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
 
           {/* Left: Luxury Brand Logo */}
-          <div className="flex items-center flex-shrink-0">
-            <Link to="/" className="flex items-center space-x-3.5 group py-1.5">
-              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-emeraldTheme flex items-center justify-center text-amber-300 shadow-sm group-hover:scale-105 transition-transform border border-gold/40 flex-shrink-0">
-                <Crown className="w-5 h-5 sm:w-6 sm:h-6" />
+          <div className="flex items-center flex-shrink-0 min-w-0">
+            <Link to="/" className="flex items-center space-x-2.5 sm:space-x-3.5 group py-1">
+              <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-emeraldTheme flex items-center justify-center text-amber-300 shadow-sm group-hover:scale-105 transition-transform border border-gold/40 flex-shrink-0">
+                <Crown className="w-4.5 h-4.5 sm:w-6 sm:h-6" />
               </div>
-              <div className="flex flex-col justify-center">
-                <span className="text-xl sm:text-2xl font-serif font-black tracking-[0.2em] text-gray-950 group-hover:text-emeraldTheme transition-colors leading-tight">
+              <div className="flex flex-col justify-center min-w-0">
+                <span className="text-lg sm:text-2xl font-serif font-black tracking-[0.15em] sm:tracking-[0.2em] text-gray-950 group-hover:text-emeraldTheme transition-colors leading-tight truncate">
                   {brand.brandName}
                 </span>
-                <span className="text-[10px] font-bold tracking-[0.25em] text-charcoal-muted uppercase font-sans leading-none mt-1">
+                <span className="hidden sm:block text-[10px] font-bold tracking-[0.25em] text-charcoal-muted uppercase font-sans leading-none mt-1">
                   Fine Jewellery • Est. {brand.establishedYear}
                 </span>
               </div>
             </Link>
           </div>
 
-          {/* Center: Main Navigation Links (Home, Shop, About, Stores, Contact) */}
-          <nav className="hidden lg:flex items-center justify-center space-x-7 xl:space-x-10 flex-1 px-6">
+          {/* Center: Main Navigation Links (Visible on XL screens 1280px+) */}
+          <nav className="hidden xl:flex items-center justify-center space-x-6 2xl:space-x-9 flex-1 px-4 min-w-0">
             {mainNavLinks.map((link) => (
               <NavLink
                 key={link.name}
@@ -159,21 +159,21 @@ export const Header = () => {
           </nav>
 
           {/* Right Action Icons: Search, Live Rates, Wishlist, Cart, Account */}
-          <div className="flex items-center space-x-2 sm:space-x-3.5 flex-shrink-0">
+          <div className="flex items-center space-x-1 sm:space-x-3 flex-shrink-0">
             {/* Search Icon Toggle */}
             <button
               onClick={() => setSearchOpen(!searchOpen)}
-              className="p-2 sm:p-2.5 rounded-full text-charcoal hover:text-emeraldTheme hover:bg-ivory transition-colors cursor-pointer"
+              className="p-1.5 sm:p-2.5 rounded-full text-charcoal hover:text-emeraldTheme hover:bg-ivory transition-colors cursor-pointer"
               title="Search jewellery"
               aria-label="Toggle search input"
             >
               <Search className="w-5 h-5" />
             </button>
 
-            {/* Live Rate Pill */}
+            {/* Live Rate Pill (Tablet & Desktop) */}
             <button
               onClick={() => setRateModalOpen(true)}
-              className="hidden sm:inline-flex items-center space-x-2 px-3.5 py-2 rounded-full border border-gold/70 bg-gold-50/80 hover:bg-gold-100 text-emeraldTheme text-xs font-bold transition-all shadow-sm cursor-pointer whitespace-nowrap"
+              className="hidden md:inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-full border border-gold/70 bg-gold-50/80 hover:bg-gold-100 text-emeraldTheme text-xs font-bold transition-all shadow-sm cursor-pointer whitespace-nowrap"
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
@@ -186,12 +186,12 @@ export const Header = () => {
             {/* Wishlist */}
             <Link
               to="/wishlist"
-              className="relative p-2 sm:p-2.5 text-charcoal hover:text-emeraldTheme hover:bg-ivory rounded-full transition-colors"
+              className="relative p-1.5 sm:p-2.5 text-charcoal hover:text-emeraldTheme hover:bg-ivory rounded-full transition-colors"
               title="View Wishlist"
             >
               <Heart className="w-5 h-5" />
               {wishlistCount > 0 && (
-                <span className="absolute top-1 right-1 bg-emeraldTheme text-amber-300 text-[10px] w-4.5 h-4.5 rounded-full flex items-center justify-center font-extrabold border border-gold shadow-sm">
+                <span className="absolute top-0.5 right-0.5 sm:top-1 sm:right-1 bg-emeraldTheme text-amber-300 text-[10px] w-4.5 h-4.5 rounded-full flex items-center justify-center font-extrabold border border-gold shadow-sm">
                   {wishlistCount}
                 </span>
               )}
@@ -200,12 +200,12 @@ export const Header = () => {
             {/* Cart / Bag */}
             <Link
               to="/cart"
-              className="relative p-2 sm:p-2.5 text-charcoal hover:text-emeraldTheme hover:bg-ivory rounded-full transition-colors"
+              className="relative p-1.5 sm:p-2.5 text-charcoal hover:text-emeraldTheme hover:bg-ivory rounded-full transition-colors"
               title="Shopping Bag"
             >
               <ShoppingBag className="w-5 h-5" />
               {cartSummary.totalQuantity > 0 && (
-                <span className="absolute top-1 right-1 bg-amber-600 text-white text-[10px] w-4.5 h-4.5 rounded-full flex items-center justify-center font-extrabold shadow-sm">
+                <span className="absolute top-0.5 right-0.5 sm:top-1 sm:right-1 bg-amber-600 text-white text-[10px] w-4.5 h-4.5 rounded-full flex items-center justify-center font-extrabold shadow-sm">
                   {cartSummary.totalQuantity}
                 </span>
               )}
@@ -215,10 +215,10 @@ export const Header = () => {
             <div className="relative">
               <button
                 onClick={() => setUserDropdownOpen(!userDropdownOpen)}
-                className="flex items-center space-x-2 p-1.5 pl-2 pr-2.5 rounded-full hover:bg-ivory text-charcoal hover:text-emeraldTheme transition-colors border border-transparent hover:border-borderLuxury cursor-pointer"
+                className="flex items-center space-x-1.5 p-1 sm:p-1.5 sm:pl-2 sm:pr-2.5 rounded-full hover:bg-ivory text-charcoal hover:text-emeraldTheme transition-colors border border-transparent hover:border-borderLuxury cursor-pointer"
               >
-                <div className="w-8 h-8 rounded-full bg-emeraldTheme-50 border border-emeraldTheme/20 flex items-center justify-center text-emeraldTheme font-bold flex-shrink-0">
-                  <User className="w-4 h-4" />
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-emeraldTheme-50 border border-emeraldTheme/20 flex items-center justify-center text-emeraldTheme font-bold flex-shrink-0">
+                  <User className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </div>
                 <span className="hidden sm:inline text-xs font-bold text-gray-900 whitespace-nowrap">
                   {isAuthenticated ? (user.name.split(' ')[0]) : 'Sign In'}

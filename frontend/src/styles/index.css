@@ -3,14 +3,27 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
   body {
     @apply bg-ivory text-charcoal font-sans antialiased text-[15px];
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
     letter-spacing: -0.01em;
     line-height: 1.6;
     background-image:
       radial-gradient(at 100% 0%, rgba(212, 175, 55, 0.04) 0px, transparent 50%),
       radial-gradient(at 0% 100%, rgba(11, 47, 36, 0.03) 0px, transparent 50%);
     background-attachment: fixed;
+  }
+
+  #root {
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   h1,
@@ -25,8 +38,8 @@
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -40,6 +53,18 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: #9A7412;
+}
+
+/* Hide scrollbar for internal horizontally scrolling rows */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* Luxury Solid High-Visibility Gold Gradient */

@@ -24,7 +24,7 @@ export const HomePage = () => {
   });
 
   return (
-    <div className="bg-ivory/30">
+    <div className="bg-ivory/30 w-full max-w-full overflow-x-hidden">
       {/* 1. Hero Section */}
       <HeroBanner />
 
@@ -37,7 +37,7 @@ export const HomePage = () => {
       {/* 4. Curated Showcase: Bestsellers & New Arrivals */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
             <div>
               <span className="text-xs uppercase font-bold tracking-[0.2em] text-gold-dark block mb-2">
                 Handcrafted Brilliance
@@ -48,7 +48,7 @@ export const HomePage = () => {
             </div>
 
             {/* Filter Tabs */}
-            <div className="flex items-center space-x-2 mt-4 md:mt-0 p-1.5 bg-ivory rounded-xl border border-borderLuxury">
+            <div className="flex items-center space-x-2 p-1.5 bg-ivory rounded-xl border border-borderLuxury overflow-x-auto no-scrollbar max-w-full">
               <button
                 onClick={() => setActiveTab('featured')}
                 className={`px-4 py-2 text-xs font-semibold rounded-lg transition ${activeTab === 'featured'

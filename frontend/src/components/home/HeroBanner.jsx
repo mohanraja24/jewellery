@@ -56,7 +56,7 @@ export const HeroBanner = () => {
             </div>
 
             {/* Trust Badges Bar */}
-            <div className="grid grid-cols-3 gap-4 pt-8 border-t border-white/20 text-left">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8 border-t border-white/20 text-center sm:text-left">
               <div>
                 <p className="text-xl sm:text-2xl font-sans font-black text-amber-300">100%</p>
                 <p className="text-xs sm:text-sm text-white font-semibold leading-tight mt-0.5">BIS 916 Hallmarked with HUID</p>
@@ -73,36 +73,36 @@ export const HeroBanner = () => {
           </div>
 
           {/* Right Visual Column: Luxury Jewellery Spotlight Card */}
-          <div className="lg:col-span-5 relative">
-            <div className="relative mx-auto max-w-sm lg:max-w-none">
+          <div className="lg:col-span-5 relative w-full">
+            <div className="relative mx-auto max-w-sm lg:max-w-none w-full">
               {/* Outer Decorative Gold Glow */}
-              <div className="absolute -inset-2 rounded-2xl bg-gradient-to-r from-gold/40 via-gold/15 to-gold/40 blur-md"></div>
+              <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-gold/30 via-gold/10 to-gold/30 blur-sm pointer-events-none"></div>
 
               {/* Card Container */}
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border-2 border-gold/50 bg-charcoal">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border-2 border-gold/50 bg-charcoal w-full">
                 <img
                   src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1000&q=80"
                   alt="Aurelia Maharani Royal Heritage Gold Jewellery"
-                  className="w-full h-[420px] object-cover object-center transform hover:scale-105 transition-transform duration-700"
+                  className="w-full h-80 sm:h-[420px] object-cover object-center transform hover:scale-105 transition-transform duration-700"
                 />
 
                 {/* Floating Glass Pill */}
-                <div className="absolute bottom-4 left-4 right-4 bg-gray-950/90 backdrop-blur-md p-4 rounded-xl border border-gold/50 text-white">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <span className="text-xs uppercase font-extrabold tracking-widest text-amber-300">
+                <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 bg-gray-950/90 backdrop-blur-md p-3 sm:p-4 rounded-xl border border-gold/50 text-white">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="min-w-0 flex-1">
+                      <span className="text-[10px] sm:text-xs uppercase font-extrabold tracking-widest text-amber-300 block truncate">
                         Signature Masterpiece
                       </span>
-                      <h4 className="text-base font-bold text-white mt-0.5">
+                      <h4 className="text-sm sm:text-base font-bold text-white mt-0.5 truncate">
                         The Maharani Kasu Mala
                       </h4>
-                      <p className="text-xs text-gray-300 font-medium">
+                      <p className="text-[11px] sm:text-xs text-gray-300 font-medium truncate">
                         22K Solid Gold • 42.500 g Net Wt
                       </p>
                     </div>
                     <Link
                       to="/product/PROD-001"
-                      className="px-4 py-2.5 bg-emeraldTheme hover:bg-emeraldTheme-light text-white text-xs font-bold rounded-lg transition shadow-sm border border-gold"
+                      className="px-3 sm:px-4 py-2 sm:py-2.5 bg-emeraldTheme hover:bg-emeraldTheme-light text-white text-xs font-bold rounded-lg transition shadow-sm border border-gold flex-shrink-0"
                     >
                       View Piece
                     </Link>

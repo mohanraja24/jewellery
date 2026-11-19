@@ -118,7 +118,7 @@ export const ProductDetailPage = () => {
 
             {/* Thumbnails row */}
             {product.images.length > 1 && (
-              <div className="flex items-center space-x-3 overflow-x-auto pb-2">
+              <div className="flex items-center space-x-3 overflow-x-auto pb-2 no-scrollbar max-w-full">
                 {product.images.map((img, idx) => (
                   <button
                     key={idx}

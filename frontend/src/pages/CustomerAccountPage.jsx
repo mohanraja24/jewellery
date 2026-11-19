@@ -184,15 +184,15 @@ export const CustomerAccountPage = () => {
                     {/* Order Details & Items */}
                     <div className="p-6 space-y-4">
                       {order.items.map((item, idx) => (
-                        <div key={idx} className="flex items-center justify-between">
-                          <div className="flex items-center space-x-4">
+                        <div key={idx} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                          <div className="flex items-start sm:items-center space-x-4 min-w-0 flex-1">
                             <img
                               src={item.image}
                               alt={item.name}
-                              className="w-18 h-18 rounded-xl object-cover bg-ivory border-2 border-borderLuxury"
+                              className="w-16 h-16 sm:w-18 sm:h-18 rounded-xl object-cover bg-ivory border-2 border-borderLuxury flex-shrink-0"
                             />
-                            <div>
-                              <h4 className="font-bold text-base text-gray-950">
+                            <div className="min-w-0 flex-1">
+                              <h4 className="font-bold text-base text-gray-950 truncate">
                                 {item.name}
                               </h4>
                               <p className="text-xs sm:text-sm text-gray-600 font-medium mt-0.5">
@@ -203,7 +203,7 @@ export const CustomerAccountPage = () => {
                               </p>
                             </div>
                           </div>
-                          <div className="text-right">
+                          <div className="text-left sm:text-right pt-2 sm:pt-0 border-t sm:border-t-0 border-borderLuxury">
                             <span className="text-lg font-black font-sans text-emeraldTheme">
                               {formatINR(item.price)}
                             </span>

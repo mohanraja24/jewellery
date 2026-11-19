@@ -11,9 +11,9 @@ export const MainLayout = () => {
   }, [pathname]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-ivory/30 selection:bg-gold selection:text-white">
+    <div className="flex flex-col min-h-screen w-full max-w-full overflow-x-hidden bg-ivory/30 selection:bg-gold selection:text-white">
       <Header />
-      <main className="flex-grow">
+      <main className="flex-grow w-full max-w-full overflow-x-hidden">
         <Outlet />
       </main>
       <Footer />
