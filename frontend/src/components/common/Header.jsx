@@ -170,19 +170,6 @@ export const Header = () => {
               <Search className="w-5 h-5" />
             </button>
 
-            {/* Live Rate Pill (Tablet & Desktop) */}
-            <button
-              onClick={() => setRateModalOpen(true)}
-              className="hidden md:inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-full border border-gold/70 bg-gold-50/80 hover:bg-gold-100 text-emeraldTheme text-xs font-bold transition-all shadow-sm cursor-pointer whitespace-nowrap"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
-              </span>
-              <span className="tracking-widest uppercase text-[11px] font-extrabold">Live Rates</span>
-              <ChevronDown className="w-3.5 h-3.5 text-gold-dark" />
-            </button>
-
             {/* Wishlist */}
             <Link
               to="/wishlist"
