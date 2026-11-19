@@ -103,110 +103,95 @@ export const Header = () => {
       </div>
 
       {/* 2. Main Navigation Bar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20 sm:h-22">
           {/* Mobile menu trigger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-charcoal hover:text-emeraldTheme focus:outline-none"
+            className="lg:hidden p-2 text-charcoal hover:text-emeraldTheme focus:outline-none"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
 
-          {/* Luxury Brand Logo */}
-          <Link to="/" className="flex items-center space-x-3.5 group">
-            <div className="w-11 h-11 rounded-xl bg-emeraldTheme flex items-center justify-center text-amber-300 shadow-sm group-hover:scale-105 transition-transform border border-gold/40">
-              <Crown className="w-6 h-6" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-2xl sm:text-3xl font-serif font-black tracking-[0.2em] text-gray-950 group-hover:text-emeraldTheme transition-colors">
-                {brand.brandName}
-              </span>
-              <span className="text-[11px] font-bold tracking-[0.25em] text-charcoal-muted uppercase font-sans">
-                Fine Jewellery • Est. {brand.establishedYear}
-              </span>
-            </div>
-          </Link>
+          {/* Left: Luxury Brand Logo */}
+          <div className="flex items-center flex-shrink-0">
+            <Link to="/" className="flex items-center space-x-3.5 group py-1.5">
+              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-emeraldTheme flex items-center justify-center text-amber-300 shadow-sm group-hover:scale-105 transition-transform border border-gold/40 flex-shrink-0">
+                <Crown className="w-5 h-5 sm:w-6 sm:h-6" />
+              </div>
+              <div className="flex flex-col justify-center">
+                <span className="text-xl sm:text-2xl font-serif font-black tracking-[0.2em] text-gray-950 group-hover:text-emeraldTheme transition-colors leading-tight">
+                  {brand.brandName}
+                </span>
+                <span className="text-[10px] font-bold tracking-[0.25em] text-charcoal-muted uppercase font-sans leading-none mt-1">
+                  Fine Jewellery • Est. {brand.establishedYear}
+                </span>
+              </div>
+            </Link>
+          </div>
 
-          {/* Desktop Center Navigation Links: Home, Shop, About, Stores, Contact */}
-          <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
+          {/* Center: Main Navigation Links (Home, Shop, About, Stores, Contact) */}
+          <nav className="hidden lg:flex items-center justify-center space-x-7 xl:space-x-10 flex-1 px-6">
             {mainNavLinks.map((link) => (
               <NavLink
                 key={link.name}
                 to={link.path}
                 end={link.path === '/'}
                 className={({ isActive }) =>
-                  `relative text-xs lg:text-[13px] font-serif tracking-[0.18em] uppercase font-bold py-1.5 transition-all ${
+                  `relative text-xs xl:text-[13px] font-serif tracking-[0.2em] uppercase font-bold py-2 transition-colors whitespace-nowrap ${
                     isActive
-                      ? 'text-emeraldTheme after:content-[""] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-gold'
-                      : 'text-gray-800 hover:text-emeraldTheme hover:after:content-[""] hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:w-full hover:after:h-[2px] hover:after:bg-gold/40'
+                      ? 'text-emeraldTheme'
+                      : 'text-gray-700 hover:text-emeraldTheme'
                   }`
                 }
               >
-                {link.name}
+                {({ isActive }) => (
+                  <span className="relative pb-1 inline-block">
+                    {link.name}
+                    {isActive && (
+                      <span className="absolute -bottom-1 left-0 right-0 h-[2.5px] bg-gold rounded-full" />
+                    )}
+                  </span>
+                )}
               </NavLink>
             ))}
           </nav>
 
-          {/* Right Action Icons: Search, Live Rates Button, User Account, Wishlist, Cart */}
-          <div className="flex items-center space-x-2 sm:space-x-4">
-            {/* Search Input (Desktop Large Screens) */}
-            <form
-              onSubmit={handleSearchSubmit}
-              className="hidden xl:flex items-center w-48 2xl:w-60 relative bg-ivory rounded-full px-3.5 py-1.5 border border-borderLuxury focus-within:border-gold focus-within:bg-white transition-all shadow-sm"
-            >
-              <Search className="w-3.5 h-3.5 text-charcoal-muted mr-2 flex-shrink-0" />
-              <input
-                type="text"
-                placeholder="Search..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="bg-transparent border-none outline-none text-xs w-full text-charcoal font-medium placeholder:text-charcoal-muted"
-              />
-              {searchQuery && (
-                <button
-                  type="button"
-                  onClick={() => setSearchQuery('')}
-                  className="text-[11px] font-bold text-charcoal-muted hover:text-charcoal ml-1"
-                >
-                  ✕
-                </button>
-              )}
-            </form>
-
-            {/* Search Icon Toggle for tablet/laptop */}
+          {/* Right Action Icons: Search, Live Rates, Wishlist, Cart, Account */}
+          <div className="flex items-center space-x-2 sm:space-x-3.5 flex-shrink-0">
+            {/* Search Icon Toggle */}
             <button
               onClick={() => setSearchOpen(!searchOpen)}
-              className="xl:hidden p-2 text-charcoal hover:text-emeraldTheme transition-colors"
+              className="p-2 sm:p-2.5 rounded-full text-charcoal hover:text-emeraldTheme hover:bg-ivory transition-colors cursor-pointer"
               title="Search jewellery"
               aria-label="Toggle search input"
             >
               <Search className="w-5 h-5" />
             </button>
 
-            {/* Live Rate Pill (Desktop) */}
+            {/* Live Rate Pill */}
             <button
               onClick={() => setRateModalOpen(true)}
-              className="hidden sm:flex items-center px-4 py-2 rounded-full border-2 border-gold bg-gold-50 hover:bg-gold-100 text-emeraldTheme text-xs font-extrabold transition-all group shadow-sm"
+              className="hidden sm:inline-flex items-center space-x-2 px-3.5 py-2 rounded-full border border-gold/70 bg-gold-50/80 hover:bg-gold-100 text-emeraldTheme text-xs font-bold transition-all shadow-sm cursor-pointer whitespace-nowrap"
             >
-              <span className="relative flex h-2.5 w-2.5 mr-2">
+              <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-600"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
               </span>
-              <span>LIVE RATES</span>
-              <ChevronDown className="w-4 h-4 ml-1.5 text-gold-dark" />
+              <span className="tracking-widest uppercase text-[11px] font-extrabold">Live Rates</span>
+              <ChevronDown className="w-3.5 h-3.5 text-gold-dark" />
             </button>
 
             {/* Wishlist */}
             <Link
               to="/wishlist"
-              className="relative p-2 text-charcoal hover:text-emeraldTheme transition-colors"
+              className="relative p-2 sm:p-2.5 text-charcoal hover:text-emeraldTheme hover:bg-ivory rounded-full transition-colors"
               title="View Wishlist"
             >
               <Heart className="w-5 h-5" />
               {wishlistCount > 0 && (
-                <span className="absolute top-1 right-1 bg-emeraldTheme text-amber-300 text-xs w-5 h-5 rounded-full flex items-center justify-center font-extrabold border border-gold">
+                <span className="absolute top-1 right-1 bg-emeraldTheme text-amber-300 text-[10px] w-4.5 h-4.5 rounded-full flex items-center justify-center font-extrabold border border-gold shadow-sm">
                   {wishlistCount}
                 </span>
               )}
@@ -215,12 +200,12 @@ export const Header = () => {
             {/* Cart / Bag */}
             <Link
               to="/cart"
-              className="relative p-2 text-charcoal hover:text-emeraldTheme transition-colors"
+              className="relative p-2 sm:p-2.5 text-charcoal hover:text-emeraldTheme hover:bg-ivory rounded-full transition-colors"
               title="Shopping Bag"
             >
               <ShoppingBag className="w-5 h-5" />
               {cartSummary.totalQuantity > 0 && (
-                <span className="absolute top-1 right-1 bg-amber-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-extrabold shadow-sm">
+                <span className="absolute top-1 right-1 bg-amber-600 text-white text-[10px] w-4.5 h-4.5 rounded-full flex items-center justify-center font-extrabold shadow-sm">
                   {cartSummary.totalQuantity}
                 </span>
               )}
@@ -230,14 +215,15 @@ export const Header = () => {
             <div className="relative">
               <button
                 onClick={() => setUserDropdownOpen(!userDropdownOpen)}
-                className="flex items-center space-x-2 p-2 text-charcoal hover:text-emeraldTheme transition-colors"
+                className="flex items-center space-x-2 p-1.5 pl-2 pr-2.5 rounded-full hover:bg-ivory text-charcoal hover:text-emeraldTheme transition-colors border border-transparent hover:border-borderLuxury cursor-pointer"
               >
-                <div className="w-8 h-8 rounded-full bg-ivory border border-borderLuxury flex items-center justify-center text-charcoal font-bold">
+                <div className="w-8 h-8 rounded-full bg-emeraldTheme-50 border border-emeraldTheme/20 flex items-center justify-center text-emeraldTheme font-bold flex-shrink-0">
                   <User className="w-4 h-4" />
                 </div>
-                <span className="hidden sm:inline text-xs sm:text-sm font-bold text-gray-900">
+                <span className="hidden sm:inline text-xs font-bold text-gray-900 whitespace-nowrap">
                   {isAuthenticated ? (user.name.split(' ')[0]) : 'Sign In'}
                 </span>
+                <ChevronDown className="hidden sm:inline w-3 h-3 text-charcoal-muted" />
               </button>
 
               {userDropdownOpen && (
