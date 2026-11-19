@@ -295,18 +295,7 @@ export const Header = () => {
           </div>
         </div>
 
-        {/* 3. Category Navigation Bar (Desktop) - High Visibility */}
-        <nav className="hidden md:flex items-center justify-center space-x-8 py-3.5 border-t border-borderLuxury text-xs sm:text-[13px] tracking-wider uppercase font-extrabold text-gray-800">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              to={link.path}
-              className="hover:text-emeraldTheme transition-colors hover:border-b-2 hover:border-emeraldTheme pb-1"
-            >
-              {link.name}
-            </Link>
-          ))}
-        </nav>
+
       </div>
 
       {/* Mobile Drawer Menu */}

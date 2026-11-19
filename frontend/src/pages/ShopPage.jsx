@@ -178,11 +178,10 @@ export const ShopPage = () => {
               <div className="space-y-1.5 text-xs sm:text-sm">
                 <button
                   onClick={() => setSelectedCategory('all')}
-                  className={`block w-full text-left px-3 py-2 rounded-xl transition ${
-                    selectedCategory === 'all'
+                  className={`block w-full text-left px-3 py-2 rounded-xl transition ${selectedCategory === 'all'
                       ? 'bg-emeraldTheme text-white font-bold shadow-sm'
                       : 'text-gray-800 font-semibold hover:bg-ivory'
-                  }`}
+                    }`}
                 >
                   All Categories ({INITIAL_PRODUCTS.length})
                 </button>
@@ -190,11 +189,10 @@ export const ShopPage = () => {
                   <button
                     key={cat.id}
                     onClick={() => setSelectedCategory(cat.slug)}
-                    className={`block w-full text-left px-3 py-2 rounded-xl transition ${
-                      selectedCategory === cat.slug
+                    className={`block w-full text-left px-3 py-2 rounded-xl transition ${selectedCategory === cat.slug
                         ? 'bg-emeraldTheme text-white font-bold shadow-sm'
                         : 'text-gray-800 font-semibold hover:bg-ivory'
-                    }`}
+                      }`}
                   >
                     {cat.name}
                   </button>
@@ -221,8 +219,8 @@ export const ShopPage = () => {
                       {metal === 'ALL'
                         ? 'All Metals'
                         : metal === 'BRASS_GOLD_PLATED'
-                        ? 'Fashion / CZ'
-                        : metal}
+                          ? 'Fashion / CZ'
+                          : metal}
                     </span>
                   </label>
                 ))}
