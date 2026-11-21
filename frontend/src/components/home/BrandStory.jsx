@@ -54,10 +54,10 @@ export const BrandStory = () => {
             <div className="pt-2">
               <Link
                 to="/about"
-                className="inline-flex items-center text-xs sm:text-sm uppercase font-extrabold tracking-widest text-emeraldTheme hover:text-gold-dark transition"
+                className="inline-flex items-center px-5 py-2.5 text-xs sm:text-sm uppercase font-extrabold tracking-widest text-emeraldTheme border-2 border-emeraldTheme hover:bg-emeraldTheme hover:text-white rounded-xl transition-all group"
               >
                 <span>Read Our Full Heritage Journey</span>
-                <ArrowRight className="w-4 h-4 ml-2" />
+                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
           </div>
